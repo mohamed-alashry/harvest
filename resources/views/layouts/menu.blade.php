@@ -28,3 +28,9 @@
         <span>Training Services</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/departments*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.departments.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Departments</span>
+    </a>
+</li>
