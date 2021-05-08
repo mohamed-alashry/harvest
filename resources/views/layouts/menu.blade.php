@@ -10,3 +10,9 @@
         <span>Leads</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/branches*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.branches.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Branches</span>
+    </a>
+</li>
