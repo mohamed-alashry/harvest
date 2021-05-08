@@ -8,6 +8,7 @@ use App\Repositories\EmployeeRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Branch;
 use App\Models\Department;
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -159,5 +160,19 @@ class EmployeeController extends AppBaseController
         Flash::success('Employee deleted successfully.');
 
         return redirect(route('admin.employees.index'));
+    }
+
+    /**
+     * Get Jobs depending on department id.
+     *
+     * @return void
+     */
+    public function getJobs()
+    {
+        if (request()->filled('department_id')) {
+            $jobs = Job::where('department_id', request('department_id'))->get();
+
+            return $jobs;
+        }
     }
 }

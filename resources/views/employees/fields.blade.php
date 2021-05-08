@@ -37,25 +37,19 @@
 <!-- Branch Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('branch_id', 'Branch:') !!}
-    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control']) !!}
+    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'select branch...']) !!}
 </div>
 
 <!-- Department Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('department_id', 'Department:') !!}
-    {!! Form::select('department_id', $departments, null, ['class' => 'form-control']) !!}
+    {!! Form::select('department_id', $departments, null, ['class' => 'form-control', 'id' => 'department-select', 'placeholder' => 'select department...']) !!}
 </div>
 
 <!-- Job Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('job_id', 'Job:') !!}
-    {!! Form::select('job_id', [], null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Branch Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('branch', 'Branch:') !!}
-    {!! Form::select('branch', config('data.branches'), null, ['class' => 'form-control']) !!}
+    {!! Form::select('job_id', [], null, ['class' => 'form-control', 'id' => 'job-select', 'placeholder' => 'select job...']) !!}
 </div>
 
 <!-- Submit Field -->
@@ -63,3 +57,46 @@
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{{ route('admin.employees.index') }}" class="btn btn-secondary">Cancel</a>
 </div>
+
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var val = $('#department-select').val()
+
+            getDepartmentJobs(val)
+        });
+
+        $('#department-select').change(function() {
+            var val = $(this).val()
+
+            getDepartmentJobs(val)
+        });
+
+        function getDepartmentJobs(id) {
+
+            var oldValue = "{{ old('job_id', $employee->job_id ?? '') }}"
+
+            $.post("{{ route('admin.getJobs') }}", {
+                    'department_id': id
+                },
+                function(data) {
+                    var sel = $("#job-select");
+                    sel.empty();
+                    sel.append('<option value="">select job...</option>');
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].id == oldValue) {
+                            sel.append('<option value="' + data[i].id + '" selected>' + data[i].title +
+                                '</option>');
+                        } else {
+                            sel.append('<option value="' + data[i].id + '" >' + data[i].title +
+                                '</option>');
+                        }
+                    }
+                }
+            );
+        }
+
+    </script>
+@endpush

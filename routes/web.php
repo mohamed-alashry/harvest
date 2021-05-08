@@ -15,14 +15,24 @@ Route::group(['as' => 'admin.'], function () {
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
         Route::resource('employees', App\Http\Controllers\EmployeeController::class);
+        Route::post('getJobs', [App\Http\Controllers\EmployeeController::class, 'getJobs'])->name('getJobs');
+
         Route::resource('leads', App\Http\Controllers\LeadController::class);
+
         Route::resource('branches', App\Http\Controllers\BranchController::class);
+
         Route::resource('offers', App\Http\Controllers\OfferController::class);
+
         Route::resource('trainingServices', App\Http\Controllers\TrainingServiceController::class);
+
         Route::resource('departments', App\Http\Controllers\DepartmentController::class);
+
         Route::resource('jobs', App\Http\Controllers\JobController::class);
+
         Route::resource('leadSources', App\Http\Controllers\LeadSourceController::class);
+
         Route::resource('knowChannels', App\Http\Controllers\KnowChannelController::class);
     });
 });
