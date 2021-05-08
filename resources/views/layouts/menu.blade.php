@@ -22,3 +22,9 @@
         <span>Offers</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/trainingServices*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.trainingServices.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Training Services</span>
+    </a>
+</li>

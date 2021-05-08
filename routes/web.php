@@ -19,6 +19,7 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('leads', App\Http\Controllers\LeadController::class);
         Route::resource('branches', App\Http\Controllers\BranchController::class);
         Route::resource('offers', App\Http\Controllers\OfferController::class);
+        Route::resource('trainingServices', App\Http\Controllers\TrainingServiceController::class);
     });
 });
 
