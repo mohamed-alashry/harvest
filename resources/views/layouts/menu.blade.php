@@ -40,3 +40,9 @@
         <span>Jobs</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/leadSources*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.leadSources.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Lead Sources</span>
+    </a>
+</li>
