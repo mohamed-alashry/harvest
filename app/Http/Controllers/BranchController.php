@@ -29,7 +29,7 @@ class BranchController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $branches = $this->branchRepository->paginate(10);
+        $branches = $this->branchRepository->all();
 
         return view('branches.index')
             ->with('branches', $branches);
