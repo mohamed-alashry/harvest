@@ -36,14 +36,26 @@
 
 <!-- Branch Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('branch', 'Branch:') !!}
-    {!! Form::select('branch', config('data.branches'), null, ['class' => 'form-control']) !!}
+    {!! Form::label('branch_id', 'Branch:') !!}
+    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Position Field -->
+<!-- Department Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('position', 'Position:') !!}
-    {!! Form::select('position', config('data.positions'), null, ['class' => 'form-control']) !!}
+    {!! Form::label('department_id', 'Department:') !!}
+    {!! Form::select('department_id', $departments, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Job Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('job_id', 'Job:') !!}
+    {!! Form::select('job_id', [], null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Branch Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('branch', 'Branch:') !!}
+    {!! Form::select('branch', config('data.branches'), null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

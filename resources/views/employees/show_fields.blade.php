@@ -31,13 +31,19 @@
 <!-- Branch Field -->
 <div class="form-group">
     {!! Form::label('branch', 'Branch:') !!}
-    <p>{{ $employee->branch }}</p>
+    <p>{{ $employee->branch->name }}</p>
 </div>
 
-<!-- Position Field -->
+<!-- Department Field -->
 <div class="form-group">
-    {!! Form::label('position', 'Position:') !!}
-    <p>{{ $employee->position }}</p>
+    {!! Form::label('department', 'Department:') !!}
+    <p>{{ $employee->department->name }}</p>
+</div>
+
+<!-- Job Field -->
+<div class="form-group">
+    {!! Form::label('job', 'Job:') !!}
+    <p>{{ $employee->job->name }}</p>
 </div>
 
 <!-- Created At Field -->

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'admin.'], function () {
     Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
     Route::post('/postLogin', [App\Http\Controllers\AuthController::class, 'postLogin'])->name('postLogin');
-    Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

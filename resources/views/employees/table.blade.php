@@ -8,7 +8,8 @@
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>Branch</th>
-                <th>Position</th>
+                <th>Department</th>
+                <th>Job</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -20,8 +21,9 @@
                     <td>{{ $employee->last_name }}</td>
                     <td>{{ $employee->mobile }}</td>
                     <td>{{ $employee->email }}</td>
-                    <td>{{ $employee->branch }}</td>
-                    <td>{{ $employee->position }}</td>
+                    <td>{{ $employee->branch->name }}</td>
+                    <td>{{ $employee->department->title }}</td>
+                    <td>{{ $employee->job->title }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.employees.destroy', $employee->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

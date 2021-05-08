@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -51,8 +52,9 @@ class Employee extends Authenticatable
         'mobile',
         'email',
         'password',
-        'branch',
-        'position'
+        'branch_id',
+        'department_id',
+        'job_id'
     ];
 
     /**
@@ -76,8 +78,9 @@ class Employee extends Authenticatable
         'last_name' => 'string',
         'mobile' => 'string',
         'email' => 'string',
-        'branch' => 'string',
-        'position' => 'string'
+        'branch_id' => 'integer',
+        'department_id' => 'integer',
+        'job_id' => 'integer'
     ];
 
     /**
@@ -91,8 +94,9 @@ class Employee extends Authenticatable
         'mobile' => 'required',
         'email' => 'required|email',
         'password' => 'required|confirmed',
-        'branch' => 'required',
-        'position' => 'required'
+        'branch_id' => 'required',
+        'department_id' => 'required',
+        'job_id' => 'required'
     ];
 
     /**
@@ -116,5 +120,35 @@ class Employee extends Authenticatable
     public function getNameAttribute()
     {
         return $this->attributes['first_name'] .' '. $this->attributes['last_name'];
+    }
+
+    /**
+     * Get the branch that owns the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * Get the department that owns the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * Get the job that owns the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function job(): BelongsTo
+    {
+        return $this->belongsTo(Job::class);
     }
 }

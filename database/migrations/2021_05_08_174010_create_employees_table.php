@@ -21,11 +21,15 @@ class CreateEmployeesTable extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->string('password');
-            $table->string('branch');
-            $table->string('position');
+            $table->integer('branch_id')->unsigned();
+            $table->integer('department_id')->unsigned();
+            $table->integer('job_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
         });
     }
 

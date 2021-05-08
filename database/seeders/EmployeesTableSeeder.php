@@ -20,8 +20,9 @@ class EmployeesTableSeeder extends Seeder
             'mobile' => '01236547890',
             'email' => 'user@email.com',
             'password' => 'password',
-            'branch' => 'Nasr city',
-            'position' => 'manager'
+            'branch_id' => 1,
+            'department_id' => 1,
+            'job_id' => 1,
         ]);
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Requests\CreateEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Repositories\EmployeeRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Branch;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +44,10 @@ class EmployeeController extends AppBaseController
      */
     public function create()
     {
-        return view('employees.create');
+        $branches = Branch::pluck('name', 'id');
+        $departments = Department::pluck('title', 'id');
+
+        return view('employees.create', compact('branches', 'departments'));
     }
 
     /**
@@ -99,8 +104,10 @@ class EmployeeController extends AppBaseController
 
             return redirect(route('admin.employees.index'));
         }
+        $branches = Branch::pluck('name', 'id');
+        $departments = Department::pluck('title', 'id');
 
-        return view('employees.edit')->with('employee', $employee);
+        return view('employees.edit', compact('employee', 'branches', 'departments'));
     }
 
     /**
