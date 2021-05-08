@@ -1,29 +1,29 @@
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', 'Id:') !!}
-    <p>{{ $department->id }}</p>
+    <p>{{ $job->id }}</p>
 </div>
 
-<!-- Parent Id Field -->
+<!-- Department Id Field -->
 <div class="form-group">
-    {!! Form::label('parent_id', 'Parent:') !!}
-    <p>{{ $department->parent->title ?? 'No Parent' }}</p>
+    {!! Form::label('department_id', 'Department:') !!}
+    <p>{{ $job->department->title }}</p>
 </div>
 
 <!-- Title Field -->
 <div class="form-group">
     {!! Form::label('title', 'Title:') !!}
-    <p>{{ $department->title }}</p>
+    <p>{{ $job->title }}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{{ $department->created_at }}</p>
+    <p>{{ $job->created_at }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{{ $department->updated_at }}</p>
+    <p>{{ $job->updated_at }}</p>
 </div>

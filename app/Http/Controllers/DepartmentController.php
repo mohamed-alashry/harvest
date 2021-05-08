@@ -43,7 +43,7 @@ class DepartmentController extends AppBaseController
      */
     public function create()
     {
-        $parents = Department::pluck('title', 'id');
+        $parents = Department::whereNull('parent_id')->pluck('title', 'id');
 
         return view('departments.create', compact('parents'));
     }
@@ -102,7 +102,7 @@ class DepartmentController extends AppBaseController
 
             return redirect(route('admin.departments.index'));
         }
-        $parents = Department::pluck('title', 'id');
+        $parents = Department::whereNull('parent_id')->pluck('title', 'id');
 
         return view('departments.edit', compact('department', 'parents'));
     }

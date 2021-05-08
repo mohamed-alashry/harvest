@@ -34,3 +34,9 @@
         <span>Departments</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/jobs*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.jobs.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Jobs</span>
+    </a>
+</li>
