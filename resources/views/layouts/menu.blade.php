@@ -46,3 +46,9 @@
         <span>Lead Sources</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/knowChannels*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.knowChannels.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Know Channels</span>
+    </a>
+</li>

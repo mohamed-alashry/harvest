@@ -23,6 +23,7 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('departments', App\Http\Controllers\DepartmentController::class);
         Route::resource('jobs', App\Http\Controllers\JobController::class);
         Route::resource('leadSources', App\Http\Controllers\LeadSourceController::class);
+        Route::resource('knowChannels', App\Http\Controllers\KnowChannelController::class);
     });
 });
 
