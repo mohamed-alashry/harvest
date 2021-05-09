@@ -140,4 +140,12 @@ return [
 
         'store' => 'default',
     ],
+    'excluded_routes' => [
+        'admin.login',
+        'admin.postLogin',
+        'admin.logout',
+        'admin.home',
+        'admin.getJobs',
+        'admin.roles.updatePermissions',
+    ],
 ];

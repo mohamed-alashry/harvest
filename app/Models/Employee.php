@@ -96,7 +96,8 @@ class Employee extends Authenticatable
         'password' => 'required|confirmed',
         'branch_id' => 'required',
         'department_id' => 'required',
-        'job_id' => 'required'
+        'job_id' => 'required',
+        'permissions' => 'required|array'
     ];
 
     /**

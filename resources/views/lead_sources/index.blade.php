@@ -13,8 +13,10 @@
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
                             LeadSources
-                            <a class="pull-right" href="{{ route('admin.leadSources.create') }}"><i
-                                    class="fa fa-plus-square fa-lg"></i></a>
+                            @can('leadSources create')
+                                <a class="pull-right" href="{{ route('admin.leadSources.create') }}"><i
+                                        class="fa fa-plus-square fa-lg"></i></a>
+                            @endcan
                         </div>
                         <div class="card-body">
                             @include('lead_sources.table')

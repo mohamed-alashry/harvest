@@ -13,8 +13,10 @@
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
                             Offers
-                            <a class="pull-right" href="{{ route('admin.offers.create') }}"><i
-                                    class="fa fa-plus-square fa-lg"></i></a>
+                            @can('offers create')
+                                <a class="pull-right" href="{{ route('admin.offers.create') }}"><i
+                                        class="fa fa-plus-square fa-lg"></i></a>
+                            @endcan
                         </div>
                         <div class="card-body">
                             @include('offers.table')

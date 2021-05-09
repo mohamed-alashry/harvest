@@ -12,6 +12,7 @@ use App\Models\Job;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Spatie\Permission\Models\Permission;
 
 class EmployeeController extends AppBaseController
 {
@@ -47,8 +48,9 @@ class EmployeeController extends AppBaseController
     {
         $branches = Branch::pluck('name', 'id');
         $departments = Department::pluck('title', 'id');
+        $permissions = Permission::all();
 
-        return view('employees.create', compact('branches', 'departments'));
+        return view('employees.create', compact('branches', 'departments', 'permissions'));
     }
 
     /**
@@ -63,6 +65,8 @@ class EmployeeController extends AppBaseController
         $input = $request->all();
 
         $employee = $this->employeeRepository->create($input);
+
+        $employee->syncPermissions(request('permissions'));
 
         Flash::success('Employee saved successfully.');
 
@@ -107,8 +111,9 @@ class EmployeeController extends AppBaseController
         }
         $branches = Branch::pluck('name', 'id');
         $departments = Department::pluck('title', 'id');
+        $permissions = Permission::all();
 
-        return view('employees.edit', compact('employee', 'branches', 'departments'));
+        return view('employees.edit', compact('employee', 'branches', 'departments', 'permissions'));
     }
 
     /**
@@ -130,6 +135,8 @@ class EmployeeController extends AppBaseController
         }
 
         $employee = $this->employeeRepository->update($request->all(), $id);
+
+        $employee->syncPermissions(request('permissions'));
 
         Flash::success('Employee updated successfully.');
 

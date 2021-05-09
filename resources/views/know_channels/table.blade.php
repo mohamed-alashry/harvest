@@ -15,9 +15,15 @@
                         <div class='btn-group'>
                             <a href="{{ route('admin.knowChannels.show', [$knowChannel->id]) }}"
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                            <a href="{{ route('admin.knowChannels.edit', [$knowChannel->id]) }}"
-                                class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                            {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+
+                            @can('knowChannels edit')
+                                <a href="{{ route('admin.knowChannels.edit', [$knowChannel->id]) }}"
+                                    class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                            @endcan
+
+                            @can('knowChannels delete')
+                                {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                            @endcan
                         </div>
                         {!! Form::close() !!}
                     </td>

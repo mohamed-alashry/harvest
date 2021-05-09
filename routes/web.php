@@ -13,7 +13,7 @@ Route::group(['as' => 'admin.'], function () {
     Route::post('/postLogin', [App\Http\Controllers\AuthController::class, 'postLogin'])->name('postLogin');
     Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth', 'permissionHandler']], function () {
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
         Route::resource('employees', App\Http\Controllers\EmployeeController::class);
@@ -34,6 +34,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('leadSources', App\Http\Controllers\LeadSourceController::class);
 
         Route::resource('knowChannels', App\Http\Controllers\KnowChannelController::class);
+
+        Route::get('updatePermissions', [App\Http\Controllers\RoleController::class, 'updatePermissions'])->name('roles.updatePermissions');
     });
 });
 

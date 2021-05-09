@@ -13,8 +13,10 @@
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
                             KnowChannels
-                            <a class="pull-right" href="{{ route('admin.knowChannels.create') }}"><i
-                                    class="fa fa-plus-square fa-lg"></i></a>
+                            @can('knowChannels create')
+                                <a class="pull-right" href="{{ route('admin.knowChannels.create') }}"><i
+                                        class="fa fa-plus-square fa-lg"></i></a>
+                            @endcan
                         </div>
                         <div class="card-body">
                             @include('know_channels.table')
