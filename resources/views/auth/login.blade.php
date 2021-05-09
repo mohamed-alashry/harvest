@@ -74,12 +74,8 @@
                     </div>
                     <div class="card text-white bg-primary py-5 d-md-down-none"
                         style="width:44%; background-color: #385a86 !important;">
-                        <div class="card-body text-center">
-                            <div>
-                                <p>
-                                    <img src="{{ asset('Login logo.png') }}" style="width: 50%;">
-                                </p>
-                            </div>
+                        <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+                            <img src="{{ asset('Login logo.png') }}" style="width: 50%;">
                         </div>
                     </div>
                 </div>

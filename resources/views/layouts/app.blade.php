@@ -35,9 +35,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="{{ asset('dashboard logo.png') }}" width="50%" height="50"
+            <img class="navbar-brand-full" src="{{ asset('dashboard logo.png') }}" style="height: 100%;"
                 alt="Harvest Logo">
-            <img class="navbar-brand-minimized" src="{{ asset('dashboard logo.png') }}" width="50%" height="50"
+            <img class="navbar-brand-minimized" src="{{ asset('dashboard logo.png') }}" style="width: 100%;"
                 alt="Harvest Logo">
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">

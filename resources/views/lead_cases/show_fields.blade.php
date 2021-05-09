@@ -96,7 +96,7 @@
 
 <!-- Date Field -->
 <div class="form-group">
-    {!! Form::label('date', 'Date:') !!}
+    {!! Form::label('date', 'Action Date:') !!}
     <p>{{ $leadCase->date }}</p>
 </div>
 

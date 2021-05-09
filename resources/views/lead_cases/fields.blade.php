@@ -122,7 +122,7 @@
 
 <!-- Date Field -->
 <div class="form-group col-sm-2">
-    {!! Form::label('date', 'Date:') !!}
+    {!! Form::label('date', 'Action Date:') !!}
     {!! Form::text('date', null, ['class' => 'form-control', 'id' => 'date']) !!}
 </div>
 
