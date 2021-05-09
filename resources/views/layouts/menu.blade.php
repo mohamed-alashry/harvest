@@ -70,3 +70,19 @@
         </a>
     </li>
 @endcan
+@can('labels view')
+    <li class="nav-item {{ Request::is('admin/labels*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.labels.index') }}">
+            <i class="nav-icon icon-cursor"></i>
+            <span>Labels</span>
+        </a>
+    </li>
+@endcan
+@can('labelTypes view')
+    <li class="nav-item {{ Request::is('admin/labelTypes*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.labelTypes.index') }}">
+            <i class="nav-icon icon-cursor"></i>
+            <span>Label Types</span>
+        </a>
+    </li>
+@endcan
