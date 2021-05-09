@@ -3,28 +3,30 @@
         <thead>
             <tr>
                 <th>Name</th>
-        <th>Mobile 1</th>
-        <th>Created At</th>
-                <th colspan="3">Action</th>
+                <th>Mobile 1</th>
+                <th>Created At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($leads as $lead)
-            <tr>
-                <td>{{ $lead->name }}</td>
-            <td>{{ $lead->mobile_1 }}</td>
-            <td>{{ $lead->created_at }}</td>
-                <td>
-                    {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}
-                    <div class='btn-group'>
-                        <a href="{{ route('admin.leads.show', [$lead->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                        <a href="{{ route('admin.leads.edit', [$lead->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                    </div>
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-        @endforeach
+            @foreach ($leads as $lead)
+                <tr>
+                    <td>{{ $lead->name['en'] }}</td>
+                    <td>{{ $lead->mobile_1 }}</td>
+                    <td>{{ $lead->created_at }}</td>
+                    <td>
+                        {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}
+                        <div class='btn-group'>
+                            <a href="{{ route('admin.leads.show', [$lead->id]) }}" class='btn btn-ghost-success'><i
+                                    class="fa fa-eye"></i></a>
+                            <a href="{{ route('admin.leads.edit', [$lead->id]) }}" class='btn btn-ghost-info'><i
+                                    class="fa fa-edit"></i></a>
+                            {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        </div>
+                        {!! Form::close() !!}
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

@@ -6,6 +6,11 @@ use App\Http\Requests\CreateLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
 use App\Repositories\LeadRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Branch;
+use App\Models\KnowChannel;
+use App\Models\LeadSource;
+use App\Models\Offer;
+use App\Models\TrainingService;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +47,13 @@ class LeadController extends AppBaseController
      */
     public function create()
     {
-        return view('leads.create');
+        $sources = LeadSource::pluck('name', 'id');
+        $channels = KnowChannel::pluck('name', 'id');
+        $offers = Offer::pluck('title', 'id');
+        $branches = Branch::pluck('name', 'id');
+        $services = TrainingService::pluck('title', 'id');
+
+        return view('leads.create', compact('sources', 'channels', 'offers', 'branches', 'services'));
     }
 
     /**
@@ -99,8 +110,13 @@ class LeadController extends AppBaseController
 
             return redirect(route('admin.leads.index'));
         }
+        $sources = LeadSource::pluck('name', 'id');
+        $channels = KnowChannel::pluck('name', 'id');
+        $offers = Offer::pluck('title', 'id');
+        $branches = Branch::pluck('name', 'id');
+        $services = TrainingService::pluck('title', 'id');
 
-        return view('leads.edit')->with('lead', $lead);
+        return view('leads.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services'));
     }
 
     /**

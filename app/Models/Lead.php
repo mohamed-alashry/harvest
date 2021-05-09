@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 /**
  * Class Lead
@@ -16,12 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $mobile_1
  * @property string $mobile_2
  * @property string $email
- * @property string $lead_source
- * @property string $know_from
  * @property string $preferred_time
- * @property string $preferred_offer
- * @property string $preferred_branch
- * @property string $preferred_training_service
+ * @property integer $lead_source_id
+ * @property integer $know_channel_id
+ * @property integer $offer_id
+ * @property integer $branch_id
+ * @property integer $training_service_id
  * @property string $notes
  * @property string $nationality
  * @property string $identification
@@ -40,7 +40,7 @@ class Lead extends Model
 
 
     public $table = 'leads';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -52,23 +52,23 @@ class Lead extends Model
         'mobile_1',
         'mobile_2',
         'email',
-        'lead_source',
-        'know_from',
         'preferred_time',
-        'preferred_offer',
-        'preferred_branch',
-        'preferred_training_service',
+        'lead_source_id',
+        'know_channel_id',
+        'offer_id',
+        'branch_id',
+        'training_service_id',
         'notes',
-        'nationality',
-        'identification',
-        'dob',
-        'country',
-        'governorate',
-        'city',
-        'university',
-        'customer_job',
-        'workplace',
-        'full_address'
+        // 'nationality',
+        // 'identification',
+        // 'dob',
+        // 'country',
+        // 'governorate',
+        // 'city',
+        // 'university',
+        // 'customer_job',
+        // 'workplace',
+        // 'full_address'
     ];
 
     /**
@@ -78,28 +78,28 @@ class Lead extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
+        'name' => 'array',
         'gender' => 'string',
         'mobile_1' => 'string',
         'mobile_2' => 'string',
         'email' => 'string',
-        'lead_source' => 'string',
-        'know_from' => 'string',
         'preferred_time' => 'string',
-        'preferred_offer' => 'string',
-        'preferred_branch' => 'string',
-        'preferred_training_service' => 'string',
+        'lead_source_id' => 'string',
+        'know_channel_id' => 'string',
+        'offer_id' => 'string',
+        'branch_id' => 'string',
+        'training_service_id' => 'string',
         'notes' => 'string',
-        'nationality' => 'string',
-        'identification' => 'string',
-        'dob' => 'date',
-        'country' => 'string',
-        'governorate' => 'string',
-        'city' => 'string',
-        'university' => 'string',
-        'customer_job' => 'string',
-        'workplace' => 'string',
-        'full_address' => 'string'
+        // 'nationality' => 'string',
+        // 'identification' => 'string',
+        // 'dob' => 'date',
+        // 'country' => 'string',
+        // 'governorate' => 'string',
+        // 'city' => 'string',
+        // 'university' => 'string',
+        // 'customer_job' => 'string',
+        // 'workplace' => 'string',
+        // 'full_address' => 'string'
     ];
 
     /**
@@ -108,17 +108,66 @@ class Lead extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
+        'name.en' => 'required',
+        'name.ar' => 'required',
         'gender' => 'required',
         'mobile_1' => 'required',
         'email' => 'email',
-        'lead_source' => 'required',
-        'know_from' => 'required',
+        'lead_source_id' => 'required',
+        'know_channel_id' => 'required',
         'preferred_time' => 'required',
-        'preferred_offer' => 'required',
-        'preferred_branch' => 'required',
-        'preferred_training_service' => 'required'
+        'offer_id' => 'required',
+        'branch_id' => 'required',
+        'training_service_id' => 'required'
     ];
 
-    
+    /**
+     * Get the lead source that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function lead_source(): BelongsTo
+    {
+        return $this->belongsTo(LeadSource::class);
+    }
+
+    /**
+     * Get the know channel that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function know_channel(): BelongsTo
+    {
+        return $this->belongsTo(KnowChannel::class);
+    }
+
+    /**
+     * Get the offer that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function offer(): BelongsTo
+    {
+        return $this->belongsTo(Offer::class);
+    }
+
+    /**
+     * Get the branch that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * Get the training service that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function training_service(): BelongsTo
+    {
+        return $this->belongsTo(TrainingService::class);
+    }
 }

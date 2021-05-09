@@ -4,10 +4,16 @@
     <p>{{ $lead->id }}</p>
 </div>
 
-<!-- Name Field -->
+<!-- Name En Field -->
 <div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $lead->name }}</p>
+    {!! Form::label('name', 'Name En:') !!}
+    <p>{{ $lead->name['en'] }}</p>
+</div>
+
+<!-- Name Ar Field -->
+<div class="form-group">
+    {!! Form::label('name', 'Name Ar:') !!}
+    <p>{{ $lead->name['ar'] }}</p>
 </div>
 
 <!-- Gender Field -->
@@ -37,13 +43,13 @@
 <!-- Lead Source Field -->
 <div class="form-group">
     {!! Form::label('lead_source', 'Lead Source:') !!}
-    <p>{{ $lead->lead_source }}</p>
+    <p>{{ $lead->lead_source->name }}</p>
 </div>
 
-<!-- Know From Field -->
+<!-- Know Channel Field -->
 <div class="form-group">
-    {!! Form::label('know_from', 'Know From:') !!}
-    <p>{{ $lead->know_from }}</p>
+    {!! Form::label('know_from', 'How Did you know about us ?:') !!}
+    <p>{{ $lead->know_channel->name }}</p>
 </div>
 
 <!-- Preferred Time Field -->
@@ -55,19 +61,19 @@
 <!-- Preferred Offer Field -->
 <div class="form-group">
     {!! Form::label('preferred_offer', 'Preferred Offer:') !!}
-    <p>{{ $lead->preferred_offer }}</p>
+    <p>{{ $lead->offer->title }}</p>
 </div>
 
 <!-- Preferred Branch Field -->
 <div class="form-group">
     {!! Form::label('preferred_branch', 'Preferred Branch:') !!}
-    <p>{{ $lead->preferred_branch }}</p>
+    <p>{{ $lead->branch->name }}</p>
 </div>
 
 <!-- Preferred Training Service Field -->
 <div class="form-group">
     {!! Form::label('preferred_training_service', 'Preferred Training Service:') !!}
-    <p>{{ $lead->preferred_training_service }}</p>
+    <p>{{ $lead->training_service->title }}</p>
 </div>
 
 <!-- Notes Field -->
@@ -76,7 +82,7 @@
     <p>{{ $lead->notes }}</p>
 </div>
 
-<!-- Nationality Field -->
+{{-- <!-- Nationality Field -->
 <div class="form-group">
     {!! Form::label('nationality', 'Nationality:') !!}
     <p>{{ $lead->nationality }}</p>
@@ -128,7 +134,7 @@
 <div class="form-group">
     {!! Form::label('workplace', 'Workplace:') !!}
     <p>{{ $lead->workplace }}</p>
-</div>
+</div> --}}
 
 <!-- Full Address Field -->
 <div class="form-group">
@@ -147,4 +153,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $lead->updated_at }}</p>
 </div>
-

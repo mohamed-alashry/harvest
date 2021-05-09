@@ -1,13 +1,19 @@
-<!-- Name Field -->
+<!-- Name En Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('name', 'Name En:') !!}
+    {!! Form::text('name[en]', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Name Ar Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('name', 'Name Ar:') !!}
+    {!! Form::text('name[ar]', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Gender Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('gender', 'Gender:') !!}
-    {!! Form::select('gender', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, ['class' => 'form-control', 'placeholder' => 'select gender...']) !!}
 </div>
 
 <!-- Mobile 1 Field -->
@@ -30,47 +36,47 @@
 
 <!-- Lead Source Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('lead_source', 'Lead Source:') !!}
-    {!! Form::select('lead_source', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::label('lead_source_id', 'Lead Source:') !!}
+    {!! Form::select('lead_source_id', $sources, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
-<!-- Know From Field -->
+<!-- Know Channel Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('know_from', 'Know From:') !!}
-    {!! Form::select('know_from', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::label('know_channel_id', 'How Did you know about us ?:') !!}
+    {!! Form::select('know_channel_id', $channels, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
 <!-- Preferred Time Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('preferred_time', 'Preferred Time:') !!}
-    {!! Form::select('preferred_time', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::select('preferred_time', ['AM' => 'Morning (AM)', 'PM' => 'Evening (PM)', 'MIX' => 'Mix (AM/PM)'], null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
 <!-- Preferred Offer Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('preferred_offer', 'Preferred Offer:') !!}
-    {!! Form::select('preferred_offer', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::label('offer_id', 'Preferred Offer:') !!}
+    {!! Form::select('offer_id', $offers, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
 <!-- Preferred Branch Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('preferred_branch', 'Preferred Branch:') !!}
-    {!! Form::select('preferred_branch', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::label('branch_id', 'Preferred Branch:') !!}
+    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
 <!-- Preferred Training Service Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('preferred_training_service', 'Preferred Training Service:') !!}
-    {!! Form::select('preferred_training_service', ['' => ''], null, ['class' => 'form-control']) !!}
+    {!! Form::label('training_service_id', 'Preferred Training Service:') !!}
+    {!! Form::select('training_service_id', $services, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
 </div>
 
 <!-- Notes Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6">
     {!! Form::label('notes', 'Notes:') !!}
-    {!! Form::textarea('notes', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('notes', null, ['class' => 'form-control', 'rows' => 2]) !!}
 </div>
 
-<!-- Nationality Field -->
+{{-- <!-- Nationality Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nationality', 'Nationality:') !!}
     {!! Form::select('nationality', ['' => ''], null, ['class' => 'form-control']) !!}
@@ -144,7 +150,7 @@
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('full_address', 'Full Address:') !!}
     {!! Form::textarea('full_address', null, ['class' => 'form-control']) !!}
-</div>
+</div> --}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
