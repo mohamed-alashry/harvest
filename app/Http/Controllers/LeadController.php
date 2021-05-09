@@ -8,6 +8,7 @@ use App\Repositories\LeadRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Branch;
 use App\Models\KnowChannel;
+use App\Models\Lead;
 use App\Models\LeadSource;
 use App\Models\Offer;
 use App\Models\TrainingService;
@@ -34,7 +35,7 @@ class LeadController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $leads = $this->leadRepository->paginate(10);
+        $leads = Lead::withCount('cases')->get();
 
         return view('leads.index')
             ->with('leads', $leads);

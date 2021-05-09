@@ -4,6 +4,7 @@
             <tr>
                 <th>Name</th>
                 <th>Mobile 1</th>
+                <th>Cases</th>
                 <th>Created At</th>
                 <th>Action</th>
             </tr>
@@ -13,6 +14,10 @@
                 <tr>
                     <td>{{ $lead->name['en'] }}</td>
                     <td>{{ $lead->mobile_1 }}</td>
+                    <td>
+                        <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
+                            class="btn btn-warning">{{ $lead->cases_count }}</a>
+                    </td>
                     <td>{{ $lead->created_at }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}

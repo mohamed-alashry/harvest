@@ -40,6 +40,9 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('labels', App\Http\Controllers\LabelController::class);
 
         Route::resource('labelTypes', App\Http\Controllers\LabelTypeController::class);
+
+        Route::resource('leadCases', App\Http\Controllers\LeadCaseController::class);
+        Route::post('getLabelTypes', [App\Http\Controllers\LeadCaseController::class, 'getLabelTypes'])->name('getLabelTypes');
     });
 });
 

@@ -146,6 +146,7 @@ return [
         'admin.logout',
         'admin.home',
         'admin.getJobs',
+        'admin.getLabelTypes',
         'admin.roles.updatePermissions',
     ],
 ];

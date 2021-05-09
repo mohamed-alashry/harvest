@@ -86,3 +86,11 @@
         </a>
     </li>
 @endcan
+{{-- @can('leadCases view')
+    <li class="nav-item {{ Request::is('admin/leadCases*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.leadCases.index') }}">
+            <i class="nav-icon icon-cursor"></i>
+            <span>Lead Cases</span>
+        </a>
+    </li>
+@endcan --}}

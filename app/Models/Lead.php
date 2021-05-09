@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -169,5 +170,15 @@ class Lead extends Model
     public function training_service(): BelongsTo
     {
         return $this->belongsTo(TrainingService::class);
+    }
+
+    /**
+     * Get all of the cases for the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cases(): HasMany
+    {
+        return $this->hasMany(LeadCase::class, 'lead_id');
     }
 }
