@@ -6,6 +6,8 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <!-- Bootstrap 4.1.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -27,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.24/sp-1.2.2/datatables.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -35,9 +38,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="{{ asset('dashboard logo.png') }}" style="height: 100%;"
+            <img class="navbar-brand-full" src="{{ asset('dashboard logo.png') }}" style="height: 80%;"
                 alt="Harvest Logo">
-            <img class="navbar-brand-minimized" src="{{ asset('dashboard logo.png') }}" style="width: 100%;"
+            <img class="navbar-brand-minimized" src="{{ asset('dashboard logo.png') }}" style="width: 90%;"
                 alt="Harvest Logo">
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -48,7 +51,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" style="margin-right: 10px" data-toggle="dropdown" href="#" role="button"
                     aria-haspopup="true" aria-expanded="false">
-                    {{ Auth::user()->name }}
+                    <strong>Welcome, </strong>{{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ url('/logout') }}" class="dropdown-item btn btn-default btn-flat"
@@ -71,8 +74,8 @@
     </div>
     <footer class="app-footer">
         <div class="ml-auto">
-            <span>Powered by</span>
-            <a href="#">Paladox Corporate</a>
+            <span>Developed by</span>
+            <a href="https://paladox.com/">Paladox Corporate</a>
         </div>
     </footer>
 </body>

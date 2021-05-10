@@ -3,13 +3,13 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Serial</th>
                 <th>Employee</th>
                 <th>Branch</th>
-                <th>Serial</th>
-                <th>Feedback</th>
-                <th>Action</th>
                 <th>Status</th>
+                <th>Action</th>
                 <th>Action Date</th>
+                <th>Feedback</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -17,13 +17,13 @@
             @foreach ($leadCases as $leadCase)
                 <tr>
                     <td>{{ $leadCase->id }}</td>
+                    <td>{{ $leadCase->serial }}</td>
                     <td>{{ $leadCase->employee->name }}</td>
                     <td>{{ $leadCase->branch->name }}</td>
-                    <td>{{ $leadCase->serial }}</td>
-                    <td>{{ $leadCase->feedback }}</td>
-                    <td>{{ $leadCase->action }}</td>
                     <td>{{ $leadCase->status }}</td>
+                    <td>{{ $leadCase->action }}</td>
                     <td>{{ $leadCase->date }}</td>
+                    <td>{{ $leadCase->feedback }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.leadCases.destroy', $leadCase->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

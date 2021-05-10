@@ -1,82 +1,83 @@
-<!-- Name En Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name En:') !!}
-    {!! Form::text('name[en]', null, ['class' => 'form-control']) !!}
-</div>
+<div class="row">
+    <!-- Name En Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('name', 'Name En:') !!}
+        {!! Form::text('name[en]', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Name Ar Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name Ar:') !!}
-    {!! Form::text('name[ar]', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Name Ar Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('name', 'Name Ar:') !!}
+        {!! Form::text('name[ar]', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Gender Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('gender', 'Gender:') !!}
-    {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, ['class' => 'form-control', 'placeholder' => 'select gender...']) !!}
-</div>
+    <!-- Gender Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('gender', 'Gender:') !!}
+        {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, ['class' => 'form-control', 'placeholder' => 'Select Gender...']) !!}
+    </div>
 
-<!-- Mobile 1 Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('mobile_1', 'Mobile 1:') !!}
-    {!! Form::text('mobile_1', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Mobile 1 Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('mobile_1', 'Mobile 1:') !!}
+        {!! Form::text('mobile_1', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Mobile 2 Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('mobile_2', 'Mobile 2:') !!}
-    {!! Form::text('mobile_2', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Mobile 2 Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('mobile_2', 'Mobile 2:') !!}
+        {!! Form::text('mobile_2', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Email Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:') !!}
-    {!! Form::email('email', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Email Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('email', 'Email:') !!}
+        {!! Form::email('email', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Lead Source Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('lead_source_id', 'Lead Source:') !!}
-    {!! Form::select('lead_source_id', $sources, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Lead Source Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('lead_source_id', 'Lead Source:') !!}
+        {!! Form::select('lead_source_id', $sources, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Know Channel Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('know_channel_id', 'How Did you know about us ?:') !!}
-    {!! Form::select('know_channel_id', $channels, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Know Channel Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('know_channel_id', 'How Did you know about us ?:') !!}
+        {!! Form::select('know_channel_id', $channels, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Preferred Time Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('preferred_time', 'Preferred Time:') !!}
-    {!! Form::select('preferred_time', ['AM' => 'Morning (AM)', 'PM' => 'Evening (PM)', 'MIX' => 'Mix (AM/PM)'], null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Preferred Time Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('preferred_time', 'Preferred Time:') !!}
+        {!! Form::select('preferred_time', ['AM' => 'Morning (AM)', 'PM' => 'Evening (PM)', 'MIX' => 'Mix (AM/PM)'], null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Preferred Offer Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('offer_id', 'Preferred Offer:') !!}
-    {!! Form::select('offer_id', $offers, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Preferred Offer Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('offer_id', 'Preferred Offer:') !!}
+        {!! Form::select('offer_id', $offers, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Preferred Branch Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('branch_id', 'Preferred Branch:') !!}
-    {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Preferred Branch Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('branch_id', 'Preferred Branch:') !!}
+        {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Preferred Training Service Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('training_service_id', 'Preferred Training Service:') !!}
-    {!! Form::select('training_service_id', $services, null, ['class' => 'form-control', 'placeholder' => 'select option...']) !!}
-</div>
+    <!-- Preferred Training Service Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('training_service_id', 'Preferred Training Service:') !!}
+        {!! Form::select('training_service_id', $services, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
-<!-- Notes Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('notes', 'Notes:') !!}
-    {!! Form::textarea('notes', null, ['class' => 'form-control', 'rows' => 2]) !!}
-</div>
+    <!-- Notes Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('notes', 'Notes:') !!}
+        {!! Form::textarea('notes', null, ['class' => 'form-control', 'rows' => 2]) !!}
+    </div>
 
-{{-- <!-- Nationality Field -->
+    {{-- <!-- Nationality Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nationality', 'Nationality:') !!}
     {!! Form::select('nationality', ['' => ''], null, ['class' => 'form-control']) !!}
@@ -152,8 +153,9 @@
     {!! Form::textarea('full_address', null, ['class' => 'form-control']) !!}
 </div> --}}
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{{ route('admin.leads.index') }}" class="btn btn-secondary">Cancel</a>
+    <!-- Submit Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+        <a href="{{ route('admin.leads.index') }}" class="btn btn-secondary">Cancel</a>
+    </div>
 </div>

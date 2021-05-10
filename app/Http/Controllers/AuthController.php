@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($credentials)) {
-            return redirect(route('admin.home'));
+            return redirect(route('admin.leads.index'));
         }
 
         Flash::error(__('auth.failed'));
