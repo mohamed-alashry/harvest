@@ -86,3 +86,30 @@
         </a>
     </li>
 @endcan
+@can('rooms view')
+    <li class="nav-item {{ Request::is('admin/rooms*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.rooms.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Rooms</span>
+        </a>
+    </li>
+@endcan
+
+@can('intervals view')
+    <li class="nav-item {{ Request::is('admin/intervals*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.intervals.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Intervals</span>
+        </a>
+    </li>
+@endcan
+
+@can('tracks view')
+    <li class="nav-item {{ Request::is('admin/tracks*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.tracks.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Tracks</span>
+        </a>
+    </li>
+@endcan
+

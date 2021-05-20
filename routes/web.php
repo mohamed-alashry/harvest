@@ -43,6 +43,12 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('leadCases', App\Http\Controllers\LeadCaseController::class);
         Route::post('getLabelTypes', [App\Http\Controllers\LeadCaseController::class, 'getLabelTypes'])->name('getLabelTypes');
+
+        Route::resource('rooms', App\Http\Controllers\RoomController::class);
+
+        Route::resource('intervals', App\Http\Controllers\IntervalController::class);
+
+        Route::resource('tracks', App\Http\Controllers\TrackController::class);
     });
 });
 
