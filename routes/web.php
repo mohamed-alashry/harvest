@@ -51,6 +51,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('tracks', App\Http\Controllers\TrackController::class);
 
         Route::resource('customerJobs', App\Http\Controllers\CustomerJobController::class);
+
+        Route::resource('universities', App\Http\Controllers\UniversityController::class);
     });
 });
 

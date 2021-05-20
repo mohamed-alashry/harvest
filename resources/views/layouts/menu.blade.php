@@ -122,3 +122,12 @@
     </li>
 @endcan
 
+@can('universities view')
+    <li class="nav-item {{ Request::is('admin/universities*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.universities.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Universities</span>
+        </a>
+    </li>
+@endcan
+
