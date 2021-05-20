@@ -49,6 +49,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('intervals', App\Http\Controllers\IntervalController::class);
 
         Route::resource('tracks', App\Http\Controllers\TrackController::class);
+
+        Route::resource('customerJobs', App\Http\Controllers\CustomerJobController::class);
     });
 });
 

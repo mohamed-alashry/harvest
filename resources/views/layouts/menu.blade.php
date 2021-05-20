@@ -113,3 +113,12 @@
     </li>
 @endcan
 
+@can('customerJobs view')
+    <li class="nav-item {{ Request::is('admin/customerJobs*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.customerJobs.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Customer Jobs</span>
+        </a>
+    </li>
+@endcan
+
