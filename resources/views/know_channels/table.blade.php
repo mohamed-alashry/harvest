@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -10,6 +11,7 @@
             @foreach ($knowChannels as $knowChannel)
                 <tr>
                     <td>{{ $knowChannel->name }}</td>
+                    <td>{{ $knowChannel->status ? 'Active' : 'Inactive' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.knowChannels.destroy', $knowChannel->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

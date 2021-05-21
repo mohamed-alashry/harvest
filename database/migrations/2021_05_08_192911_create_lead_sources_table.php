@@ -17,6 +17,7 @@ class CreateLeadSourcesTable extends Migration
         Schema::create('lead_sources', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
             $table->timestamps();
             $table->softDeletes();
         });

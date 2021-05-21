@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -10,6 +11,7 @@
             @foreach ($leadSources as $leadSource)
                 <tr>
                     <td>{{ $leadSource->name }}</td>
+                    <td>{{ $leadSource->status ? 'Active' : 'Inactive' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.leadSources.destroy', $leadSource->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

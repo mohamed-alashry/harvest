@@ -19,14 +19,15 @@ class LeadSource extends Model
 
 
     public $table = 'lead_sources';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'name',
+        'status'
     ];
 
     /**
@@ -36,7 +37,8 @@ class LeadSource extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
+        'status' => 'integer'
     ];
 
     /**
@@ -45,8 +47,9 @@ class LeadSource extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'status' => 'required'
     ];
 
-    
+
 }

@@ -19,14 +19,15 @@ class KnowChannel extends Model
 
 
     public $table = 'know_channels';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'name',
+        'status'
     ];
 
     /**
@@ -36,7 +37,8 @@ class KnowChannel extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
+        'status' => 'integer'
     ];
 
     /**
@@ -45,8 +47,7 @@ class KnowChannel extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'status' => 'required'
     ];
-
-    
 }
