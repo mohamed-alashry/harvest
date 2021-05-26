@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.24/sp-1.2.2/datatables.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 
@@ -89,6 +90,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.24/sp-1.2.2/datatables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -106,6 +108,20 @@
         });
 
     });
+
+    $(document).ready(function() {
+        $('.select2-multiple').select2({
+            placeholder: "Select Options...",
+            multiple: true,
+            closeOnSelect: false
+        });
+    });
+
+    // $(document).ready(function() {
+    //     $('.select2').select2({
+    //         placeholder: "Select Option..."
+    //     });
+    // });
 
 </script>
 @stack('scripts')

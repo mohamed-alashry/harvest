@@ -97,7 +97,7 @@ class Employee extends Authenticatable
         'branch_id' => 'required',
         'department_id' => 'required',
         'job_id' => 'required',
-        'permissions' => 'required|array'
+        'roles' => 'required|array'
     ];
 
     /**
@@ -120,7 +120,7 @@ class Employee extends Authenticatable
      */
     public function getNameAttribute()
     {
-        return $this->attributes['first_name'] .' '. $this->attributes['last_name'];
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 
     /**

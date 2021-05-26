@@ -2,12 +2,171 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
+use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\AppBaseController;
 
-class RoleController extends Controller
+class RoleController extends AppBaseController
 {
+    /**
+     * Display a listing of the Role.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        /** @var Role $roles */
+        $roles = Role::all();
+
+        return view('roles.index')
+            ->with('roles', $roles);
+    }
+
+    /**
+     * Show the form for creating a new Role.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        $permissions = Permission::all();
+        return view('roles.create', compact('permissions'));
+    }
+
+    /**
+     * Store a newly created Role in storage.
+     *
+     * @param CreateRoleRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateRoleRequest $request)
+    {
+        $input = $request->all();
+
+        /** @var Role $role */
+        $role = Role::create($input);
+
+        $role->syncPermissions(request('permissions'));
+
+        Flash::success('Role saved successfully.');
+
+        return redirect(route('admin.roles.index'));
+    }
+
+    /**
+     * Display the specified Role.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        /** @var Role $role */
+        $role = Role::find($id);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('admin.roles.index'));
+        }
+
+        return view('roles.show')->with('role', $role);
+    }
+
+    /**
+     * Show the form for editing the specified Role.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        /** @var Role $role */
+        $role = Role::find($id);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('admin.roles.index'));
+        }
+        $permissions = Permission::all();
+
+        return view('roles.edit', compact('role', 'permissions'));
+    }
+
+    /**
+     * Update the specified Role in storage.
+     *
+     * @param int $id
+     * @param UpdateRoleRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateRoleRequest $request)
+    {
+        /** @var Role $role */
+        $role = Role::find($id);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('admin.roles.index'));
+        }
+
+        $role->fill($request->all());
+        $role->save();
+
+        $role->syncPermissions(request('permissions'));
+
+        Flash::success('Role updated successfully.');
+
+        return redirect(route('admin.roles.index'));
+    }
+
+    /**
+     * Remove the specified Role from storage.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        /** @var Role $role */
+        $role = Role::find($id);
+
+        if (empty($role)) {
+            Flash::error('Role not found');
+
+            return redirect(route('admin.roles.index'));
+        }
+
+        $role->delete();
+
+        Flash::success('Role deleted successfully.');
+
+        return redirect(route('admin.roles.index'));
+    }
+
+    /**
+     * Update permission.
+     *
+     * @param Request $request
+     * @return void
+     */
     public function updatePermissions(Request $request)
     {
         // clear permission cache

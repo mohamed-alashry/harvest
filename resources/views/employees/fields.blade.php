@@ -53,18 +53,10 @@
         {!! Form::select('job_id', [], null, ['class' => 'form-control', 'id' => 'job-select', 'placeholder' => 'Select Job...']) !!}
     </div>
 
-    <!-- Job Field -->
-    <div class="form-group col-sm-12">
-        {!! Form::label('permissions', 'Permissions:') !!}
-
-        <div class="row">
-            @foreach ($permissions as $permission)
-                <div class="col-sm-3">
-                    {!! Form::checkbox('permissions[]', $permission->id, null, ['id' => 'permission-' . $permission->id]) !!}
-                    {!! Form::label('permission-' . $permission->id, $permission->name) !!}
-                </div>
-            @endforeach
-        </div>
+    <!-- Roles Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('roles', 'Roles:') !!}
+        {!! Form::select('roles[]', $roles, null, ['class' => 'form-control select2-multiple', 'multiple' => true]) !!}
     </div>
 
     <!-- Submit Field -->

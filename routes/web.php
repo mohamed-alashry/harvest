@@ -35,6 +35,7 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('knowChannels', App\Http\Controllers\KnowChannelController::class);
 
+        Route::resource('roles', App\Http\Controllers\RoleController::class);
         Route::get('updatePermissions', [App\Http\Controllers\RoleController::class, 'updatePermissions'])->name('roles.updatePermissions');
 
         Route::resource('labels', App\Http\Controllers\LabelController::class);
