@@ -131,3 +131,21 @@
     </li>
 @endcan
 
+@can('paymentPlans view')
+    <li class="nav-item {{ Request::is('admin/paymentPlans*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.paymentPlans.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Payment Plans</span>
+        </a>
+    </li>
+@endcan
+
+@can('paymentMethods view')
+    <li class="nav-item {{ Request::is('admin/paymentMethods*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.paymentMethods.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Payment Methods</span>
+        </a>
+    </li>
+@endcan
+

@@ -53,6 +53,10 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('customerJobs', App\Http\Controllers\CustomerJobController::class);
 
         Route::resource('universities', App\Http\Controllers\UniversityController::class);
+
+        Route::resource('paymentPlans', App\Http\Controllers\PaymentPlanController::class);
+
+        Route::resource('paymentMethods', App\Http\Controllers\PaymentMethodController::class);
     });
 });
 
