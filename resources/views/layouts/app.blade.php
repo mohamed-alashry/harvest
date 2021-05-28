@@ -110,18 +110,10 @@
     });
 
     $(document).ready(function() {
-        $('.select2-multiple').select2({
-            placeholder: "Select Options...",
-            multiple: true,
-            closeOnSelect: false
+        $('.select2').select2({
+            placeholder: "Select..."
         });
     });
-
-    // $(document).ready(function() {
-    //     $('.select2').select2({
-    //         placeholder: "Select Option..."
-    //     });
-    // });
 
 </script>
 @stack('scripts')

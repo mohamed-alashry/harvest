@@ -56,7 +56,7 @@
     <!-- Roles Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('roles', 'Roles:') !!}
-        {!! Form::select('roles[]', $roles, null, ['class' => 'form-control select2-multiple', 'multiple' => true]) !!}
+        {!! Form::select('roles[]', $roles, null, ['class' => 'form-control select2', 'multiple' => true]) !!}
     </div>
 
     <!-- Submit Field -->

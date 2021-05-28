@@ -158,3 +158,12 @@
     </li>
 @endcan
 
+@can('placementApplicants view')
+    <li class="nav-item {{ Request::is('admin/placementApplicants*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.placementApplicants.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Placement Applicants</span>
+        </a>
+    </li>
+@endcan
+

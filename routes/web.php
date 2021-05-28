@@ -58,6 +58,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('paymentPlans', App\Http\Controllers\PaymentPlanController::class);
 
         Route::resource('paymentMethods', App\Http\Controllers\PaymentMethodController::class);
+
+        Route::resource('placementApplicants', App\Http\Controllers\PlacementApplicantController::class)->except(['create', 'store']);
     });
 });
 
