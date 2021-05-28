@@ -167,3 +167,12 @@
     </li>
 @endcan
 
+@can('placementQuestions view')
+    <li class="nav-item {{ Request::is('admin/placementQuestions*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.placementQuestions.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Placement Questions</span>
+        </a>
+    </li>
+@endcan
+
