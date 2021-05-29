@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
-
-
+use Illuminate\Support\Str;
 
 /**
  * Class PlacementQuestion
@@ -33,6 +32,13 @@ class PlacementQuestion extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['paragraph'];
+
+    /**
      * The attributes that should be casted to native types.
      *
      * @var array
@@ -57,26 +63,27 @@ class PlacementQuestion extends Model
     ];
 
     /**
-     * Set the photo.
+     * Get the paragraph for reading skill.
      *
-     * @param  object  $file
-     * @return void
+     * @return string
      */
-    public function setPhotoAttribute($file)
+    public function getParagraphAttribute()
     {
-        if ($file) {
-            $originalName = $file->getClientOriginalName();
-
-            $fileName = time() . '_' . $originalName;
-
-            $file->move('uploads/', $fileName);
-
-            $this->attributes['photo'] = $fileName;
-        }
+        return Str::limit($this->attributes['question'], 150, '...');
     }
 
     public function parent()
     {
         return $this->belongsTo('App\Models\PlacementQuestion', 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Models\PlacementQuestion', 'parent_id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\PlacementAnswer');
     }
 }

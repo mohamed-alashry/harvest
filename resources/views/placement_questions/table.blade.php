@@ -2,18 +2,26 @@
     <table class="table table-striped" id="placementQuestions-table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Skill</th>
                 <th>Question</th>
-                <th>Has Main Question?</th>
+                <th>Question Type</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($placementQuestions as $placementQuestion)
                 <tr>
+                    <td>{{ $placementQuestion->id }}</td>
                     <td>{{ $placementQuestion->skill }}</td>
                     <td>{{ $placementQuestion->question }}</td>
-                    <td>{{ $placementQuestion->parent_id ? 'Yes' : 'No' }}</td>
+                    <td>
+                        @if ($placementQuestion->skill == 'Reading' && !$placementQuestion->parent_id)
+                            Paragraph
+                        @else
+                            Question
+                        @endif
+                    </td>
                     <td>
                         {!! Form::open(['route' => ['admin.placementQuestions.destroy', $placementQuestion->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

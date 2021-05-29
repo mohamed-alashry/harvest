@@ -22,7 +22,10 @@ class PlacementQuestionController extends AppBaseController
     public function index(Request $request)
     {
         /** @var PlacementQuestion $placementQuestions */
-        $placementQuestions = PlacementQuestion::all();
+        $placementQuestions = PlacementQuestion::whereNotIn('id', function ($query) {
+            $query->select('id')->from('placement_questions')
+                ->where('skill', 'Writing')->whereNotNull('parent_id');
+        })->get();
 
         return view('placement_questions.index')
             ->with('placementQuestions', $placementQuestions);
@@ -35,28 +38,7 @@ class PlacementQuestionController extends AppBaseController
      */
     public function create()
     {
-        $parentQuestions = PlacementQuestion::whereNull('parent_id')->pluck('question', 'id');
-
-        return view('placement_questions.create', compact('parentQuestions'));
-    }
-
-    /**
-     * Store a newly created PlacementQuestion in storage.
-     *
-     * @param CreatePlacementQuestionRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreatePlacementQuestionRequest $request)
-    {
-        $input = $request->all();
-
-        /** @var PlacementQuestion $placementQuestion */
-        $placementQuestion = PlacementQuestion::create($input);
-
-        Flash::success('Placement Question saved successfully.');
-
-        return redirect(route('admin.placementQuestions.index'));
+        return view('placement_questions.create');
     }
 
     /**
@@ -97,36 +79,8 @@ class PlacementQuestionController extends AppBaseController
 
             return redirect(route('admin.placementQuestions.index'));
         }
-        $parentQuestions = PlacementQuestion::whereNull('parent_id')->where('id', '!=', $id)->pluck('question', 'id');
 
-        return view('placement_questions.edit', compact('placementQuestion', 'parentQuestions'));
-    }
-
-    /**
-     * Update the specified PlacementQuestion in storage.
-     *
-     * @param int $id
-     * @param UpdatePlacementQuestionRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdatePlacementQuestionRequest $request)
-    {
-        /** @var PlacementQuestion $placementQuestion */
-        $placementQuestion = PlacementQuestion::find($id);
-
-        if (empty($placementQuestion)) {
-            Flash::error('Placement Question not found');
-
-            return redirect(route('admin.placementQuestions.index'));
-        }
-
-        $placementQuestion->fill($request->all());
-        $placementQuestion->save();
-
-        Flash::success('Placement Question updated successfully.');
-
-        return redirect(route('admin.placementQuestions.index'));
+        return view('placement_questions.edit', compact('placementQuestion'));
     }
 
     /**
