@@ -33,10 +33,31 @@
 </div>
 
 
-<!-- General Score Field -->
+<!-- Job Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('general_score', 'General Score:') !!}
-    <p>{{ $placementApplicant->general_score }}</p>
+    {!! Form::label('job', 'Job:') !!}
+    <p>{{ $placementApplicant->job }}</p>
+</div>
+
+
+<!-- University Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('university', 'University:') !!}
+    <p>{{ $placementApplicant->university }}</p>
+</div>
+
+
+<!-- Vocabulary Score Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('vocabulary_score', 'Vocabulary Score:') !!}
+    <p>{{ $placementApplicant->vocabulary_score }}</p>
+</div>
+
+
+<!-- Grammar Score Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('grammar_score', 'Grammar Score:') !!}
+    <p>{{ $placementApplicant->grammar_score }}</p>
 </div>
 
 
@@ -101,5 +122,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $placementApplicant->updated_at }}</p>
 </div>
-
-

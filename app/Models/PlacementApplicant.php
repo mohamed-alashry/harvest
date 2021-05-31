@@ -15,11 +15,14 @@ use Eloquent as Model;
  * @property string $email
  * @property string $mobile
  * @property string $gender
- * @property number $general_score
+ * @property string $job
+ * @property string $university
+ * @property number $vocabulary_score
+ * @property number $grammar_score
  * @property number $reading_score
+ * @property number $writing_score
  * @property number $listening_score
  * @property number $speaking_score
- * @property number $writing_score
  * @property integer $level
  * @property string $notes
  * @property integer $status
@@ -38,11 +41,14 @@ class PlacementApplicant extends Model
         'email',
         'mobile',
         'gender',
-        'general_score',
+        'job',
+        'university',
+        'vocabulary_score',
+        'grammar_score',
         'reading_score',
+        'writing_score',
         'listening_score',
         'speaking_score',
-        'writing_score',
         'level',
         'notes',
         'status'
@@ -59,7 +65,10 @@ class PlacementApplicant extends Model
         'email' => 'string',
         'mobile' => 'string',
         'gender' => 'string',
-        'general_score' => 'decimal:1',
+        'job' => 'string',
+        'university' => 'string',
+        'vocabulary_score' => 'decimal:1',
+        'grammar_score' => 'decimal:1',
         'reading_score' => 'decimal:1',
         'listening_score' => 'decimal:1',
         'speaking_score' => 'decimal:1',
@@ -75,11 +84,17 @@ class PlacementApplicant extends Model
      * @var array
      */
     public static $rules = [
-        'general_score' => 'numeric|between:0,99.5',
-        'reading_score' => 'numeric|between:0,99.5',
+        // 'vocabulary_score' => 'numeric|between:0,99.5',
+        // 'grammar_score' => 'numeric|between:0,99.5',
+        // 'reading_score' => 'numeric|between:0,99.5',
+        'writing_score' => 'numeric|between:0,99.5',
         'listening_score' => 'numeric|between:0,99.5',
         'speaking_score' => 'numeric|between:0,99.5',
-        'writing_score' => 'numeric|between:0,99.5',
         'level' => 'integer'
     ];
+
+    public function answers()
+    {
+        return $this->hasMany('App\Models\ApplicantAnswer', 'placement_applicant_id');
+    }
 }

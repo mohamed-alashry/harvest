@@ -86,4 +86,9 @@ class PlacementQuestion extends Model
     {
         return $this->hasMany('App\Models\PlacementAnswer');
     }
+
+    public function answersRandom()
+    {
+        return $this->hasMany('App\Models\PlacementAnswer')->inRandomOrder();
+    }
 }

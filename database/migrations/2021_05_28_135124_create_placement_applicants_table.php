@@ -20,11 +20,14 @@ class CreatePlacementApplicantsTable extends Migration
             $table->string('email');
             $table->string('mobile');
             $table->string('gender')->comment('male, female');
-            $table->decimal('general_score', 2, 1)->nullable();
+            $table->string('job')->nullable();
+            $table->string('university')->nullable();
+            $table->decimal('vocabulary_score', 2, 1)->nullable();
+            $table->decimal('grammar_score', 2, 1)->nullable();
             $table->decimal('reading_score', 2, 1)->nullable();
+            $table->decimal('writing_score', 2, 1)->nullable();
             $table->decimal('listening_score', 2, 1)->nullable();
             $table->decimal('speaking_score', 2, 1)->nullable();
-            $table->decimal('writing_score', 2, 1)->nullable();
             $table->tinyInteger('level')->nullable();
             $table->text('notes')->nullable();
             $table->string('status')->default('new')->comment('new, done');
