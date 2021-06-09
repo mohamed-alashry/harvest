@@ -65,7 +65,7 @@
 
                             @switch($type)
                                 @case(1)
-                                    <livewire:placement-test.applicant :applicant="$applicant" />
+                                    <livewire:placement-test.applicant />
                                 @break
 
                                 @case(2)

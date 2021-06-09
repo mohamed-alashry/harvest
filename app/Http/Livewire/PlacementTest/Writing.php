@@ -11,7 +11,7 @@ class Writing extends Component
 {
     public $applicant, $questions, $answers;
 
-    private $limit = 1, $point = 2;
+    private $limit = 2;
 
     public function mount($applicant)
     {

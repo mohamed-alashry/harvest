@@ -10,7 +10,7 @@ class Reading extends Component
 {
     public $applicant, $paragraphs, $answers;
 
-    private $limit = 1, $paragraphLimit = 2, $point = 2;
+    private $limit = 10, $paragraphLimit = 2, $point = 1;
 
     public function mount($applicant)
     {

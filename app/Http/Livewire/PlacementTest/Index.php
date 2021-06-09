@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $applicant, $type = 6;
+    public $applicant, $type = 1;
 
     protected $listeners = ['registered', 'next'];
 

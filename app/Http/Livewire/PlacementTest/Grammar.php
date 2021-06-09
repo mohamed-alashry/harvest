@@ -10,7 +10,7 @@ class Grammar extends Component
 {
     public $applicant, $questions, $answers;
 
-    private $limit = 1, $point = 2;
+    private $limit = 20, $point = 0.5;
 
     public function mount($applicant)
     {
