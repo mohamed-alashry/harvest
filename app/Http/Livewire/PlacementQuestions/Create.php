@@ -56,7 +56,11 @@ class Create extends Component
         if ($this->photo) {
             $file = $this->photo->store('/');
             $data['photo'] = $file;
-            rename(storage_path('app/' . $file), public_path('uploads/' . $file));
+            if (env('APP_ENV') == 'production') {
+                rename(storage_path('app/' . $file), '/home/harvestc/public_html/sys/uploads/' . $file);
+            } else {
+                rename(storage_path('app/' . $file), public_path('uploads/' . $file));
+            }
         }
         $placementQuestion = PlacementQuestion::create($data);
 
