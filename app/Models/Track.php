@@ -20,7 +20,7 @@ class Track extends Model
 
 
     public $table = 'tracks';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -28,6 +28,8 @@ class Track extends Model
 
     public $fillable = [
         'title',
+        'parent_id',
+        'levels',
         'status'
     ];
 
@@ -39,6 +41,8 @@ class Track extends Model
     protected $casts = [
         'id' => 'integer',
         'title' => 'string',
+        'parent_id' => 'integer',
+        'levels' => 'integer',
         'status' => 'integer'
     ];
 
@@ -51,6 +55,4 @@ class Track extends Model
         'title' => 'required',
         'status' => 'required'
     ];
-
-    
 }

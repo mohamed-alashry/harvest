@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTracksTable extends Migration
+class CreateStagesTable extends Migration
 {
 
     /**
@@ -14,14 +14,13 @@ class CreateTracksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tracks', function (Blueprint $table) {
+        Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->unsignedInteger('parent_id')->nullable();
-            $table->unsignedTinyInteger('levels')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
+            $table->integer('track_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateTracksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tracks');
+        Schema::drop('stages');
     }
 }

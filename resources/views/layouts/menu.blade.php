@@ -176,3 +176,12 @@
     </li>
 @endcan
 
+@can('stages view')
+    <li class="nav-item {{ Request::is('admin/stages*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.stages.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Stages</span>
+        </a>
+    </li>
+@endcan
+
