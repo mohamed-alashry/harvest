@@ -32,9 +32,8 @@ class Writing extends Component
     }
 
     protected $messages = [
-        'answers.array' => 'You Must Answer All Questions',
-        'answers.size' => 'You Must Answer All Questions',
-        'answers.*.min' => 'Your Answer Is To Short',
+        'size' => 'يجب إجابة كل الاسئلة',
+        'answers.*.min' => 'الاجابة يجب ان تكون اكثر من ٥٠ حرف',
     ];
 
     public function save()

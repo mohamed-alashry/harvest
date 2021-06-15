@@ -22,6 +22,11 @@ class Applicant extends Component
 
         return $rules;
     }
+    protected $messages = [
+        'required' => 'يجب قبول هذا الحقل.',
+        'email' => 'يجب أن يكون عنوان بريد إلكتروني صحيح.',
+
+    ];
 
     public function updated($propertyName)
     {

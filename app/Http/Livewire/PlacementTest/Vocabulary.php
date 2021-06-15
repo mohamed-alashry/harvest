@@ -28,8 +28,7 @@ class Vocabulary extends Component
     }
 
     protected $messages = [
-        'answers.array' => 'You Must Answer All Questions',
-        'answers.size' => 'You Must Answer All Questions',
+        'size' => 'يجب إجابة كل الاسئلة',
     ];
 
     public function save()

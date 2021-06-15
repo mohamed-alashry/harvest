@@ -18,7 +18,10 @@ class Reading extends Component
 
         $paragraphs = PlacementQuestion::where('skill', 'Reading')->whereNull('parent_id')
             ->with('children.answers')
-            ->limit($this->paragraphLimit)->inRandomOrder()->get();
+            ->limit($this->paragraphLimit)->inRandomOrder()->get()->map(function ($para) {
+                $para->setRelation('children', $para->children->take(5));
+                return $para;
+            });
         $this->paragraphs = $paragraphs;
     }
 
@@ -30,8 +33,7 @@ class Reading extends Component
     }
 
     protected $messages = [
-        'answers.array' => 'You Must Answer All Questions',
-        'answers.size' => 'You Must Answer All Questions',
+        'size' => 'يجب إجابة كل الاسئلة',
     ];
 
     public function save()

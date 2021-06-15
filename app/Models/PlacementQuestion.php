@@ -79,12 +79,12 @@ class PlacementQuestion extends Model
 
     public function children()
     {
-        return $this->hasMany('App\Models\PlacementQuestion', 'parent_id');
+        return $this->hasMany('App\Models\PlacementQuestion', 'parent_id')->inRandomOrder();
     }
 
     public function answers()
     {
-        return $this->hasMany('App\Models\PlacementAnswer');
+        return $this->hasMany('App\Models\PlacementAnswer')->inRandomOrder();
     }
 
     public function answersRandom()

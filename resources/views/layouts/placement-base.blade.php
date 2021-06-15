@@ -6,31 +6,8 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <![endif]-->
-
-
     <title>
         Harvest College &#8211; Placement test </title>
-    <link rel="shortcut icon" href="https://www.harvestcollege.co.uk/wp-content/uploads/2016/03/favicon.png" />
-
-    <link rel="alternate" type="application/rss+xml" title="Harvest College RSS Feed"
-        href="https://www.harvestcollege.co.uk/feed/">
-    <link rel="alternate" type="application/atom+xml" title="Harvest College Atom Feed"
-        href="https://www.harvestcollege.co.uk/feed/atom/">
-    <link rel="pingback" href="https://www.harvestcollege.co.uk/xmlrpc.php">
-    <!--[if lte IE 11]>
-         <link rel='stylesheet' href='https://www.harvestcollege.co.uk/wp-content/themes/ken/stylesheet/css/ie.css' />
-         <![endif]-->
-
-    <!--[if lte IE 9]>
-         <script src="https://www.harvestcollege.co.uk/wp-content/themes/ken/js/html5shiv.js" type="text/javascript"></script>
-         <![endif]-->
-
-    <!--[if lte IE 8]>
-            <script type="text/javascript" src="https://www.harvestcollege.co.uk/wp-content/themes/ken/js/respond.js"></script>
-         <![endif]-->
 
     <style type="text/css">
         .the_champ_horizontal_sharing .theChampSharing {
@@ -163,31 +140,6 @@
         }
 
     </style>
-    <link rel='stylesheet' id='theme-styles-css'
-        href='https://www.harvestcollege.co.uk/wp-content/themes/ken/stylesheet/css/styles.min.css' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='theme-icons-css'
-        href='https://www.harvestcollege.co.uk/wp-content/themes/ken/stylesheet/css/theme-font-icons.min.css'
-        type='text/css' media='all' />
-    <link rel='stylesheet' id='arabic-font-css-css'
-        href='https://www.harvestcollege.co.uk/wp-content/plugins/arabic-font/css/arabic-fonts.css' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='the_champ_frontend_css-css'
-        href='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/css/front.css' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='the_champ_sharing_default_svg-css'
-        href='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/css/share-svg.css' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='js_composer_front-css'
-        href='https://www.harvestcollege.co.uk/wp-content/plugins/js_composer_theme/assets/css/js_composer.min.css'
-        type='text/css' media='all' />
-    <link rel='stylesheet' id='theme-options-css'
-        href='https://www.harvestcollege.co.uk/wp-content/uploads/mk_assets/theme-options-production.css'
-        type='text/css' media='all' />
-    <link rel='stylesheet' id='mk-style-css' href='https://www.harvestcollege.co.uk/wp-content/themes/ken/style.css'
-        type='text/css' media='all' />
-    <link rel='stylesheet' id='theme-dynamic-styles-css'
-        href='https://www.harvestcollege.co.uk/wp-content/themes/ken/custom.css' type='text/css' media='all' />
     <style id='theme-dynamic-styles-inline-css' type='text/css'>
         body,
         .theme-main-wrapper {
@@ -473,31 +425,6 @@
         }
 
     </style>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/jquery.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/jquery-migrate.min.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/pixelyoursite/dist/scripts/jquery.bind-first-0.2.3.min.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/pixelyoursite/dist/scripts/js.cookie-2.1.3.min.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/pixelyoursite/dist/scripts/public.js'></script>
-    <link rel='https://api.w.org/' href='https://www.harvestcollege.co.uk/wp-json/' />
-    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.harvestcollege.co.uk/xmlrpc.php?rsd" />
-    <link rel="wlwmanifest" type="application/wlwmanifest+xml"
-        href="https://www.harvestcollege.co.uk/wp-includes/wlwmanifest.xml" />
-
-    <link rel="canonical" href="https://www.harvestcollege.co.uk/courses/true-beginner/" />
-    <link rel='shortlink' href='https://www.harvestcollege.co.uk/?p=22576' />
-    <link rel="alternate" type="application/json+oembed"
-        href="https://www.harvestcollege.co.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.harvestcollege.co.uk%2Fcourses%2Ftrue-beginner%2F" />
-    <link rel="alternate" type="text/xml+oembed"
-        href="https://www.harvestcollege.co.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.harvestcollege.co.uk%2Fcourses%2Ftrue-beginner%2F&#038;format=xml" />
-
-
-
     <!-- Generated by Arabic Font -->
     <style type='text/css'>
         .arab {
@@ -509,11 +436,6 @@
         }
 
     </style>
-
-
-
-    <!-- End Facebook Pixel Code -->
-    <meta name="generator" content="ken (Edit by Baraa Ibrahim) 3.0.2.1" />
     <style type="text/css">
         .recentcomments a {
             display: inline !important;
@@ -530,8 +452,6 @@
         }
 
     </style>
-    <meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress." />
-    <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://www.harvestcollege.co.uk/wp-content/plugins/js_composer_theme/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->
     <style type="text/css" data-type="vc_shortcodes-custom-css">
         .vc_custom_1459015241837 {
             background-color: #07c1ff !important;
@@ -560,138 +480,6 @@
         <div id="mk-boxed-layout" class="mk-full-enabled ">
 
 
-
-            {{-- <header id="mk-header"
-                class=" sticky-header full-header header-align-center header-structure-standard put-header-top theme-main-header mk-header-module"
-                data-header-style="block" data-header-structure="standard" data-transparent-skin="light"
-                data-height="98" data-sticky-height="57" role="banner" itemscope="itemscope"
-                itemtype="https://schema.org/WPHeader">
-
-                <nav id="mk-main-navigation" role="navigation" itemscope="itemscope"
-                    itemtype="https://schema.org/SiteNavigationElement">
-                    <ul id="menu-main-navigation" class="main-navigation-ul">
-                        <li class="responsive-nav-link">
-                            <div class="mk-burger-icon">
-                                <div class="burger-icon-1"></div>
-                                <div class="burger-icon-2"></div>
-                                <div class="burger-icon-3"></div>
-                            </div>
-                        </li>
-                        <li class="mk-header-logo "><a href="https://www.harvestcollege.co.uk/"
-                                title="Harvest College"><img alt="Harvest College" class="mk-dark-logo"
-                                    src="https://www.harvestcollege.co.uk/wp-content/uploads/2018/05/harvest-logo-1.png"
-                                    data-retina-src="https://www.harvestcollege.co.uk/wp-content/uploads/2018/05/harvest-logoX2-1.png" /></a>
-                        </li>
-                        <li id="menu-item-21802"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home no-mega-menu">
-                            <a class="menu-item-link" href="https://www.harvestcollege.co.uk/">الرئيسيــة</a>
-                        </li>
-                        <li id="menu-item-21869"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children no-mega-menu">
-                            <a class="menu-item-link" href="#">هارفست</a>
-                            <ul style="" class="sub-menu ">
-                                <li id="menu-item-21871"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link" href="https://www.harvestcollege.co.uk/about/">عن
-                                        هارفست</a></li>
-                                <li id="menu-item-22238"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/mission-vision/">هدفنا
-                                        ورؤيتنا</a></li>
-                                <li id="menu-item-22239"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link" href="https://www.harvestcollege.co.uk/our-family/">عائلة
-                                        هارفست</a></li>
-                                <li id="menu-item-22240"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link" href="https://www.harvestcollege.co.uk/careers/">إنضم
-                                        إلينا</a></li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-21876"
-                            class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children no-mega-menu">
-                            <a class="menu-item-link" href="#">التدريب و العروض</a>
-                            <ul style="" class="sub-menu ">
-                                <li id="menu-item-22922"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-22576 current_page_item">
-                                    <a class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/courses/true-beginner/">دبلومة تأهيل
-                                        المبتدئين</a>
-                                </li>
-                                <li id="menu-item-22241"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-page-parent">
-                                    <a class="menu-item-link" href="https://www.harvestcollege.co.uk/courses/">الدبلومة
-                                        البريطانية</a>
-                                </li>
-                                <li id="menu-item-21875"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link" href="https://www.harvestcollege.co.uk/offers/">العروض و
-                                        الأخبار</a></li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-22026"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children no-mega-menu">
-                            <a class="menu-item-link" href="#">الشهادات</a>
-                            <ul style="" class="sub-menu ">
-                                <li id="menu-item-22708"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/be-certified/">الإعتمادات</a></li>
-                                <li id="menu-item-22711"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/ielts-toefl/">الإيلتس
-                                        و التويفل</a></li>
-                                <li id="menu-item-22716"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/tefl-esl-instructor/">محاضر لغة إنجليزية
-                                        معتمد</a></li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-22020"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children no-mega-menu">
-                            <a class="menu-item-link" href="#">قسم الميديا</a>
-                            <ul style="" class="sub-menu ">
-                                <li id="menu-item-22242"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/events/">المبادرات</a>
-                                </li>
-                                <li id="menu-item-22700"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/gallery/">الصور</a>
-                                </li>
-                                <li id="menu-item-22303"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/commercials/">الفيديو</a></li>
-                            </ul>
-                        </li>
-                        <li id="menu-item-22247"
-                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children no-mega-menu">
-                            <a class="menu-item-link" href="#">التواصل</a>
-                            <ul style="" class="sub-menu ">
-                                <li id="menu-item-21872"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link" href="https://www.harvestcollege.co.uk/contact/">إتصل
-                                        بنا</a></li>
-                                <li id="menu-item-22246"
-                                    class="menu-item menu-item-type-post_type menu-item-object-page"><a
-                                        class="menu-item-link"
-                                        href="https://www.harvestcollege.co.uk/customer-care/">الشكاوى و المقترحات</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mk-header-social inside-grid"></li>
-                    </ul>
-                </nav>
-
-            </header> --}}
-
-
             <div class="responsive-nav-container"></div>
 
 
@@ -705,77 +493,6 @@
 
 
     @livewireScripts
-
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/core.min.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/widget.min.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/tabs.min.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/js/skrollr-min.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/js/jquery.nicescroll.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/js/SmoothScroll.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/js/plugins.js'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var ajax_login_object = {
-            "ajaxurl": "https:\/\/www.harvestcollege.co.uk\/wp-admin\/admin-ajax.php",
-            "redirecturl": "https:\/\/www.harvestcollege.co.uk",
-            "loadingmessage": "Sending user info, please wait..."
-        };
-        /* ]]> */
-
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/js/theme-scripts.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-content/themes/ken/custom.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/comment-reply.min.js'></script>
-    <script type='text/javascript'>
-        /* <![CDATA[ */
-        var leadin_wordpress = {
-            "userRole": "visitor",
-            "pageType": "page",
-            "leadinPluginVersion": "7.30.4"
-        };
-        /* ]]> */
-
-    </script>
-    <script async defer id="hs-script-loader" type='text/javascript'
-        src='//js.hs-scripts.com/5580694.js?integration=WordPress'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/position.min.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/menu.min.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/dist/vendor/wp-polyfill.min.js'>
-    </script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/dist/dom-ready.min.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/dist/a11y.min.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/jquery/ui/autocomplete.min.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/js/front/social_login/general.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/js/front/facebook/sdk.js'></script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/js/front/facebook/commenting.js'>
-    </script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/super-socializer/js/front/sharing/sharing.js'></script>
-    <script type='text/javascript' src='https://www.harvestcollege.co.uk/wp-includes/js/wp-embed.min.js'></script>
-    <script type='text/javascript'
-        src='https://www.harvestcollege.co.uk/wp-content/plugins/js_composer_theme/assets/js/dist/js_composer_front.min.js'>
-    </script>
-
-
-
 </body>
 
 </html>
-
-<!--
-Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
-
-
-Served from: www.harvestcollege.co.uk @ 2020-06-02 12:55:16 by W3 Total Cache
--->
