@@ -30,7 +30,7 @@ class Edit extends Component
     {
         $rules = [
             'question' => 'required',
-            'photo' => 'nullable|image',
+            'photo' => 'nullable|file',
         ];
 
         if ($this->skill == 'Writing') {
@@ -44,7 +44,7 @@ class Edit extends Component
             $rules['is_correct'] = 'required';
         }
 
-        if ($this->skill == 'Reading' && $this->parent_id) {
+        if (in_array($this->skill, ['Reading', 'Listening']) && $this->parent_id) {
             $rules['answers'] = 'required|array|size:4';
             $rules['answers.*'] = 'required';
             $rules['is_correct'] = 'required';

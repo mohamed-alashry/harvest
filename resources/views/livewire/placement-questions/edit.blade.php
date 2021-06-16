@@ -32,6 +32,48 @@
                                 </div>
                             @endif
 
+                            @if ($skill == 'Listening' && !$parent_id)
+                                <!-- mp3 Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('photo', 'mp3:') !!}
+                                    {!! Form::file('photo', ['wire:model' => 'photo']) !!}
+                                    @if ($placementQuestion->photo)
+                                        <p>
+                                            <audio controls>
+                                                <source src="{{ asset('uploads/' . $placementQuestion->photo) }}"
+                                                    type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </p>
+                                    @endif
+                                </div>
+                                <div class="clearfix"></div>
+                            @endif
+
+                            @if ($skill == 'Listening' && $parent_id)
+                                <!-- mp3 Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('photo', 'mp3:') !!}
+                                    @if ($placementQuestion->parent->photo)
+                                        <p>
+                                            <audio controls>
+                                                <source
+                                                    src="{{ asset('uploads/' . $placementQuestion->parent->photo) }}"
+                                                    type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </p>
+                                    @endif
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <!-- Listening question Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('parent_id', 'Listening question:') !!}
+                                    <p>{{ $placementQuestion->parent->paragraph }}</p>
+                                </div>
+                            @endif
+
                             @if ($answers)
                                 <!-- Answers -->
                                 <div class="form-group col-sm-12">

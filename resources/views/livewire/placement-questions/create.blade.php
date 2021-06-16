@@ -15,7 +15,7 @@
                             <!-- Skill Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('skill', 'Skill:') !!}
-                                {!! Form::select('skill', ['Vocabulary' => 'Vocabulary', 'Grammar' => 'Grammar', 'Reading' => 'Reading', 'Writing' => 'Writing'], null, ['class' => 'form-control', 'wire:model.lazy' => 'skill', 'placeholder' => 'Select Skill...']) !!}
+                                {!! Form::select('skill', ['Vocabulary' => 'Vocabulary', 'Grammar' => 'Grammar', 'Reading' => 'Reading', 'Writing' => 'Writing', 'Listening' => 'Listening'], null, ['class' => 'form-control', 'wire:model.lazy' => 'skill', 'placeholder' => 'Select Skill...']) !!}
                             </div>
 
                             <!-- Question Field -->
@@ -29,6 +29,29 @@
                                 <div class="form-group col-sm-12">
                                     {!! Form::label('parent_id', 'Reading Paragraph:') !!}
                                     {!! Form::select('parent_id', $paragraphs, null, ['class' => 'form-control', 'wire:model.lazy' => 'parent_id', 'placeholder' => 'Select Paragraph...']) !!}
+                                </div>
+                            @endif
+
+                            @if ($skill == 'Listening')
+                                <!-- mp3 Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('photo', 'mp3:') !!}
+                                    {!! Form::file('photo', ['wire:model' => 'photo']) !!}
+                                    @if (isset($placementQuestion) && $placementQuestion->photo)
+                                        <p>
+                                            <audio controls>
+                                                <source src="{{ asset('uploads/' . $placementQuestion->photo) }}"
+                                                    type="audio/mpeg">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </p>
+                                    @endif
+                                </div>
+                                <div class="clearfix"></div>
+                                <!-- Listening Question Field -->
+                                <div class="form-group col-sm-6">
+                                    {!! Form::label('parent_id', 'Listening Question:') !!}
+                                    {!! Form::select('parent_id', $paragraphs, null, ['class' => 'form-control', 'wire:model.lazy' => 'parent_id', 'placeholder' => 'Select Question...']) !!}
                                 </div>
                             @endif
 
@@ -66,7 +89,7 @@
                                 </div>
                             @endif
 
-                            @if ($skill == 'Reading' && $parent_id)
+                            @if (in_array($skill, ['Reading', 'Listening']) && $parent_id)
                                 <!-- Answers -->
                                 <div class="form-group col-sm-12">
                                     <hr>

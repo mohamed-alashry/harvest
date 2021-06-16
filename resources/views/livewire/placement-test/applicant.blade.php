@@ -1,8 +1,13 @@
 <center style="background-image:url(bg00.jpg);padding-top:20px;background-size:contain;padding-bottom:20px;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IqgEURTLWqw?autoplay=1&controls=0"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     <div id='crmWebToEntityForm' class="arab" style="width:60%;padding:10px;background-color:#fff;">
         <div style="padding-top:20px;height:90px;width:100%;display:block;background-color:#06213e;">
             <span style="text-align:right;direction:ltr;font-size:180%;color:#fff;"><strong dir=ltr>
                     تحديد مستوى مجاني</strong></span>
+
         </div><br><br>
         <META HTTP-EQUIV='content-type' CONTENT='text/html;charset=UTF-8'>
 

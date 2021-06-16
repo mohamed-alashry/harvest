@@ -18,6 +18,8 @@
                     <td>
                         @if ($placementQuestion->skill == 'Reading' && !$placementQuestion->parent_id)
                             Paragraph
+                        @elseif ($placementQuestion->skill == 'Listening' && !$placementQuestion->parent_id)
+                            MP3
                         @else
                             Question
                         @endif

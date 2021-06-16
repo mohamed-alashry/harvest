@@ -30,10 +30,24 @@
 
 <!-- Photo Field -->
 @if ($placementQuestion->photo)
-    <div class="form-group col-sm-6">
-        {!! Form::label('photo', 'Photo:') !!}
-        <p><img src="{{ asset('uploads/' . $placementQuestion->photo) }}" width="200"></p>
-    </div>
+    @if ($placementQuestion->skill == 'Writing')
+        <div class="form-group col-sm-6">
+            {!! Form::label('photo', 'Photo:') !!}
+            <p><img src="{{ asset('uploads/' . $placementQuestion->photo) }}" width="200"></p>
+        </div>
+    @else
+        <div class="form-group col-sm-6">
+            {!! Form::label('photo', 'mp3:') !!}
+            @if ($placementQuestion->photo)
+                <p>
+                    <audio controls>
+                        <source src="{{ asset('uploads/' . $placementQuestion->photo) }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </p>
+            @endif
+        </div>
+    @endif
 @endif
 
 

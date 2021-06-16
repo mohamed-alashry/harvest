@@ -19,7 +19,7 @@ class Create extends Component
         $rules = [
             'skill' => 'required',
             'question' => 'required',
-            'photo' => 'nullable|image',
+            'photo' => 'nullable|file',
             'ideas' => 'nullable|required_if:skill,Writing|array|size:4',
             'parent_id' => 'nullable',
         ];
@@ -29,7 +29,7 @@ class Create extends Component
             $rules['is_correct'] = 'required';
         }
 
-        if ($this->skill == 'Reading' && $this->parent_id) {
+        if (in_array($this->skill, ['Reading', 'Listening']) && $this->parent_id) {
             $rules['answers'] = 'required|array|size:4';
             $rules['is_correct'] = 'required';
         }
@@ -46,6 +46,9 @@ class Create extends Component
     {
         if ($value == 'Reading') {
             $this->paragraphs = PlacementQuestion::whereNull('parent_id')->where('skill', 'Reading')->get()->pluck('paragraph', 'id');
+        }
+        if ($value == 'Listening') {
+            $this->paragraphs = PlacementQuestion::whereNull('parent_id')->where('skill', 'Listening')->get()->pluck('paragraph', 'id');
         }
     }
 
