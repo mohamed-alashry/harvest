@@ -1,25 +1,22 @@
-{{-- <!-- General Score Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('general_score', 'General Score:') !!}
-    {!! Form::number('general_score', null, ['class' => 'form-control', 'step' => 0.5]) !!}
-</div>
+<!-- Applicant Answers Field -->
+@foreach ($placementApplicant->answers as $answer)
 
-<!-- Reading Score Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('reading_score', 'Reading Score:') !!}
-    {!! Form::number('reading_score', null, ['class' => 'form-control', 'step' => 0.5]) !!}
-</div> --}}
+    <div class="form-group col-sm-12">
+        {!! Form::label('writing_score', 'Q: ' . $answer->question->question) !!}
+        <p>
+            {{ $answer->answer }}
+        </p>
+    </div>
+@endforeach
+
+<div class="form-group col-sm-12">
+    <hr>
+</div>
 
 <!-- Writing Score Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('writing_score', 'Writing Score:') !!}
     {!! Form::number('writing_score', null, ['class' => 'form-control', 'step' => 0.5]) !!}
-</div>
-
-<!-- Listening Score Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('listening_score', 'Listening Score:') !!}
-    {!! Form::number('listening_score', null, ['class' => 'form-control', 'step' => 0.5]) !!}
 </div>
 
 <!-- Speaking Score Field -->

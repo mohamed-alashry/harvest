@@ -88,7 +88,7 @@ class PlacementApplicantController extends AppBaseController
     public function edit($id)
     {
         /** @var PlacementApplicant $placementApplicant */
-        $placementApplicant = PlacementApplicant::find($id);
+        $placementApplicant = PlacementApplicant::with('answers')->find($id);
 
         if (empty($placementApplicant)) {
             Flash::error('Placement Applicant not found');
