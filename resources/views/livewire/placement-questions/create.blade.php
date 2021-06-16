@@ -32,22 +32,16 @@
                                 </div>
                             @endif
 
-                            @if ($skill == 'Listening')
+                            @if ($skill == 'Listening' && !$parent_id)
                                 <!-- mp3 Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('photo', 'mp3:') !!}
                                     {!! Form::file('photo', ['wire:model' => 'photo']) !!}
-                                    @if (isset($placementQuestion) && $placementQuestion->photo)
-                                        <p>
-                                            <audio controls>
-                                                <source src="{{ asset('uploads/' . $placementQuestion->photo) }}"
-                                                    type="audio/mpeg">
-                                                Your browser does not support the audio element.
-                                            </audio>
-                                        </p>
-                                    @endif
                                 </div>
                                 <div class="clearfix"></div>
+                            @endif
+
+                            @if ($skill == 'Listening' && !$photo)
                                 <!-- Listening Question Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('parent_id', 'Listening Question:') !!}
