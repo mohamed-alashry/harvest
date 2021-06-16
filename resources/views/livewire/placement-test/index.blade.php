@@ -45,10 +45,14 @@
                                 @break
 
                                 @case(5)
-                                    <livewire:placement-test.writing :applicant="$applicant" />
+                                    <livewire:placement-test.listening :applicant="$applicant" />
                                 @break
 
                                 @case(6)
+                                    <livewire:placement-test.writing :applicant="$applicant" />
+                                @break
+
+                                @case(7)
                                     <livewire:placement-test.thanks :applicant="$applicant" />
                                 @break
 

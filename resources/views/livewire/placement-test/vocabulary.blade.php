@@ -7,27 +7,29 @@
         </div><br><br>
         <META HTTP-EQUIV='content-type' CONTENT='text/html;charset=UTF-8'>
 
-        <form wire:ignore wire:submit.prevent='save'>
+        <form wire:submit.prevent='save'>
 
             @foreach ($questions as $question)
-                <span style="text-align:left;direction:ltr;float:left;font-weight:bold;color:blue;font-size:140%;">
-                    <strong dir=ltr>Q{{ $loop->iteration }}:
-                        {{ $question->question }}</strong>
-                </span>
-                <div class="clearfix"></div>
-                <br />
-                <div style="text-align:left;" dir=ltr>
+                <div wire:ignore>
+                    <span style="text-align:left;direction:ltr;float:left;font-weight:bold;color:blue;font-size:140%;">
+                        <strong dir=ltr>Q{{ $loop->iteration }}:
+                            {{ $question->question }}</strong>
+                    </span>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div style="text-align:left;" dir=ltr>
 
-                    @foreach ($question->answers as $answer)
-                        <label>
-                            <input wire:model='answers.{{ $question->id }}' type='radio' class="arab"
-                                value="{{ $answer->id }}"><span style="color:darkblue;font-size:140%;">
-                                {{ $answer->answer }}</span>
-                        </label>
-                        <br />
-                    @endforeach
+                        @foreach ($question->answers as $answer)
+                            <label>
+                                <input wire:model='answers.{{ $question->id }}' type='radio' class="arab"
+                                    value="{{ $answer->id }}"><span style="color:darkblue;font-size:140%;">
+                                    {{ $answer->answer }}</span>
+                            </label>
+                            <br />
+                        @endforeach
 
-                </div><br><br>
+                    </div><br><br>
+                </div>
             @endforeach
 
             @error('answers')

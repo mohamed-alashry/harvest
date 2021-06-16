@@ -1,7 +1,8 @@
 <center style="background-image:url(bg00.jpg);padding-top:20px;background-size:contain;padding-bottom:20px;">
     <div id='crmWebToEntityForm' class="arab" style="width:60%;padding:10px;background-color:#fff;">
         <div style="padding-top:20px;height:90px;width:100%;display:block;background-color:#06213e;">
-            <span style="text-align:right;direction:ltr;font-size:180%;color:#fff;"><strong dir=ltr>Section 3: Reading:
+            <span style="text-align:right;direction:ltr;font-size:180%;color:#fff;"><strong dir=ltr>Section 4:
+                    Listening:
                     Select the most suitable answer
                     for each question:</strong></span>
         </div><br><br>
@@ -13,6 +14,12 @@
                 <div wire:ignore>
                     <span style="text-align:justify;float:left;direction:ltr;font-size:150%;display:inline-block;">
                         <strong dir=ltr style="line-height:30px;">{{ $paragraph->question }}</strong>
+                        <p>
+                            <audio controls>
+                                <source src="{{ asset('uploads/' . $paragraph->photo) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </p>
                     </span>
                     <div class="clearfix"></div>
                     <br><br>

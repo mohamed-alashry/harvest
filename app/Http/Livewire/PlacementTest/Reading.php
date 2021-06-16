@@ -33,6 +33,7 @@ class Reading extends Component
     }
 
     protected $messages = [
+        'array' => 'يجب إجابة كل الاسئلة',
         'size' => 'يجب إجابة كل الاسئلة',
     ];
 

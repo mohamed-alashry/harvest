@@ -6,18 +6,23 @@ use App\Models\PlacementAnswer;
 use App\Models\PlacementQuestion;
 use Livewire\Component;
 
-class Grammar extends Component
+class Listening extends Component
 {
-    public $applicant, $questions, $answers;
+    public $applicant, $paragraphs, $answers;
 
-    private $limit = 20, $point = 0.5;
+    private $limit = 10, $paragraphLimit = 2, $point = 1;
 
     public function mount($applicant)
     {
         $this->applicant = $applicant;
 
-        $questions = PlacementQuestion::where('skill', 'Grammar')->with('answers')->limit($this->limit)->inRandomOrder()->get();
-        $this->questions = $questions;
+        $paragraphs = PlacementQuestion::where('skill', 'Listening')->whereNull('parent_id')
+            ->with('children.answers')
+            ->limit($this->paragraphLimit)->inRandomOrder()->get()->map(function ($para) {
+                $para->setRelation('children', $para->children->take(5));
+                return $para;
+            });
+        $this->paragraphs = $paragraphs;
     }
 
     protected function rules()
@@ -40,13 +45,13 @@ class Grammar extends Component
 
         $score = $correctCount * $this->point;
 
-        $this->applicant->update(['grammar_score' => $score]);
+        $this->applicant->update(['listening_score' => $score]);
 
         $this->emitUp('next');
     }
 
     public function render()
     {
-        return view('livewire.placement-test.grammar');
+        return view('livewire.placement-test.listening');
     }
 }
