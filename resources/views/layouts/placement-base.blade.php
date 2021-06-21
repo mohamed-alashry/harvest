@@ -479,11 +479,7 @@
 
         <div id="mk-boxed-layout" class="mk-full-enabled ">
 
-
             <div class="responsive-nav-container"></div>
-
-
-            <div class="sticky-header-padding sticky-header "></div>
 
             {{ $slot }}
 
