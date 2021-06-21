@@ -10,7 +10,7 @@
                             <div class="mk-shortcode mk-padding-shortcode " style="height:40px"></div>
                             <div class="clearboth"></div>
                             <div style="text-align: center;">
-                                <img src="{{ asset('dashboard logo.png') }}" alt="">
+                                <img src="{{ asset('pt logo.png') }}" alt="">
                             </div>
                             <h3 style="font-size: 27px;text-align:center;line-height:29px;letter-spacing:0px;color: #acce00;font-weight:bold;margin-bottom:27px; margin-top:10px; "
                                 id="fancy-title-2"
