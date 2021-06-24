@@ -30,6 +30,11 @@
                             <a href="{{ route('admin.placementApplicants.show', [$placementApplicant->id]) }}"
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
+                            @can('placementApplicants sendMail')
+                                <a href="{{ route('admin.placementApplicants.sendMail', [$placementApplicant->id]) }}"
+                                    class='btn btn-ghost-info'><i class="fa fa-envelope"></i></a>
+                            @endcan
+
                             @can('placementApplicants edit')
                                 <a href="{{ route('admin.placementApplicants.edit', [$placementApplicant->id]) }}"
                                     class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>

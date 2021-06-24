@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePlacementApplicantRequest;
-use App\Http\Requests\UpdatePlacementApplicantRequest;
-use App\Http\Controllers\AppBaseController;
-use App\Models\PlacementApplicant;
-use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Http\Request;
+use App\Mail\PlacementTestResult;
+use App\Models\PlacementApplicant;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\CreatePlacementApplicantRequest;
+use App\Http\Requests\UpdatePlacementApplicantRequest;
 
 class PlacementApplicantController extends AppBaseController
 {
@@ -149,6 +151,31 @@ class PlacementApplicantController extends AppBaseController
         $placementApplicant->delete();
 
         Flash::success('Placement Applicant deleted successfully.');
+
+        return redirect(route('admin.placementApplicants.index'));
+    }
+
+    /**
+     * Display the specified PlacementApplicant.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function sendMail($id)
+    {
+        /** @var PlacementApplicant $placementApplicant */
+        $placementApplicant = PlacementApplicant::find($id);
+
+        if (empty($placementApplicant)) {
+            Flash::error('Placement Applicant not found');
+
+            return redirect(route('admin.placementApplicants.index'));
+        }
+
+        Mail::to($placementApplicant)->send(new PlacementTestResult($placementApplicant));
+
+        Flash::success('Mail sent successfully.');
 
         return redirect(route('admin.placementApplicants.index'));
     }

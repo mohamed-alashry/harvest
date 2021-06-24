@@ -60,6 +60,7 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('paymentMethods', App\Http\Controllers\PaymentMethodController::class);
 
         Route::resource('placementApplicants', App\Http\Controllers\PlacementApplicantController::class)->except(['create', 'store']);
+        Route::get('applicants/sendMail/{id}', [App\Http\Controllers\PlacementApplicantController::class, 'sendMail'])->name('placementApplicants.sendMail');
 
         Route::resource('placementQuestions', App\Http\Controllers\PlacementQuestionController::class)->except(['store', 'update']);
 
