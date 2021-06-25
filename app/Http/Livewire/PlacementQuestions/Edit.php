@@ -50,6 +50,14 @@ class Edit extends Component
             $rules['is_correct'] = 'required';
         }
 
+        if ($this->photo && $this->skill == 'Writing') {
+            $rules['photo'] = 'image';
+        }
+
+        if ($this->photo && $this->skill == 'Listening') {
+            $rules['photo'] = 'mimes:mp3';
+        }
+
         return $rules;
     }
 
@@ -66,7 +74,7 @@ class Edit extends Component
             $file = $this->photo->store('/');
             $data['photo'] = $file;
             if (env('APP_ENV') == 'production') {
-                rename(storage_path('app/' . $file), '/home/harvestc/public_html/sys/uploads/' . $file);
+                rename(storage_path('app/' . $file), '/home/harvestc/sys.harvestcollege.co.uk/uploads/' . $file);
             } else {
                 rename(storage_path('app/' . $file), public_path('uploads/' . $file));
             }

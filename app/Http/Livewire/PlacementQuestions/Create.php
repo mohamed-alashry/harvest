@@ -19,7 +19,6 @@ class Create extends Component
         $rules = [
             'skill' => 'required',
             'question' => 'required',
-            'photo' => 'nullable|file',
             'ideas' => 'nullable|required_if:skill,Writing|array|size:4',
             'parent_id' => 'nullable',
         ];
@@ -32,6 +31,14 @@ class Create extends Component
         if (in_array($this->skill, ['Reading', 'Listening']) && $this->parent_id) {
             $rules['answers'] = 'required|array|size:4';
             $rules['is_correct'] = 'required';
+        }
+
+        if ($this->photo && $this->skill == 'Writing') {
+            $rules['photo'] = 'image';
+        }
+
+        if ($this->photo && $this->skill == 'Listening') {
+            $rules['photo'] = 'mimes:mp3';
         }
 
         return $rules;
@@ -60,7 +67,7 @@ class Create extends Component
             $file = $this->photo->store('/');
             $data['photo'] = $file;
             if (env('APP_ENV') == 'production') {
-                rename(storage_path('app/' . $file), '/home/harvestc/public_html/sys/uploads/' . $file);
+                rename(storage_path('app/' . $file), '/home/harvestc/sys.harvestcollege.co.uk/uploads/' . $file);
             } else {
                 rename(storage_path('app/' . $file), public_path('uploads/' . $file));
             }

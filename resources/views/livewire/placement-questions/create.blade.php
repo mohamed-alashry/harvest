@@ -162,7 +162,8 @@
 
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
-                                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                                <div wire:loading target="photo">Uploading...</div>
+                                {!! Form::submit('Save', ['class' => 'btn btn-primary', 'wire:loading.remove' => '', 'target' => 'photo']) !!}
                                 <a href="{{ route('admin.placementQuestions.index') }}"
                                     class="btn btn-secondary">Cancel</a>
                             </div>
