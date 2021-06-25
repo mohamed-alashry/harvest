@@ -479,8 +479,6 @@
 
         <div id="mk-boxed-layout" class="mk-full-enabled ">
 
-            <div class="responsive-nav-container"></div>
-
             {{ $slot }}
 
         </div>
