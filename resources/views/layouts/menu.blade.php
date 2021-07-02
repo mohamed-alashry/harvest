@@ -184,3 +184,11 @@
         </a>
     </li>
 @endcan
+@can('timeframes view')
+    <li class="nav-item {{ Request::is('admin/timeframes*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.timeframes.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Time Frames</span>
+        </a>
+    </li>
+@endcan

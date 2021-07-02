@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-plus-square-o fa-lg"></i>
-                        <strong>Create Training Service</strong>
+                        <strong>{{ $trainingService ? 'Edit' : 'Create' }} Training Service</strong>
                     </div>
                     <div class="card-body">
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
