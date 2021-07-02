@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 /**
@@ -55,4 +57,34 @@ class Track extends Model
         'title' => 'required',
         'status' => 'required'
     ];
+
+    /**
+     * Get all of the courses for the Track
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Track::class, 'parent_id');
+    }
+
+    /**
+     * Get the parent that owns the Track
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(Track::class, 'parent_id');
+    }
+
+    /**
+     * Get all of the stages for the Track
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function stages(): HasMany
+    {
+        return $this->hasMany(Stage::class, 'track_id');
+    }
 }

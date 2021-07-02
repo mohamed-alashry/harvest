@@ -14,7 +14,7 @@ class CreateStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stages', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('track_id')->unsigned();
             $table->string('name');
@@ -31,6 +31,6 @@ class CreateStagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('stages');
+        Schema::drop('courses');
     }
 }

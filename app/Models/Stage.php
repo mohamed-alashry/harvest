@@ -18,13 +18,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Stage extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
 
     public $table = 'stages';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 
@@ -66,6 +66,6 @@ class Stage extends Model
      */
     public function levels(): HasMany
     {
-        return $this->hasMany(Level::class);
+        return $this->hasMany(StageLevel::class);
     }
 }

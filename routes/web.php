@@ -64,7 +64,7 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('placementQuestions', App\Http\Controllers\PlacementQuestionController::class)->except(['store', 'update']);
 
-        Route::resource('stages', App\Http\Controllers\StageController::class);
+        Route::resource('courses', App\Http\Controllers\CourseController::class)->except(['store', 'update']);
     });
 });
 
