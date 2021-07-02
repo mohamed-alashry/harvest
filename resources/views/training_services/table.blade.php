@@ -3,6 +3,9 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Track</th>
+                <th>Course</th>
+                <th>Time Pattern</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -10,6 +13,9 @@
             @foreach ($trainingServices as $trainingService)
                 <tr>
                     <td>{{ $trainingService->title }}</td>
+                    <td>{{ $trainingService->track->title }}</td>
+                    <td>{{ $trainingService->course->title }}</td>
+                    <td>{{ $trainingService->pattern }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.trainingServices.destroy', $trainingService->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

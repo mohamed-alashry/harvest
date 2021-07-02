@@ -16,9 +16,15 @@ class CreateTrainingServicesTable extends Migration
     {
         Schema::create('training_services', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('track_id');
+            $table->unsignedInteger('course_id');
             $table->string('title');
+            $table->string('pattern')->comment('AM, PM, MIX');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('tracks')->onDelete('cascade');
         });
     }
 

@@ -22,6 +22,8 @@ class CreateTracksTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('parent_id')->references('id')->on('tracks')->onDelete('cascade');
         });
     }
 

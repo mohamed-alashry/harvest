@@ -13,12 +13,12 @@ class CreateStageLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('course_levels', function (Blueprint $table) {
+        Schema::create('stage_levels', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id')->unsigned();
+            $table->integer('stage_id')->unsigned();
             $table->string('name');
             $table->timestamps();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('stage_id')->references('id')->on('stages')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateStageLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_levels');
+        Schema::dropIfExists('stage_levels');
     }
 }

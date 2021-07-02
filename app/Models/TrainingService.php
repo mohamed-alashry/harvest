@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 /**
@@ -19,14 +20,17 @@ class TrainingService extends Model
 
 
     public $table = 'training_services';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'title'
+        'track_id',
+        'course_id',
+        'title',
+        'pattern',
     ];
 
     /**
@@ -36,17 +40,29 @@ class TrainingService extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string'
+        'track_id' => 'integer',
+        'course_id' => 'integer',
+        'title' => 'string',
+        'pattern' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Get the track that owns the TrainingService
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public static $rules = [
-        'title' => 'required'
-    ];
+    public function track(): BelongsTo
+    {
+        return $this->belongsTo(Track::class, 'track_id');
+    }
 
-    
+    /**
+     * Get the course that owns the TrainingService
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Track::class, 'course_id');
+    }
 }

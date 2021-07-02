@@ -4,22 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTrainingServiceRequest;
 use App\Http\Requests\UpdateTrainingServiceRequest;
-use App\Repositories\TrainingServiceRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\TrainingService;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
 
 class TrainingServiceController extends AppBaseController
 {
-    /** @var  TrainingServiceRepository */
-    private $trainingServiceRepository;
-
-    public function __construct(TrainingServiceRepository $trainingServiceRepo)
-    {
-        $this->trainingServiceRepository = $trainingServiceRepo;
-    }
-
     /**
      * Display a listing of the TrainingService.
      *
@@ -29,7 +21,8 @@ class TrainingServiceController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $trainingServices = $this->trainingServiceRepository->all();
+        /** @var TrainingService $trainingServices */
+        $trainingServices = TrainingService::all();
 
         return view('training_services.index')
             ->with('trainingServices', $trainingServices);
@@ -56,9 +49,10 @@ class TrainingServiceController extends AppBaseController
     {
         $input = $request->all();
 
-        $trainingService = $this->trainingServiceRepository->create($input);
+        /** @var TrainingService $trainingService */
+        $trainingService = TrainingService::create($input);
 
-        Flash::success('Training Service saved successfully.');
+        Flash::success('TrainingService saved successfully.');
 
         return redirect(route('admin.trainingServices.index'));
     }
@@ -72,10 +66,11 @@ class TrainingServiceController extends AppBaseController
      */
     public function show($id)
     {
-        $trainingService = $this->trainingServiceRepository->find($id);
+        /** @var TrainingService $trainingService */
+        $trainingService = TrainingService::find($id);
 
         if (empty($trainingService)) {
-            Flash::error('Training Service not found');
+            Flash::error('TrainingService not found');
 
             return redirect(route('admin.trainingServices.index'));
         }
@@ -92,10 +87,11 @@ class TrainingServiceController extends AppBaseController
      */
     public function edit($id)
     {
-        $trainingService = $this->trainingServiceRepository->find($id);
+        /** @var TrainingService $trainingService */
+        $trainingService = TrainingService::find($id);
 
         if (empty($trainingService)) {
-            Flash::error('Training Service not found');
+            Flash::error('TrainingService not found');
 
             return redirect(route('admin.trainingServices.index'));
         }
@@ -113,17 +109,19 @@ class TrainingServiceController extends AppBaseController
      */
     public function update($id, UpdateTrainingServiceRequest $request)
     {
-        $trainingService = $this->trainingServiceRepository->find($id);
+        /** @var TrainingService $trainingService */
+        $trainingService = TrainingService::find($id);
 
         if (empty($trainingService)) {
-            Flash::error('Training Service not found');
+            Flash::error('TrainingService not found');
 
             return redirect(route('admin.trainingServices.index'));
         }
 
-        $trainingService = $this->trainingServiceRepository->update($request->all(), $id);
+        $trainingService->fill($request->all());
+        $trainingService->save();
 
-        Flash::success('Training Service updated successfully.');
+        Flash::success('TrainingService updated successfully.');
 
         return redirect(route('admin.trainingServices.index'));
     }
@@ -139,17 +137,18 @@ class TrainingServiceController extends AppBaseController
      */
     public function destroy($id)
     {
-        $trainingService = $this->trainingServiceRepository->find($id);
+        /** @var TrainingService $trainingService */
+        $trainingService = TrainingService::find($id);
 
         if (empty($trainingService)) {
-            Flash::error('Training Service not found');
+            Flash::error('TrainingService not found');
 
             return redirect(route('admin.trainingServices.index'));
         }
 
-        $this->trainingServiceRepository->delete($id);
+        $trainingService->delete();
 
-        Flash::success('Training Service deleted successfully.');
+        Flash::success('TrainingService deleted successfully.');
 
         return redirect(route('admin.trainingServices.index'));
     }
