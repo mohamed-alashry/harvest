@@ -192,3 +192,12 @@
         </a>
     </li>
 @endcan
+@can('itemCategories view')
+    <li class="nav-item {{ Request::is('admin/itemCategories*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.itemCategories.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Item Categories</span>
+        </a>
+    </li>
+@endcan
+
