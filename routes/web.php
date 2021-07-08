@@ -71,6 +71,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('itemCategories', App\Http\Controllers\ItemCategoryController::class);
 
         Route::resource('serviceFees', App\Http\Controllers\ServiceFeeController::class);
+
+        Route::resource('extraItems', App\Http\Controllers\ExtraItemController::class);
     });
 });
 

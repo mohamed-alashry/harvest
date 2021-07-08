@@ -201,6 +201,15 @@
     </li>
 @endcan
 
+@can('extraItems view')
+    <li class="nav-item {{ Request::is('admin/extraItems*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.extraItems.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Extra Items</span>
+        </a>
+    </li>
+@endcan
+
 @can('serviceFees view')
     <li class="nav-item {{ Request::is('admin/serviceFees*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.serviceFees.index') }}">
@@ -209,4 +218,3 @@
         </a>
     </li>
 @endcan
-
