@@ -103,7 +103,11 @@ class ServiceFeeController extends AppBaseController
             return redirect(route('admin.serviceFees.index'));
         }
 
-        return view('service_fees.edit')->with('serviceFee', $serviceFee);
+        $services = TrainingService::pluck('title', 'id');
+        $timeframes = Timeframe::pluck('title', 'id');
+        $paymentMethods = PaymentMethod::pluck('title', 'id');
+
+        return view('service_fees.edit', compact('serviceFee', 'services', 'timeframes', 'paymentMethods'));
     }
 
     /**
