@@ -201,3 +201,12 @@
     </li>
 @endcan
 
+@can('serviceFees view')
+    <li class="nav-item {{ Request::is('admin/serviceFees*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.serviceFees.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Service Fees</span>
+        </a>
+    </li>
+@endcan
+

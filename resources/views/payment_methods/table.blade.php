@@ -20,14 +20,16 @@
                             <a href="{{ route('admin.paymentMethods.show', [$paymentMethod->id]) }}"
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
-                            @can('paymentMethods edit')
-                                <a href="{{ route('admin.paymentMethods.edit', [$paymentMethod->id]) }}"
-                                    class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                            @endcan
+                            @unless(in_array($paymentMethod->id, [1, 2]))
+                                @can('paymentMethods edit')
+                                    <a href="{{ route('admin.paymentMethods.edit', [$paymentMethod->id]) }}"
+                                        class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                @endcan
 
-                            @can('paymentMethods delete')
-                                {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                            @endcan
+                                @can('paymentMethods delete')
+                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                @endcan
+                            @endunless
                         </div>
                         {!! Form::close() !!}
                     </td>

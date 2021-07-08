@@ -69,6 +69,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('timeframes', App\Http\Controllers\TimeframeController::class)->except(['store', 'update']);
 
         Route::resource('itemCategories', App\Http\Controllers\ItemCategoryController::class);
+
+        Route::resource('serviceFees', App\Http\Controllers\ServiceFeeController::class);
     });
 });
 
