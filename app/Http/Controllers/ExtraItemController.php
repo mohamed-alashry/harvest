@@ -5,12 +5,8 @@ namespace App\Http\Controllers;
 use Flash;
 use Response;
 use App\Models\ExtraItem;
-use App\Models\ItemCategory;
 use Illuminate\Http\Request;
-use App\Models\PaymentMethod;
 use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\CreateExtraItemRequest;
-use App\Http\Requests\UpdateExtraItemRequest;
 
 class ExtraItemController extends AppBaseController
 {
@@ -37,29 +33,7 @@ class ExtraItemController extends AppBaseController
      */
     public function create()
     {
-        $categories = ItemCategory::pluck('name', 'id');
-        $paymentMethods = PaymentMethod::pluck('title', 'id');
-
-        return view('extra_items.create', compact('categories', 'paymentMethods'));
-    }
-
-    /**
-     * Store a newly created ExtraItem in storage.
-     *
-     * @param CreateExtraItemRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreateExtraItemRequest $request)
-    {
-        $input = $request->all();
-
-        /** @var ExtraItem $extraItem */
-        $extraItem = ExtraItem::create($input);
-
-        Flash::success('Extra Item saved successfully.');
-
-        return redirect(route('admin.extraItems.index'));
+        return view('extra_items.create');
     }
 
     /**
@@ -101,37 +75,7 @@ class ExtraItemController extends AppBaseController
             return redirect(route('admin.extraItems.index'));
         }
 
-        $categories = ItemCategory::pluck('name', 'id');
-        $paymentMethods = PaymentMethod::pluck('title', 'id');
-
-        return view('extra_items.edit', compact('extraItem', 'categories', 'paymentMethods'));
-    }
-
-    /**
-     * Update the specified ExtraItem in storage.
-     *
-     * @param int $id
-     * @param UpdateExtraItemRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateExtraItemRequest $request)
-    {
-        /** @var ExtraItem $extraItem */
-        $extraItem = ExtraItem::find($id);
-
-        if (empty($extraItem)) {
-            Flash::error('Extra Item not found');
-
-            return redirect(route('admin.extraItems.index'));
-        }
-
-        $extraItem->fill($request->all());
-        $extraItem->save();
-
-        Flash::success('Extra Item updated successfully.');
-
-        return redirect(route('admin.extraItems.index'));
+        return view('extra_items.edit', compact('extraItem'));
     }
 
     /**

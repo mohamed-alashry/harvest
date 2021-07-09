@@ -19,7 +19,7 @@ class CreateExtraItemsTable extends Migration
             $table->integer('item_category_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
             $table->string('name');
-            $table->decimal('price');
+            $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('item_category_id')->references('id')->on('item_categories');

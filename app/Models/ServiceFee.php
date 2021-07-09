@@ -25,7 +25,7 @@ class ServiceFee extends Model
 
 
     public $table = 'service_fees';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -48,7 +48,7 @@ class ServiceFee extends Model
         'training_service_id' => 'integer',
         'timeframe_id' => 'integer',
         'payment_method_id' => 'integer',
-        'fees' => 'decimal:2'
+        'fees' => 'integer'
     ];
 
     /**
@@ -85,5 +85,13 @@ class ServiceFee extends Model
     public function paymentMethod()
     {
         return $this->belongsTo(\App\Models\PaymentMethod::class);
+    }
+
+    /**
+     * Get the installment.
+     */
+    public function installment()
+    {
+        return $this->morphOne(\App\Models\Installment::class, 'installmentable');
     }
 }

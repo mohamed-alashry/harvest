@@ -24,7 +24,7 @@ class ExtraItem extends Model
 
 
     public $table = 'extra_items';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -47,7 +47,7 @@ class ExtraItem extends Model
         'item_category_id' => 'integer',
         'payment_method_id' => 'integer',
         'name' => 'string',
-        'price' => 'decimal:2'
+        'price' => 'integer'
     ];
 
     /**
@@ -76,5 +76,13 @@ class ExtraItem extends Model
     public function paymentMethod()
     {
         return $this->belongsTo(\App\Models\PaymentMethod::class);
+    }
+
+    /**
+     * Get the installment.
+     */
+    public function installment()
+    {
+        return $this->morphOne(\App\Models\Installment::class, 'installmentable');
     }
 }
