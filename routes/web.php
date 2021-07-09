@@ -73,6 +73,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('serviceFees', App\Http\Controllers\ServiceFeeController::class)->except(['store', 'update']);
 
         Route::resource('extraItems', App\Http\Controllers\ExtraItemController::class)->except(['store', 'update']);
+
+        Route::resource('disciplineCategories', App\Http\Controllers\DisciplineCategoryController::class);
     });
 });
 

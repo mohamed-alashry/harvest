@@ -218,3 +218,12 @@
         </a>
     </li>
 @endcan
+@can('disciplineCategories view')
+    <li class="nav-item {{ Request::is('admin/disciplineCategories*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.disciplineCategories.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Discipline Categories</span>
+        </a>
+    </li>
+@endcan
+
