@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 /**
@@ -19,34 +20,63 @@ class Offer extends Model
 
 
     public $table = 'offers';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'title'
+        'title',
+        'fees',
+        'start_date',
+        'end_date',
+        'payment_method_id',
     ];
 
     /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'title' => 'string'
-    ];
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function paymentMethod()
+    {
+        return $this->belongsTo(\App\Models\PaymentMethod::class);
+    }
 
     /**
-     * Validation rules
+     * The disciplines that belong to the Offer
      *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public static $rules = [
-        'title' => 'required'
-    ];
+    public function disciplines(): BelongsToMany
+    {
+        return $this->belongsToMany(DisciplineCategory::class, 'offer_disciplines', 'offer_id', 'discipline_id');
+    }
 
-    
+    /**
+     * The items that belong to the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function items(): BelongsToMany
+    {
+        return $this->belongsToMany(ExtraItem::class, 'offer_items', 'offer_id', 'item_id');
+    }
+
+    /**
+     * The services that belong to the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(ServiceFee::class, 'offer_services', 'offer_id', 'service_id');
+    }
+
+    /**
+     * Get the installment.
+     */
+    public function installment()
+    {
+        return $this->morphOne(\App\Models\Installment::class, 'installmentable');
+    }
 }

@@ -3,6 +3,9 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Fees</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -10,6 +13,9 @@
             @foreach ($offers as $offer)
                 <tr>
                     <td>{{ $offer->title }}</td>
+                    <td>{{ $offer->fees }}</td>
+                    <td>{{ $offer->start_date }}</td>
+                    <td>{{ $offer->end_date }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.offers.destroy', $offer->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
