@@ -17,13 +17,13 @@ class CreateExtraItemsTable extends Migration
         Schema::create('extra_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('item_category_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned();
+            $table->integer('payment_plan_id')->unsigned();
             $table->string('name');
             $table->integer('price');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('item_category_id')->references('id')->on('item_categories');
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
         });
     }
 

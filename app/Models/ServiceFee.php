@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \App\Models\PaymentMethod $paymentMethod
  * @property integer $training_service_id
  * @property integer $timeframe_id
- * @property integer $payment_method_id
+ * @property integer $payment_plan_id
  * @property number $fees
  */
 class ServiceFee extends Model
@@ -34,7 +34,7 @@ class ServiceFee extends Model
     public $fillable = [
         'training_service_id',
         'timeframe_id',
-        'payment_method_id',
+        'payment_plan_id',
         'fees'
     ];
 
@@ -47,7 +47,7 @@ class ServiceFee extends Model
         'id' => 'integer',
         'training_service_id' => 'integer',
         'timeframe_id' => 'integer',
-        'payment_method_id' => 'integer',
+        'payment_plan_id' => 'integer',
         'fees' => 'integer'
     ];
 
@@ -59,7 +59,7 @@ class ServiceFee extends Model
     public static $rules = [
         'training_service_id' => 'required',
         'timeframe_id' => 'required',
-        'payment_method_id' => 'required',
+        'payment_plan_id' => 'required',
         'fees' => 'required'
     ];
 
@@ -82,9 +82,9 @@ class ServiceFee extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paymentMethod()
+    public function paymentPlan()
     {
-        return $this->belongsTo(\App\Models\PaymentMethod::class);
+        return $this->belongsTo(\App\Models\PaymentPlan::class);
     }
 
     /**

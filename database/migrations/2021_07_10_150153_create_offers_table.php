@@ -20,10 +20,10 @@ class CreateOffersTable extends Migration
             $table->integer('fees');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('payment_method_id')->unsigned();
+            $table->integer('payment_plan_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
         });
 
         Schema::create('offer_disciplines', function (Blueprint $table) {

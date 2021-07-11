@@ -6,7 +6,7 @@
                 <th>Name</th>
                 <th>Item Category</th>
                 <th>Price</th>
-                <th>Payment Method</th>
+                <th>Payment Plan</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
                     <td>{{ $extraItem->name }}</td>
                     <td>{{ $extraItem->itemCategory->name }}</td>
                     <td>{{ $extraItem->price }}</td>
-                    <td>{{ $extraItem->paymentMethod->title }}</td>
+                    <td>{{ $extraItem->paymentPlan->title }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.extraItems.destroy', $extraItem->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

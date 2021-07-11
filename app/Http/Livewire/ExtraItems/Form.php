@@ -7,16 +7,16 @@ use Laracasts\Flash\Flash;
 use App\Models\ExtraItem;
 use App\Models\Installment;
 use App\Models\ItemCategory;
-use App\Models\PaymentMethod;
+use App\Models\PaymentPlan;
 
 class Form extends Component
 {
     public $extraItem,
         $categories,
-        $paymentMethods,
+        $paymentPlans,
         $dueDates,
         $item_category_id,
-        $payment_method_id,
+        $payment_plan_id,
         $name,
         $price,
         $installment;
@@ -26,14 +26,14 @@ class Form extends Component
         if ($extraItem) {
             $this->fill([
                 'item_category_id' => $extraItem->item_category_id,
-                'payment_method_id' => $extraItem->payment_method_id,
+                'payment_plan_id' => $extraItem->payment_plan_id,
                 'name' => $extraItem->name,
                 'price' => $extraItem->price,
                 'installment' => $extraItem->installment,
             ]);
         }
         $this->categories = ItemCategory::pluck('name', 'id');
-        $this->paymentMethods = PaymentMethod::where('status', 1)->pluck('title', 'id');
+        $this->paymentPlans = PaymentPlan::where('status', 1)->pluck('title', 'id');
         $this->dueDates = [
             1 => '1 Month',
             2 => '2 Months',
@@ -54,12 +54,12 @@ class Form extends Component
     {
         $rules = [
             'item_category_id' => 'required',
-            'payment_method_id' => 'required',
+            'payment_plan_id' => 'required',
             'name' => 'required',
             'price' => 'required|integer',
         ];
 
-        if ($this->payment_method_id == 1) {
+        if ($this->payment_plan_id == 1) {
             $rules += [
                 'installment.deposit' => 'required|integer',
                 'installment.first_payment' => 'required|integer',
@@ -89,13 +89,13 @@ class Form extends Component
         if ($extraItem) {
             $extraItem->update($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $extraItem->installment()->update($data['installment']);
             }
         } else {
             $extraItem = ExtraItem::create($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $data['installment']['installmentable_type'] = 'App\\Models\\ExtraItem';
                 $data['installment']['installmentable_id'] = $extraItem->id;
                 Installment::create($data['installment']);

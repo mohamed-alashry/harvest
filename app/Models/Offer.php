@@ -31,15 +31,15 @@ class Offer extends Model
         'fees',
         'start_date',
         'end_date',
-        'payment_method_id',
+        'payment_plan_id',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paymentMethod()
+    public function paymentPlan()
     {
-        return $this->belongsTo(\App\Models\PaymentMethod::class);
+        return $this->belongsTo(\App\Models\PaymentPlan::class);
     }
 
     /**

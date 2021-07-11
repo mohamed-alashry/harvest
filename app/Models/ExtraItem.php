@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \App\Models\ItemCategory $itemCategory
  * @property \App\Models\PaymentMethod $paymentMethod
  * @property integer $item_category_id
- * @property integer $payment_method_id
+ * @property integer $payment_plan_id
  * @property string $name
  * @property number $price
  */
@@ -32,7 +32,7 @@ class ExtraItem extends Model
 
     public $fillable = [
         'item_category_id',
-        'payment_method_id',
+        'payment_plan_id',
         'name',
         'price'
     ];
@@ -45,7 +45,7 @@ class ExtraItem extends Model
     protected $casts = [
         'id' => 'integer',
         'item_category_id' => 'integer',
-        'payment_method_id' => 'integer',
+        'payment_plan_id' => 'integer',
         'name' => 'string',
         'price' => 'integer'
     ];
@@ -57,7 +57,7 @@ class ExtraItem extends Model
      */
     public static $rules = [
         'item_category_id' => 'required',
-        'payment_method_id' => 'required',
+        'payment_plan_id' => 'required',
         'name' => 'required',
         'price' => 'required'
     ];
@@ -73,9 +73,9 @@ class ExtraItem extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paymentMethod()
+    public function paymentPlan()
     {
-        return $this->belongsTo(\App\Models\PaymentMethod::class);
+        return $this->belongsTo(\App\Models\PaymentPlan::class);
     }
 
     /**

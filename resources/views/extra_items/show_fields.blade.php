@@ -12,10 +12,10 @@
 </div>
 
 
-<!-- Payment Method Id Field -->
+<!-- Payment Plan Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('payment_method_id', 'Payment Method:') !!}
-    <p>{{ $extraItem->paymentMethod->title }}</p>
+    {!! Form::label('payment_plan_id', 'Payment Plan:') !!}
+    <p>{{ $extraItem->paymentPlan->title }}</p>
 </div>
 
 

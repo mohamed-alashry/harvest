@@ -5,7 +5,7 @@
                 <th>Id</th>
                 <th>Training Service</th>
                 <th>Timeframe</th>
-                <th>Payment Method</th>
+                <th>Payment Plan</th>
                 <th>Fees</th>
                 <th>Action</th>
             </tr>
@@ -16,7 +16,7 @@
                     <td>{{ $serviceFee->id }}</td>
                     <td>{{ $serviceFee->trainingService->title }}</td>
                     <td>{{ $serviceFee->timeframe->title }}</td>
-                    <td>{{ $serviceFee->paymentMethod->title }}</td>
+                    <td>{{ $serviceFee->paymentPlan->title }}</td>
                     <td>{{ $serviceFee->fees }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.serviceFees.destroy', $serviceFee->id], 'method' => 'delete']) !!}

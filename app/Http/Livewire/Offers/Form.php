@@ -8,13 +8,13 @@ use App\Models\ExtraItem;
 use App\Models\ServiceFee;
 use Laracasts\Flash\Flash;
 use App\Models\Installment;
-use App\Models\PaymentMethod;
+use App\Models\PaymentPlan;
 use App\Models\DisciplineCategory;
 
 class Form extends Component
 {
     public $offer,
-        $paymentMethods,
+        $paymentPlans,
         $disciplines_data,
         $items_data,
         $services_data,
@@ -23,7 +23,7 @@ class Form extends Component
         $fees,
         $start_date,
         $end_date,
-        $payment_method_id,
+        $payment_plan_id,
         $disciplines,
         $items,
         $services,
@@ -38,7 +38,7 @@ class Form extends Component
                 'fees' => $offer->fees,
                 'start_date' => $offer->start_date,
                 'end_date' => $offer->end_date,
-                'payment_method_id' => $offer->payment_method_id,
+                'payment_plan_id' => $offer->payment_plan_id,
                 'disciplines' => $offer->disciplines->pluck('id'),
                 'items' => $offer->items->pluck('id'),
                 'services' => $offer->services->pluck('id'),
@@ -46,7 +46,7 @@ class Form extends Component
                 'total_amount' => $offer->items->sum('price') + $offer->services->sum('fees'),
             ]);
         }
-        $this->paymentMethods = PaymentMethod::where('status', 1)->pluck('title', 'id');
+        $this->paymentPlans = PaymentPlan::where('status', 1)->pluck('title', 'id');
         $this->disciplines_data = DisciplineCategory::pluck('name', 'id');
         $this->items_data = ExtraItem::pluck('name', 'id');
         $this->services_data = ServiceFee::with('trainingService')->get()->pluck('trainingService.title', 'id');
@@ -73,13 +73,13 @@ class Form extends Component
             'fees' => 'required|integer',
             'start_date' => 'required',
             'end_date' => 'required',
-            'payment_method_id' => 'required',
+            'payment_plan_id' => 'required',
             'disciplines' => 'required|array',
             'items' => 'required|array',
             'services' => 'required|array',
         ];
 
-        if ($this->payment_method_id == 1) {
+        if ($this->payment_plan_id == 1) {
             $rules += [
                 'installment.deposit' => 'required|integer',
                 'installment.first_payment' => 'required|integer',
@@ -127,13 +127,13 @@ class Form extends Component
         if ($offer) {
             $offer->update($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $offer->installment()->update($data['installment']);
             }
         } else {
             $offer = Offer::create($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $data['installment']['installmentable_type'] = 'App\\Models\\Offer';
                 $data['installment']['installmentable_id'] = $offer->id;
                 Installment::create($data['installment']);

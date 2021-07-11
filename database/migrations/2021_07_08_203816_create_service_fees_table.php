@@ -18,13 +18,13 @@ class CreateServiceFeesTable extends Migration
             $table->increments('id');
             $table->integer('training_service_id')->unsigned();
             $table->integer('timeframe_id')->unsigned();
-            $table->integer('payment_method_id')->unsigned();
+            $table->integer('payment_plan_id')->unsigned();
             $table->integer('fees');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('training_service_id')->references('id')->on('training_services');
             $table->foreign('timeframe_id')->references('id')->on('timeframes');
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
         });
     }
 

@@ -4,6 +4,7 @@
             <tr>
                 <th>Title</th>
                 <th>Fees</th>
+                <th>Payment Plan</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Action</th>
@@ -16,6 +17,7 @@
                     <td>{{ $offer->fees }}</td>
                     <td>{{ $offer->start_date }}</td>
                     <td>{{ $offer->end_date }}</td>
+                    <td>{{ $offer->paymentPlan->title }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.offers.destroy', $offer->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

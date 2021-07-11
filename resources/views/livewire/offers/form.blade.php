@@ -54,10 +54,10 @@
                                 {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'fees', 'class' => 'form-control']) !!}
                             </div>
 
-                            <!-- Payment Method Id Field -->
+                            <!-- Payment Plan Id Field -->
                             <div class="form-group col-sm-6">
-                                {!! Form::label('payment_method_id', 'Payment Method:') !!}
-                                {!! Form::select(null, $paymentMethods, null, ['wire:model' => 'payment_method_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::label('payment_plan_id', 'Payment Plan:') !!}
+                                {!! Form::select(null, $paymentPlans, null, ['wire:model' => 'payment_plan_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Total Amount Field -->
@@ -67,8 +67,8 @@
                             </div>
 
                             {{-- Installment --}}
-                            @if ($payment_method_id == 1)
-                                <!-- Payment Method Id Field -->
+                            @if ($payment_plan_id == 1)
+                                <!-- Payment Plan Id Field -->
                                 <div class="form-group col-sm-12">
                                     <hr>
                                     <h4>Installment</h4>

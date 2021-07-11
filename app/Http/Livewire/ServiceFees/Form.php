@@ -6,7 +6,7 @@ use Livewire\Component;
 use Laracasts\Flash\Flash;
 use App\Models\ServiceFee;
 use App\Models\Installment;
-use App\Models\PaymentMethod;
+use App\Models\PaymentPlan;
 use App\Models\Timeframe;
 use App\Models\TrainingService;
 
@@ -15,10 +15,10 @@ class Form extends Component
     public $serviceFee,
         $services,
         $timeframes,
-        $paymentMethods,
+        $paymentPlans,
         $dueDates,
         $training_service_id,
-        $payment_method_id,
+        $payment_plan_id,
         $timeframe_id,
         $fees,
         $installment;
@@ -28,7 +28,7 @@ class Form extends Component
         if ($serviceFee) {
             $this->fill([
                 'training_service_id' => $serviceFee->training_service_id,
-                'payment_method_id' => $serviceFee->payment_method_id,
+                'payment_plan_id' => $serviceFee->payment_plan_id,
                 'timeframe_id' => $serviceFee->timeframe_id,
                 'fees' => $serviceFee->fees,
                 'installment' => $serviceFee->installment,
@@ -36,7 +36,7 @@ class Form extends Component
         }
         $this->services = TrainingService::pluck('title', 'id');
         $this->timeframes = Timeframe::pluck('title', 'id');
-        $this->paymentMethods = PaymentMethod::where('status', 1)->pluck('title', 'id');
+        $this->paymentPlans = PaymentPlan::where('status', 1)->pluck('title', 'id');
         $this->dueDates = [
             1 => '1 Month',
             2 => '2 Months',
@@ -57,12 +57,12 @@ class Form extends Component
     {
         $rules = [
             'training_service_id' => 'required',
-            'payment_method_id' => 'required',
+            'payment_plan_id' => 'required',
             'timeframe_id' => 'required',
             'fees' => 'required|integer',
         ];
 
-        if ($this->payment_method_id == 1) {
+        if ($this->payment_plan_id == 1) {
             $rules += [
                 'installment.deposit' => 'required|integer',
                 'installment.first_payment' => 'required|integer',
@@ -92,13 +92,13 @@ class Form extends Component
         if ($serviceFee) {
             $serviceFee->update($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $serviceFee->installment()->update($data['installment']);
             }
         } else {
             $serviceFee = ServiceFee::create($data);
 
-            if ($this->payment_method_id == 1) {
+            if ($this->payment_plan_id == 1) {
                 $data['installment']['installmentable_type'] = 'App\\Models\\ServiceFee';
                 $data['installment']['installmentable_id'] = $serviceFee->id;
                 Installment::create($data['installment']);

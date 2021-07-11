@@ -19,10 +19,10 @@
 </div>
 
 
-<!-- Payment Method Id Field -->
+<!-- Payment Plan Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('payment_method_id', 'Payment Method:') !!}
-    <p>{{ $serviceFee->paymentMethod->title }}</p>
+    {!! Form::label('payment_plan_id', 'Payment Plan:') !!}
+    <p>{{ $serviceFee->paymentPlan->title }}</p>
 </div>
 
 
