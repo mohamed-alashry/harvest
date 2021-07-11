@@ -60,6 +60,12 @@
                                 {!! Form::select(null, $paymentMethods, null, ['wire:model' => 'payment_method_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
+                            <!-- Total Amount Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('total_amount', 'Total Amount:') !!}
+                                <span>{{ $total_amount }}</span>
+                            </div>
+
                             {{-- Installment --}}
                             @if ($payment_method_id == 1)
                                 <!-- Payment Method Id Field -->

@@ -27,7 +27,8 @@ class Form extends Component
         $disciplines,
         $items,
         $services,
-        $installment;
+        $installment,
+        $total_amount;
 
     public function mount($offer = null)
     {
@@ -42,6 +43,7 @@ class Form extends Component
                 'items' => $offer->items->pluck('id'),
                 'services' => $offer->services->pluck('id'),
                 'installment' => $offer->installment,
+                'total_amount' => $offer->items->sum('price') + $offer->services->sum('fees'),
             ]);
         }
         $this->paymentMethods = PaymentMethod::where('status', 1)->pluck('title', 'id');
@@ -97,6 +99,24 @@ class Form extends Component
     public function updated($name)
     {
         $this->validateOnly($name);
+
+        if (in_array($name, ['items', 'services'])) {
+            $this->calcAmount();
+        }
+    }
+
+    public function calcAmount()
+    {
+        $items = $this->items;
+        $services = $this->services;
+        $total_amount = 0;
+        if ($items) {
+            $total_amount += ExtraItem::whereIn('id', $items)->sum('price');
+        }
+        if ($services) {
+            $total_amount += ServiceFee::whereIn('id', $services)->sum('fees');
+        }
+        $this->total_amount = $total_amount;
     }
 
     public function save()
