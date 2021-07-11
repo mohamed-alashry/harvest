@@ -35,7 +35,7 @@ class LeadController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $leads = Lead::withCount('cases')->get();
+        $leads = Lead::withCount('cases', 'payments')->get();
 
         return view('leads.index')
             ->with('leads', $leads);

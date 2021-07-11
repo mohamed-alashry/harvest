@@ -218,6 +218,7 @@
         </a>
     </li>
 @endcan
+
 @can('disciplineCategories view')
     <li class="nav-item {{ Request::is('admin/disciplineCategories*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.disciplineCategories.index') }}">
@@ -226,4 +227,3 @@
         </a>
     </li>
 @endcan
-

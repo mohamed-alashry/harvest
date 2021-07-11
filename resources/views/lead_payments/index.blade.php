@@ -5,7 +5,7 @@
         <li class="breadcrumb-item">
             <a href="{!! route('admin.leads.index') !!}">Leads</a>
         </li>
-        <li class="breadcrumb-item">Lead Cases </li>
+        <li class="breadcrumb-item">Lead Payments</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -17,15 +17,19 @@
                             <i class="fa fa-align-justify"></i>
 
                             <a href="{{ route('admin.leads.show', $lead->id) }}"
-                                class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Cases
+                                class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Payments
 
-                            @can('leadCases create')
-                                <a class="pull-right" href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i
+                            @can('leadPayments create')
+                                <a class="pull-right"
+                                    href="{{ route('admin.leadPayments.create', ['lead' => $lead->id]) }}"><i
                                         class="fa fa-plus-square fa-lg"></i></a>
                             @endcan
                         </div>
                         <div class="card-body">
-                            @include('lead_cases.table')
+                            @include('lead_payments.table')
+                            <div class="pull-right mr-3">
+
+                            </div>
                         </div>
                     </div>
                 </div>

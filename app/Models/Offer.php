@@ -79,4 +79,12 @@ class Offer extends Model
     {
         return $this->morphOne(\App\Models\Installment::class, 'installmentable');
     }
+
+    /**
+     * Get the leadPayments.
+     */
+    public function leadPayments()
+    {
+        return $this->morphMany(\App\Models\LeadPayment::class, 'paymentable');
+    }
 }

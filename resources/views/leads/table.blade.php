@@ -6,6 +6,7 @@
                 <th>Name</th>
                 <th>Mobile</th>
                 <th>Cases</th>
+                <th>Payments</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -18,6 +19,10 @@
                     <td>
                         <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
                             class="btn btn-warning">{{ $lead->cases_count }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.leadPayments.index', ['lead' => $lead->id]) }}"
+                            class="btn btn-warning">{{ $lead->payments_count }}</a>
                     </td>
                     <td>
                         {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}

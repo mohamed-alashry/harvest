@@ -20,4 +20,13 @@ return [
         ],
     ],
 
+    'lead_payments' => [
+
+        'types' => [
+            'App\\Models\\ServiceFee' => 'Training Service',
+            'App\\Models\\ExtraItem' => 'Extra Item',
+            'App\\Models\\Offer' => 'Offer',
+        ],
+    ],
+
 ];

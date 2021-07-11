@@ -179,6 +179,16 @@ class Lead extends Model
      */
     public function cases(): HasMany
     {
-        return $this->hasMany(LeadCase::class, 'lead_id');
+        return $this->hasMany(LeadCase::class);
+    }
+
+    /**
+     * Get all of the payments for the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments(): HasMany
+    {
+        return $this->hasMany(LeadPayment::class);
     }
 }
