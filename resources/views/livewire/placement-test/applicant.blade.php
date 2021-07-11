@@ -34,11 +34,17 @@
             @enderror
             <br /><br />
 
-            <select wire:model='gender' style='width:100%;'>
-                <option value="">الجنس</option>
-                <option value="male">ذكر</option>
-                <option value="female">انثى</option>
-            </select>
+            <div>
+                الجنس:
+                <label>
+                    <input wire:model="gender" type="radio" value="male">ذكر
+                </label>
+
+                <label>
+                    <input wire:model="gender" type="radio" value="female">انثى
+                </label>
+
+            </div>
             @error('gender')
                 <span style="color: red; font-size: 20px;">{{ $message }}</span>
             @enderror
