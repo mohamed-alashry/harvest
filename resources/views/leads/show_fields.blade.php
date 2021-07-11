@@ -83,6 +83,12 @@
         <p>{{ $lead->notes }}</p>
     </div>
 
+    <!-- Assigned Employee Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('assigned_employee_id', 'Assigned Employee:') !!}
+        <p>{{ $lead->assignedEmployee->name }}</p>
+    </div>
+
     {{-- <!-- Nationality Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nationality', 'Nationality:') !!}
@@ -136,12 +142,6 @@
     {!! Form::label('workplace', 'Workplace:') !!}
     <p>{{ $lead->workplace }}</p>
 </div> --}}
-
-    <!-- Full Address Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('full_address', 'Full Address:') !!}
-        <p>{{ $lead->full_address }}</p>
-    </div>
 
     <!-- Created At Field -->
     <div class="form-group col-sm-6">

@@ -28,6 +28,7 @@ class CreateLeadsTable extends Migration
             $table->integer('branch_id')->unsigned();
             $table->integer('training_service_id')->unsigned();
             $table->text('notes');
+            $table->unsignedInteger('assigned_employee_id')->nullable();
             // $table->string('nationality');
             // $table->string('identification');
             // $table->date('dob');
@@ -40,11 +41,12 @@ class CreateLeadsTable extends Migration
             // $table->text('full_address');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('lead_source_id')->references('id')->on('lead_sources')->onDelete('cascade');
-            $table->foreign('know_channel_id')->references('id')->on('know_channels')->onDelete('cascade');
-            $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
-            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-            $table->foreign('training_service_id')->references('id')->on('training_services')->onDelete('cascade');
+            $table->foreign('lead_source_id')->references('id')->on('lead_sources');
+            $table->foreign('know_channel_id')->references('id')->on('know_channels');
+            $table->foreign('offer_id')->references('id')->on('offers');
+            $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('training_service_id')->references('id')->on('training_services');
+            $table->foreign('assigned_employee_id')->references('id')->on('employees')->onDelete('set null');
         });
     }
 

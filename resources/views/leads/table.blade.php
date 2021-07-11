@@ -5,6 +5,7 @@
                 <th>Registration At</th>
                 <th>Name</th>
                 <th>Mobile</th>
+                <th>Assigned Employee</th>
                 <th>Cases</th>
                 <th>Payments</th>
                 <th>Action</th>
@@ -16,6 +17,7 @@
                     <td>{{ $lead->created_at }}</td>
                     <td>{{ $lead->name['en'] }}</td>
                     <td>{{ $lead->mobile_1 }}</td>
+                    <td>{{ $lead->assignedEmployee->name }}</td>
                     <td>
                         <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
                             class="btn btn-warning">{{ $lead->cases_count }}</a>

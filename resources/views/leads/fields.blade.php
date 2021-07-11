@@ -77,6 +77,12 @@
         {!! Form::textarea('notes', null, ['class' => 'form-control', 'rows' => 2]) !!}
     </div>
 
+    <!-- Assigned Employee Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('assigned_employee_id', 'Assigned Employee:') !!}
+        {!! Form::select('assigned_employee_id', $employees, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
+
     {{-- <!-- Nationality Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nationality', 'Nationality:') !!}

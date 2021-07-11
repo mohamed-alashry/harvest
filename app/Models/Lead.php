@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $branch_id
  * @property integer $training_service_id
  * @property string $notes
+ * @property integer $assigned_employee_id
  * @property string $nationality
  * @property string $identification
  * @property string $dob
@@ -60,6 +61,7 @@ class Lead extends Model
         'branch_id',
         'training_service_id',
         'notes',
+        'assigned_employee_id',
         // 'nationality',
         // 'identification',
         // 'dob',
@@ -85,12 +87,13 @@ class Lead extends Model
         'mobile_2' => 'string',
         'email' => 'string',
         'preferred_time' => 'string',
-        'lead_source_id' => 'string',
-        'know_channel_id' => 'string',
-        'offer_id' => 'string',
-        'branch_id' => 'string',
-        'training_service_id' => 'string',
+        'lead_source_id' => 'integer',
+        'know_channel_id' => 'integer',
+        'offer_id' => 'integer',
+        'branch_id' => 'integer',
+        'training_service_id' => 'integer',
         'notes' => 'string',
+        'assigned_employee_id' => 'integer',
         // 'nationality' => 'string',
         // 'identification' => 'string',
         // 'dob' => 'date',
@@ -170,6 +173,16 @@ class Lead extends Model
     public function training_service(): BelongsTo
     {
         return $this->belongsTo(TrainingService::class);
+    }
+
+    /**
+     * Get the assignedEmployee that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assignedEmployee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class, 'assigned_employee_id');
     }
 
     /**

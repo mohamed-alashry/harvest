@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateLeadRequest;
 use App\Repositories\LeadRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Branch;
+use App\Models\Employee;
 use App\Models\KnowChannel;
 use App\Models\Lead;
 use App\Models\LeadSource;
@@ -53,8 +54,9 @@ class LeadController extends AppBaseController
         $offers = Offer::pluck('title', 'id');
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
+        $employees = Employee::get()->pluck('name', 'id');
 
-        return view('leads.create', compact('sources', 'channels', 'offers', 'branches', 'services'));
+        return view('leads.create', compact('sources', 'channels', 'offers', 'branches', 'services', 'employees'));
     }
 
     /**
@@ -116,8 +118,9 @@ class LeadController extends AppBaseController
         $offers = Offer::pluck('title', 'id');
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
+        $employees = Employee::get()->pluck('name', 'id');
 
-        return view('leads.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services'));
+        return view('leads.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services', 'employees'));
     }
 
     /**
