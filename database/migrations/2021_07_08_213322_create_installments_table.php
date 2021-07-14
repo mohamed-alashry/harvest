@@ -18,13 +18,13 @@ class CreateInstallmentsTable extends Migration
             $table->morphs('installmentable');
             $table->integer('deposit');
             $table->integer('first_payment')->nullable();
-            $table->tinyInteger('first_due_date')->nullable()->comment('after how many months');
+            $table->tinyInteger('first_due_date')->nullable()->comment('after how many months. 13 => 1 week, 14 => 2 weeks');
             $table->integer('second_payment')->nullable();
-            $table->tinyInteger('second_due_date')->nullable()->comment('after how many months');
+            $table->tinyInteger('second_due_date')->nullable()->comment('after how many months. 13 => 1 week, 14 => 2 weeks');
             $table->integer('third_payment')->nullable();
-            $table->tinyInteger('third_due_date')->nullable()->comment('after how many months');
+            $table->tinyInteger('third_due_date')->nullable()->comment('after how many months. 13 => 1 week, 14 => 2 weeks');
             $table->integer('fourth_payment')->nullable();
-            $table->tinyInteger('fourth_due_date')->nullable()->comment('after how many months');
+            $table->tinyInteger('fourth_due_date')->nullable()->comment('after how many months. 13 => 1 week, 14 => 2 weeks');
             $table->timestamps();
         });
     }

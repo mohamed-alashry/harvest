@@ -58,7 +58,7 @@
                                 <!-- First Due Date Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('first_due_date', 'First Due Date:') !!}
-                                    {!! Form::select(null, $dueDates, null, ['wire:model' => 'installment.first_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                    {!! Form::select(null, config('system_variables.lead_payments.due_dates'), null, ['wire:model' => 'installment.first_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                                 </div>
 
                                 <!-- Second Payment Field -->
@@ -70,7 +70,7 @@
                                 <!-- Second Due Date Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('second_due_date', 'Second Due Date:') !!}
-                                    {!! Form::select(null, $dueDates, null, ['wire:model' => 'installment.second_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                    {!! Form::select(null, config('system_variables.lead_payments.due_dates'), null, ['wire:model' => 'installment.second_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                                 </div>
 
                                 <!-- Third Payment Field -->
@@ -82,7 +82,7 @@
                                 <!-- Third Due Date Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('third_due_date', 'Third Due Date:') !!}
-                                    {!! Form::select(null, $dueDates, null, ['wire:model' => 'installment.third_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                    {!! Form::select(null, config('system_variables.lead_payments.due_dates'), null, ['wire:model' => 'installment.third_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                                 </div>
 
                                 <!-- Fourth Payment Field -->
@@ -94,7 +94,7 @@
                                 <!-- Fourth Due Date Field -->
                                 <div class="form-group col-sm-6">
                                     {!! Form::label('fourth_due_date', 'Fourth Due Date:') !!}
-                                    {!! Form::select(null, $dueDates, null, ['wire:model' => 'installment.fourth_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                    {!! Form::select(null, config('system_variables.lead_payments.due_dates'), null, ['wire:model' => 'installment.fourth_due_date', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                                 </div>
                             @endif
 

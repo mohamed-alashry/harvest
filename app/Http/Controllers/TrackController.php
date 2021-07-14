@@ -22,7 +22,7 @@ class TrackController extends AppBaseController
     public function index(Request $request)
     {
         /** @var Track $tracks */
-        $tracks = Track::all();
+        $tracks = Track::whereNull('parent_id')->get();
 
         return view('tracks.index')
             ->with('tracks', $tracks);

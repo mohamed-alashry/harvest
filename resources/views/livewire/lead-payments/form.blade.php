@@ -18,9 +18,9 @@
                                 {!! Form::select(null, config('system_variables.lead_payments.types'), null, ['wire:model' => 'paymentable_type', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
-                            <!-- Service Field -->
+                            <!-- Option Field -->
                             <div class="form-group col-sm-6">
-                                {!! Form::label('paymentable_id', 'Service:') !!}
+                                {!! Form::label('paymentable_id', 'Option:') !!}
                                 {!! Form::select(null, $services, null, ['wire:model' => 'paymentable_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 

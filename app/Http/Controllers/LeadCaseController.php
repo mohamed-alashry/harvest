@@ -10,6 +10,7 @@ use App\Models\Branch;
 use App\Models\Label;
 use App\Models\LabelType;
 use App\Models\Lead;
+use App\Models\LeadCase;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -33,9 +34,9 @@ class LeadCaseController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $leadCases = $this->leadCaseRepository->all();
-
         $lead = Lead::find(request('lead'));
+
+        $leadCases = LeadCase::where('lead_id', $lead->id)->get();
 
         return view('lead_cases.index', compact('leadCases', 'lead'));
     }
