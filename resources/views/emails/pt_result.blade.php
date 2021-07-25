@@ -43,3 +43,6 @@
 <p>
     <strong style="text-transform: capitalize;">speaking Score: </strong> {{ $applicant->speaking_score }}
 </p>
+<p>
+    <strong style="text-transform: capitalize;">Level: </strong> {{ $applicant->level }}
+</p>

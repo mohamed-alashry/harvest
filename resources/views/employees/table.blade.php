@@ -21,9 +21,9 @@
                     <td>{{ $employee->last_name }}</td>
                     <td>{{ $employee->mobile }}</td>
                     <td>{{ $employee->email }}</td>
-                    <td>{{ $employee->branch->name }}</td>
-                    <td>{{ $employee->department->title }}</td>
-                    <td>{{ $employee->job->title }}</td>
+                    <td>{{ $employee->branch->name ?? '' }}</td>
+                    <td>{{ $employee->department->title ?? '' }}</td>
+                    <td>{{ $employee->job->title ?? '' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.employees.destroy', $employee->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

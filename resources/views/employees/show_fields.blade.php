@@ -32,19 +32,19 @@
     <!-- Branch Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('branch', 'Branch:') !!}
-        <p>{{ $employee->branch->name }}</p>
+        <p>{{ $employee->branch->name ?? '' }}</p>
     </div>
 
     <!-- Department Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('department', 'Department:') !!}
-        <p>{{ $employee->department->name }}</p>
+        <p>{{ $employee->department->name ?? '' }}</p>
     </div>
 
     <!-- Job Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('job', 'Job:') !!}
-        <p>{{ $employee->job->name }}</p>
+        <p>{{ $employee->job->name ?? '' }}</p>
     </div>
 
     <!-- Created At Field -->
