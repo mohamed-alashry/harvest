@@ -27,10 +27,7 @@ class LeadController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $leads = Lead::withCount('cases', 'payments')->where('branch_id', auth()->user()->branch_id)->get();
-
-        return view('leads.index')
-            ->with('leads', $leads);
+        return view('leads.index');
     }
 
     /**

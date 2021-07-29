@@ -61,6 +61,7 @@
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
+                                        <th>Convert to Customer</th>
                                         <th>Cases</th>
                                         {{-- <th>Payments</th> --}}
                                         <th colspan="3">Action</th>
@@ -73,6 +74,10 @@
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
+                                            <td>
+                                                <button wire:click="toCustomer({{ $lead->id }})"
+                                                    class="btn btn-success"><i class="fa fa-user"></i></button>
+                                            </td>
                                             <td>
                                                 <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->cases_count }}</a>

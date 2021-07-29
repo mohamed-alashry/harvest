@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Leads;
 
-use App\Models\Branch;
-use App\Models\Employee;
-use App\Models\KnowChannel;
 use App\Models\Lead;
-use App\Models\LeadSource;
 use App\Models\Offer;
-use App\Models\TrainingService;
+use App\Models\Branch;
 use Livewire\Component;
+use App\Models\Employee;
+use App\Models\LeadSource;
+use Laracasts\Flash\Flash;
+use App\Models\KnowChannel;
 use Livewire\WithPagination;
+use App\Models\TrainingService;
 
 class Index extends Component
 {
@@ -50,9 +51,21 @@ class Index extends Component
         $this->show_filter = !$this->show_filter;
     }
 
+    public function toCustomer($id)
+    {
+        $lead = Lead::find($id);
+
+        $lead->update(['type' => 2]);
+
+        Flash::success('Converted To Customer successfully.');
+    }
+
+
     public function render()
     {
-        $leadsQuery = Lead::withCount('cases', 'payments')->where('branch_id', auth()->user()->branch_id);
+        $leadsQuery = Lead::withCount('cases', 'payments')
+            ->where('type', 1)
+            ->where('branch_id', auth()->user()->branch_id);
 
         if ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
