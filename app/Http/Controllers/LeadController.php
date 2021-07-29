@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
-use App\Repositories\LeadRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Branch;
 use App\Models\Employee;
@@ -19,14 +18,6 @@ use Response;
 
 class LeadController extends AppBaseController
 {
-    /** @var  LeadRepository */
-    private $leadRepository;
-
-    public function __construct(LeadRepository $leadRepo)
-    {
-        $this->leadRepository = $leadRepo;
-    }
-
     /**
      * Display a listing of the Lead.
      *
@@ -70,7 +61,7 @@ class LeadController extends AppBaseController
     {
         $input = $request->all();
 
-        $lead = $this->leadRepository->create($input);
+        $lead = Lead::create($input);
 
         Flash::success('Lead saved successfully.');
 
@@ -86,7 +77,7 @@ class LeadController extends AppBaseController
      */
     public function show($id)
     {
-        $lead = $this->leadRepository->find($id);
+        $lead = Lead::find($id);
 
         if (empty($lead)) {
             Flash::error('Lead not found');
@@ -106,7 +97,7 @@ class LeadController extends AppBaseController
      */
     public function edit($id)
     {
-        $lead = $this->leadRepository->find($id);
+        $lead = Lead::find($id);
 
         if (empty($lead)) {
             Flash::error('Lead not found');
@@ -133,7 +124,7 @@ class LeadController extends AppBaseController
      */
     public function update($id, UpdateLeadRequest $request)
     {
-        $lead = $this->leadRepository->find($id);
+        $lead = Lead::find($id);
 
         if (empty($lead)) {
             Flash::error('Lead not found');
@@ -141,7 +132,7 @@ class LeadController extends AppBaseController
             return redirect(route('admin.leads.index'));
         }
 
-        $lead = $this->leadRepository->update($request->all(), $id);
+        $lead = $lead->update($request->all(), $id);
 
         Flash::success('Lead updated successfully.');
 
@@ -159,7 +150,7 @@ class LeadController extends AppBaseController
      */
     public function destroy($id)
     {
-        $lead = $this->leadRepository->find($id);
+        $lead = Lead::find($id);
 
         if (empty($lead)) {
             Flash::error('Lead not found');
@@ -167,7 +158,7 @@ class LeadController extends AppBaseController
             return redirect(route('admin.leads.index'));
         }
 
-        $this->leadRepository->delete($id);
+        $lead->delete($id);
 
         Flash::success('Lead deleted successfully.');
 

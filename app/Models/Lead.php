@@ -50,6 +50,7 @@ class Lead extends Model
 
     public $fillable = [
         'name',
+        'type',
         'gender',
         'mobile_1',
         'mobile_2',
@@ -82,6 +83,7 @@ class Lead extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'array',
+        'type' => 'integer',
         'gender' => 'string',
         'mobile_1' => 'string',
         'mobile_2' => 'string',

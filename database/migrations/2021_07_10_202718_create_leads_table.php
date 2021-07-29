@@ -17,6 +17,7 @@ class CreateLeadsTable extends Migration
         Schema::create('leads', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('type')->default(1)->comment('1 => lead, 2 => customer, 3 => client');
             $table->string('gender');
             $table->string('mobile_1');
             $table->string('mobile_2')->nullable();
@@ -41,6 +42,7 @@ class CreateLeadsTable extends Migration
             // $table->text('full_address');
             $table->timestamps();
             $table->softDeletes();
+
             $table->foreign('lead_source_id')->references('id')->on('lead_sources');
             $table->foreign('know_channel_id')->references('id')->on('know_channels');
             $table->foreign('offer_id')->references('id')->on('offers');
