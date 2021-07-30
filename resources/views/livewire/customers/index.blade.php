@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
-                        Leads
+                        Customers
                         <div class="pull-right">
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
                             @can('leads create')
-                                <a href="{{ route('admin.leads.create') }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i></a>
                             @endcan
                         </div>
@@ -61,8 +61,6 @@
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
-                                        <th>Convert to Customer</th>
-                                        <th>Cases</th>
                                         {{-- <th>Payments</th> --}}
                                         <th colspan="3">Action</th>
                                     </tr>
@@ -74,26 +72,18 @@
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
-                                            <td>
-                                                <button wire:click="toCustomer({{ $lead->id }})"
-                                                    class="btn btn-success"><i class="fa fa-user"></i></button>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
-                                                    class="btn btn-warning">{{ $lead->cases_count }}</a>
-                                            </td>
                                             {{-- <td>
                                             <a href="{{ route('admin.leadPayments.index', ['lead' => $lead->id]) }}"
                                                 class="btn btn-warning">{{ $lead->payments_count }}</a>
                                         </td> --}}
                                             <td>
-                                                {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}
+                                                {!! Form::open(['route' => ['admin.customers.destroy', $lead->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{{ route('admin.leads.show', [$lead->id]) }}"
+                                                    <a href="{{ route('admin.customers.show', [$lead->id]) }}"
                                                         class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
                                                     @can('leads edit')
-                                                        <a href="{{ route('admin.leads.edit', [$lead->id]) }}"
+                                                        <a href="{{ route('admin.customers.edit', [$lead->id]) }}"
                                                             class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
 

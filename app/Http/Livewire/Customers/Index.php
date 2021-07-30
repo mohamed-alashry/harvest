@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Leads;
+namespace App\Http\Livewire\Customers;
 
 use App\Models\Lead;
 use App\Models\Offer;
@@ -63,7 +63,7 @@ class Index extends Component
     public function render()
     {
         $leadsQuery = Lead::withCount('cases', 'payments')
-            ->where('type', 1)
+            ->where('type', 2)
             ->where('branch_id', auth()->user()->branch_id);
 
         if ($this->lead_source) {
@@ -93,6 +93,6 @@ class Index extends Component
 
         $leads = $leadsQuery->paginate(10);
 
-        return view('livewire.leads.index', compact('leads'));
+        return view('livewire.customers.index', compact('leads'));
     }
 }

@@ -6,6 +6,14 @@
         </a>
     </li>
 @endcan
+@can('customers view')
+    <li class="nav-item {{ Request::is('admin/customers*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.customers.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Customers</span>
+        </a>
+    </li>
+@endcan
 @can('branches view')
     <li class="nav-item {{ Request::is('admin/branches*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('admin.branches.index') }}">
