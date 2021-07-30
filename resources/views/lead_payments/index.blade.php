@@ -3,9 +3,9 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{!! route('admin.leads.index') !!}">Leads</a>
+            <a href="{!! route('admin.customers.index') !!}">Customers</a>
         </li>
-        <li class="breadcrumb-item">Lead Payments</li>
+        <li class="breadcrumb-item">Payments</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -16,12 +16,12 @@
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
 
-                            <a href="{{ route('admin.leads.show', $lead->id) }}"
+                            <a href="{{ route('admin.customers.show', $lead->id) }}"
                                 class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Payments
 
                             @can('leadPayments create')
                                 <a class="pull-right"
-                                    href="{{ route('admin.leadPayments.create', ['lead' => $lead->id]) }}"><i
+                                    href="{{ route('admin.leadPayments.create', ['customer' => $lead->id]) }}"><i
                                         class="fa fa-plus-square fa-lg"></i></a>
                             @endcan
                         </div>

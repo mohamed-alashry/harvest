@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.leadPayments.index', ['lead' => $leadPayment->lead_id]) }}">Lead Payment</a>
+            <a href="{{ route('admin.leadPayments.index', ['customer' => $leadPayment->lead_id]) }}">Payment</a>
         </li>
         <li class="breadcrumb-item active">Detail</li>
     </ol>
@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>Details</strong>
-                            <a href="{{ route('admin.leadPayments.index', ['lead' => $leadPayment->lead_id]) }}"
+                            <a href="{{ route('admin.leadPayments.index', ['customer' => $leadPayment->lead_id]) }}"
                                 class="btn btn-light">Back</a>
                         </div>
                         <div class="card-body">

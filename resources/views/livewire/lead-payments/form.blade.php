@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-plus-square-o fa-lg"></i>
-                        <strong>{{ $leadPayment ? 'Edit' : 'Create' }} Lead Payment</strong>
+                        <strong>{{ $leadPayment ? 'Edit' : 'Create' }} Payment</strong>
                     </div>
                     <div class="card-body">
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
@@ -45,7 +45,7 @@
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route('admin.leadPayments.index', ['lead' => $lead->id]) }}"
+                                <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
                                     class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>

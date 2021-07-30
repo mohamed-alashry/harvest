@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{!! route('admin.leadPayments.index', ['lead' => $lead->id]) !!}">Lead Payment</a>
+            <a href="{!! route('admin.leadPayments.index', ['customer' => $lead->id]) !!}">Payment</a>
         </li>
         <li class="breadcrumb-item active">Create</li>
     </ol>

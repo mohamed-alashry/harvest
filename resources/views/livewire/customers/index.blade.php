@@ -61,7 +61,7 @@
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
-                                        {{-- <th>Payments</th> --}}
+                                        <th>Payments</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -72,10 +72,10 @@
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
-                                            {{-- <td>
-                                            <a href="{{ route('admin.leadPayments.index', ['lead' => $lead->id]) }}"
-                                                class="btn btn-warning">{{ $lead->payments_count }}</a>
-                                        </td> --}}
+                                            <td>
+                                                <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
+                                                    class="btn btn-warning">{{ $lead->payments_count }}</a>
+                                            </td>
                                             <td>
                                                 {!! Form::open(['route' => ['admin.customers.destroy', $lead->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>

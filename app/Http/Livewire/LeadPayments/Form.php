@@ -92,7 +92,7 @@ class Form extends Component
 
         Flash::success('Lead Payment saved successfully.');
 
-        redirect(route('admin.leadPayments.index', ['lead' => $lead_id]));
+        redirect(route('admin.leadPayments.index', ['customer' => $lead_id]));
     }
 
     public function render()

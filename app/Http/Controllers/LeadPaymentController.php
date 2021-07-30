@@ -8,8 +8,6 @@ use App\Models\Lead;
 use App\Models\LeadPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\CreateLeadPaymentRequest;
-use App\Http\Requests\UpdateLeadPaymentRequest;
 
 class LeadPaymentController extends AppBaseController
 {
@@ -25,7 +23,7 @@ class LeadPaymentController extends AppBaseController
         /** @var LeadPayment $leadPayments */
         $leadPayments = LeadPayment::all();
 
-        $lead = Lead::find(request('lead'));
+        $lead = Lead::find(request('customer'));
 
         return view('lead_payments.index', compact('leadPayments', 'lead'));
     }
@@ -37,7 +35,7 @@ class LeadPaymentController extends AppBaseController
      */
     public function create()
     {
-        $lead = Lead::find(request('lead'));
+        $lead = Lead::find(request('customer'));
 
         return view('lead_payments.create', compact('lead'));
     }
@@ -111,6 +109,6 @@ class LeadPaymentController extends AppBaseController
 
         Flash::success('Lead Payment deleted successfully.');
 
-        return redirect(route('admin.leadPayments.index', ['lead' => $lead_id]));
+        return redirect(route('admin.leadPayments.index', ['customer' => $lead_id]));
     }
 }
