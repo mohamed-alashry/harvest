@@ -79,6 +79,10 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('leadPayments', App\Http\Controllers\LeadPaymentController::class)->except(['store', 'update']);
 
         Route::resource('customers', App\Http\Controllers\CustomerController::class);
+
+        Route::resource('rounds', App\Http\Controllers\RoundController::class);
+
+        Route::resource('subRounds', App\Http\Controllers\SubRoundController::class);
     });
 });
 

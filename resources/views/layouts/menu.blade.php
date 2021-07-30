@@ -235,3 +235,11 @@
         </a>
     </li>
 @endcan
+@can('rounds view')
+    <li class="nav-item {{ Request::is('admin/rounds*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.rounds.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Rounds</span>
+        </a>
+    </li>
+@endcan
