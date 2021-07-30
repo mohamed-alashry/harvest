@@ -83,6 +83,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('rounds', App\Http\Controllers\RoundController::class);
 
         Route::resource('subRounds', App\Http\Controllers\SubRoundController::class);
+
+        Route::resource('groups', App\Http\Controllers\GroupController::class);
     });
 });
 

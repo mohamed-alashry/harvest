@@ -98,6 +98,10 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="pull-right mr-3">
+                            {{ $leads->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

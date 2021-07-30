@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 
 /**
@@ -86,5 +87,15 @@ class Track extends Model
     public function stages(): HasMany
     {
         return $this->hasMany(Stage::class, 'track_id');
+    }
+
+    /**
+     * Get all of the levels for the Track
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function stageLevels(): HasManyThrough
+    {
+        return $this->hasManyThrough(StageLevel::class, Stage::class);
     }
 }

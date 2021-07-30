@@ -243,3 +243,12 @@
         </a>
     </li>
 @endcan
+@can('groups view')
+    <li class="nav-item {{ Request::is('admin/groups*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.groups.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Groups</span>
+        </a>
+    </li>
+@endcan
+

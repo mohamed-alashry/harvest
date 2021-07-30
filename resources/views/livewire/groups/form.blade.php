@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        @include('coreui-templates::common.errors')
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-plus-square-o fa-lg"></i>
+                        <strong>{{ $group ? 'Edit' : 'Create' }} Group</strong>
+                    </div>
+                    <div class="card-body">
+                        {!! Form::open(['wire:submit.prevent' => 'save']) !!}
+
+                        <div class="row">
+                            <!-- Title Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('title', 'Title:') !!}
+                                {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'title', 'class' => 'form-control']) !!}
+                            </div>
+
+                            <!-- Discipline Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('discipline_id', 'Discipline:') !!}
+                                {!! Form::select(null, $disciplines, null, ['wire:model' => 'discipline_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Round Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('round_id', 'Round:') !!}
+                                {!! Form::select(null, $rounds, null, ['wire:model' => 'round_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Interval Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('interval_id', 'Interval:') !!}
+                                {!! Form::select(null, $intervals, null, ['wire:model' => 'interval_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Branch Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('branch_id', 'Branch:') !!}
+                                {!! Form::select(null, $branches, null, ['wire:model' => 'branch_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Instructor Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('instructor_id', 'Instructor:') !!}
+                                {!! Form::select(null, $instructors, null, ['wire:model' => 'instructor_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Room Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('room_id', 'Room:') !!}
+                                {!! Form::select(null, $rooms, null, ['wire:model' => 'room_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Levels Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('levels', 'Levels:') !!}
+                                {!! Form::select(null, $stageLevels, null, ['wire:model' => 'levels', 'class' => 'form-control', 'multiple' => true, 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
+                            <!-- Submit Field -->
+                            <div class="form-group col-sm-12">
+                                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                                <a href="{{ route('admin.groups.index') }}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
