@@ -26,6 +26,9 @@ class Index extends Component
         $branches,
         $agents,
         $show_filter = false,
+        $show_assign = false,
+        $assign_leads = [],
+        $assigned_employee,
         $lead_source,
         $know_channel,
         $time,
@@ -48,6 +51,25 @@ class Index extends Component
     public function toggleFilter()
     {
         $this->show_filter = !$this->show_filter;
+    }
+
+    public function toggleAssign()
+    {
+        $this->show_assign = !$this->show_assign;
+    }
+
+    public function submitAssign()
+    {
+        $assignLeads = array_filter($this->assign_leads);
+        if (!$this->assigned_employee) {
+            Flash::error('Assigned Employee is required.');
+        } elseif (count($assignLeads) > 0) {
+            Lead::whereIn('id', $assignLeads)->update(['assigned_employee_id' => $this->assigned_employee]);
+
+            $this->show_assign = false;
+            $this->assign_leads = [];
+            $this->assigned_employee = null;
+        }
     }
 
     public function toCustomer($id)

@@ -8,6 +8,8 @@
                         <i class="fa fa-align-justify"></i>
                         Leads
                         <div class="pull-right">
+                            <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
+                                    class="fa fa-check"></i></button>
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
                             @can('leads create')
@@ -17,6 +19,18 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if ($show_assign)
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $agents, null, ['wire:model' => 'assigned_employee', 'class' => 'form-control', 'placeholder' => 'Select Agent...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-1">
+                                    <button wire:click="submitAssign()" class="btn btn-success btn-block"
+                                        title="assign"><i class="fa fa-check"></i></button>
+                                </div>
+                            </div>
+                        @endif
                         @if ($show_filter)
                             <div class="row">
                                 <div class="form-group col-sm-4">
@@ -57,19 +71,24 @@
                             <table class="table table-striped" id="leads-table">
                                 <thead>
                                     <tr>
+                                        @if ($show_assign)
+                                            <th>Assign</th>
+                                        @endif
                                         <th>Registration At</th>
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
                                         <th>Convert to Customer</th>
                                         <th>Cases</th>
-                                        {{-- <th>Payments</th> --}}
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($leads as $lead)
                                         <tr>
+                                            @if ($show_assign)
+                                                <td>{!! Form::checkbox(null, $lead->id, null, ['wire:model' => 'assign_leads.' . $loop->index]) !!}</td>
+                                            @endif
                                             <td>{{ $lead->created_at }}</td>
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
@@ -82,10 +101,6 @@
                                                 <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->cases_count }}</a>
                                             </td>
-                                            {{-- <td>
-                                            <a href="{{ route('admin.leadPayments.index', ['lead' => $lead->id]) }}"
-                                                class="btn btn-warning">{{ $lead->payments_count }}</a>
-                                        </td> --}}
                                             <td>
                                                 {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>

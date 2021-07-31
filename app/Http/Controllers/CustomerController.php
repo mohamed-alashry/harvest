@@ -130,7 +130,7 @@ class CustomerController extends AppBaseController
             return redirect(route('admin.customers.index'));
         }
 
-        $lead = $lead->update($request->all(), $id);
+        $lead->update($request->all());
 
         Flash::success('Customer updated successfully.');
 
@@ -156,7 +156,7 @@ class CustomerController extends AppBaseController
             return redirect(route('admin.customers.index'));
         }
 
-        $lead->delete($id);
+        $lead->delete();
 
         Flash::success('Customer deleted successfully.');
 

@@ -129,7 +129,7 @@ class LeadController extends AppBaseController
             return redirect(route('admin.leads.index'));
         }
 
-        $lead = $lead->update($request->all(), $id);
+        $lead->update($request->all());
 
         Flash::success('Lead updated successfully.');
 
@@ -155,7 +155,7 @@ class LeadController extends AppBaseController
             return redirect(route('admin.leads.index'));
         }
 
-        $lead->delete($id);
+        $lead->delete();
 
         Flash::success('Lead deleted successfully.');
 
