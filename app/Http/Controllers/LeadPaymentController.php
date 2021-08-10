@@ -52,7 +52,7 @@ class LeadPaymentController extends AppBaseController
     public function show($id)
     {
         /** @var LeadPayment $leadPayment */
-        $leadPayment = LeadPayment::find($id);
+        $leadPayment = LeadPayment::with('lead', 'paymentPlan', 'subPayments', 'paymentable')->find($id);
 
         if (empty($leadPayment)) {
             Flash::error('Lead Payment not found');

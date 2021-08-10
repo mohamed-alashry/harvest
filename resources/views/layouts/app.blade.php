@@ -74,7 +74,7 @@
             @yield('content')
         </main>
     </div>
-    <footer class="app-footer">
+    <footer class="app-footer d-print-none">
         <div class="ml-auto">
             <span>Developed by</span>
             <a href="https://paladox.com/">Paladox Corporate</a>
@@ -115,7 +115,6 @@
                 placeholder: "Select..."
             });
         });
-
     </script>
     @stack('scripts')
 

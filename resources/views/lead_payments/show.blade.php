@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <ol class="breadcrumb">
+    <ol class="breadcrumb d-print-none">
         <li class="breadcrumb-item">
             <a href="{{ route('admin.leadPayments.index', ['customer' => $leadPayment->lead_id]) }}">Payment</a>
         </li>
@@ -13,15 +13,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-print-none">
                             <strong>Details</strong>
                             <a href="{{ route('admin.leadPayments.index', ['customer' => $leadPayment->lead_id]) }}"
                                 class="btn btn-light">Back</a>
+                            <button class="pull-right btn btn-success" onclick="window.print()">Print this page</button>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                @include('lead_payments.show_fields')
-                            </div>
+                            @include('lead_payments.show_fields')
                         </div>
                     </div>
                 </div>
