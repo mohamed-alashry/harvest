@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -16,8 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $paymentable_type
  * @property integer $paymentable_id
  * @property integer $amount
- * @property integer $payment_method_id
- * @property string $reference_num
+ * @property integer $payment_plan_id
  */
 class LeadPayment extends Model
 {
@@ -36,31 +36,8 @@ class LeadPayment extends Model
         'paymentable_type',
         'paymentable_id',
         'amount',
-        'payment_method_id',
-        'reference_num'
+        'payment_plan_id',
     ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'lead_id' => 'integer',
-        'paymentable_type' => 'string',
-        'paymentable_id' => 'integer',
-        'amount' => 'integer',
-        'payment_method_id' => 'integer',
-        'reference_num' => 'string'
-    ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -73,9 +50,19 @@ class LeadPayment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function paymentMethod()
+    public function paymentPlan()
     {
-        return $this->belongsTo(\App\Models\PaymentMethod::class);
+        return $this->belongsTo(\App\Models\PaymentPlan::class);
+    }
+
+    /**
+     * Get all of the subPayments for the LeadPayment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subPayments(): HasMany
+    {
+        return $this->hasMany(SubPayment::class);
     }
 
     /**

@@ -6,8 +6,7 @@
                 <th>Type</th>
                 <th>Service</th>
                 <th>Amount</th>
-                <th>Payment Method</th>
-                <th>Reference Num</th>
+                <th>Payment Plan</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -29,8 +28,7 @@
                         @endswitch
                     </td>
                     <td>{{ $leadPayment->amount }}</td>
-                    <td>{{ $leadPayment->paymentMethod->title }}</td>
-                    <td>{{ $leadPayment->reference_num }}</td>
+                    <td>{{ $leadPayment->paymentPlan->title }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.leadPayments.destroy', $leadPayment->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
@@ -38,8 +36,10 @@
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
                             @can('leadPayments edit')
-                                <a href="{{ route('admin.leadPayments.edit', [$leadPayment->id]) }}"
-                                    class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                @if ($leadPayment->sub_payments_count)
+                                    <a href="{{ route('admin.leadPayments.edit', [$leadPayment->id]) }}"
+                                        class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                @endif
                             @endcan
 
                             @can('leadPayments delete')

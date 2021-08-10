@@ -8,5 +8,5 @@
         <li class="breadcrumb-item active">Create</li>
     </ol>
 
-    <livewire:lead-payments.form :lead="$lead" />
+    <livewire:lead-payments.create :lead="$lead" />
 @endsection

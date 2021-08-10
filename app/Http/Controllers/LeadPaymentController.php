@@ -21,7 +21,9 @@ class LeadPaymentController extends AppBaseController
     public function index(Request $request)
     {
         /** @var LeadPayment $leadPayments */
-        $leadPayments = LeadPayment::all();
+        $leadPayments = LeadPayment::withCount(['subPayments' => function ($query) {
+            $query->where('paid', 0);
+        }])->get();
 
         $lead = Lead::find(request('customer'));
 
