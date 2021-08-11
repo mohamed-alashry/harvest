@@ -31,6 +31,7 @@
                 <div class="card-group">
                     <div class="card p-4">
                         <div class="card-body">
+                            @include('flash::message')
                             <form method="post" action="{{ route('admin.postLogin') }}">
                                 @csrf
                                 <h1>Login</h1>
