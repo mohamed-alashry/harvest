@@ -21,11 +21,11 @@ class LeadPaymentController extends AppBaseController
     public function index(Request $request)
     {
         /** @var LeadPayment $leadPayments */
-        $leadPayments = LeadPayment::withCount(['subPayments' => function ($query) {
+        $lead = Lead::find(request('customer'));
+
+        $leadPayments = LeadPayment::where('lead_id', $lead->id)->withCount(['subPayments' => function ($query) {
             $query->where('paid', 0);
         }])->get();
-
-        $lead = Lead::find(request('customer'));
 
         return view('lead_payments.index', compact('leadPayments', 'lead'));
     }

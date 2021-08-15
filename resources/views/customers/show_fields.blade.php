@@ -86,7 +86,7 @@
     <!-- Assigned Employee Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('assigned_employee_id', 'Assigned Employee:') !!}
-        <p>{{ $lead->assignedEmployee->name }}</p>
+        <p>{{ $lead->assignedEmployee->name ?? '' }}</p>
     </div>
 
     {{-- <!-- Nationality Field -->
