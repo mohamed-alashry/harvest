@@ -20,6 +20,8 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $leadSources,
+        $mobile_1,
+        $name,
         $knowChannels,
         $services,
         $offers,
@@ -32,7 +34,6 @@ class Index extends Component
         $service,
         $offer,
         $branch,
-        $gender,
         $agent;
 
     public function mount()
@@ -41,7 +42,7 @@ class Index extends Component
         $this->knowChannels = KnowChannel::pluck('name', 'id');
         $this->services = TrainingService::pluck('title', 'id');
         $this->offers = Offer::pluck('title', 'id');
-        $this->branches = Branch::pluck('name', 'id');
+        $this->branches = Branch::where('id', auth()->user()->branch_id)->pluck('name', 'id');
         $this->agents = Employee::where('branch_id', auth()->user()->branch_id)->get()->pluck('name', 'id');
     }
 
@@ -69,6 +70,12 @@ class Index extends Component
         if ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
         }
+        if ($this->mobile_1) {
+            $leadsQuery->where('mobile_1', 'like', '%' . $this->mobile_1 . '%');
+        }
+        if ($this->name) {
+            $leadsQuery->where('name', 'like', '%' . $this->name . '%');
+        }
         if ($this->know_channel) {
             $leadsQuery->where('know_channel_id', $this->know_channel);
         }
@@ -83,9 +90,6 @@ class Index extends Component
         }
         if ($this->branch) {
             $leadsQuery->where('branch_id', $this->branch);
-        }
-        if ($this->gender) {
-            $leadsQuery->where('gender', $this->gender);
         }
         if ($this->agent) {
             $leadsQuery->where('assigned_employee_id', $this->agent);

@@ -8,8 +8,10 @@
                         <i class="fa fa-align-justify"></i>
                         Leads
                         <div class="pull-right">
-                            <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
-                                    class="fa fa-check"></i></button>
+                            @can('leads leadsAssign')
+                                <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
+                                        class="fa fa-check"></i></button>
+                            @endcan
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
                             @can('leads create')
@@ -28,6 +30,10 @@
                                 <div class="form-group col-sm-1">
                                     <button wire:click="submitAssign()" class="btn btn-success btn-block"
                                         title="assign"><i class="fa fa-check"></i></button>
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <button wire:click="selectShownLeads()" class="btn btn-warning"
+                                        title="assign">Select All</button>
                                 </div>
                             </div>
                         @endif
@@ -62,7 +68,21 @@
                                 </div>
 
                                 <div class="form-group col-sm-4">
-                                    {!! Form::select(null, ['Male' => 'Male', 'Female' => 'Female'], null, ['wire:model' => 'gender', 'class' => 'form-control', 'placeholder' => 'Select Gender...']) !!}
+                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'mobile_1', 'class' => 'form-control', 'placeholder' => 'Search By Mobile']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'name', 'class' => 'form-control', 'placeholder' => 'Search By Name']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="case_from" data-date-orientation="bottom"
+                                        placeholder="Case Date From" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="case_to" data-date-orientation="bottom"
+                                        placeholder="Case Date To" />
                                 </div>
                             </div>
                         @endif

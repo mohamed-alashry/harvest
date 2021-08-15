@@ -5,8 +5,7 @@
                 <th>Id</th>
                 <th>Serial</th>
                 <th>Employee</th>
-                <th>Branch</th>
-                <th>Status</th>
+                {{-- <th>Status</th> --}}
                 <th>Action</th>
                 <th>Action Date</th>
                 <th>Feedback</th>
@@ -19,8 +18,7 @@
                     <td>{{ $leadCase->id }}</td>
                     <td>{{ $leadCase->serial }}</td>
                     <td>{{ $leadCase->employee->name }}</td>
-                    <td>{{ $leadCase->branch->name }}</td>
-                    <td>{{ $leadCase->status }}</td>
+                    {{-- <td>{{ $leadCase->status }}</td> --}}
                     <td>{{ $leadCase->action }}</td>
                     <td>{{ $leadCase->date }}</td>
                     <td>{{ $leadCase->feedback }}</td>

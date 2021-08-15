@@ -161,4 +161,9 @@ class LeadController extends AppBaseController
 
         return redirect(route('admin.leads.index'));
     }
+
+    public function leadsAssign()
+    {
+        return null;
+    }
 }

@@ -20,6 +20,7 @@ Route::group(['as' => 'admin.'], function () {
         Route::post('getJobs', [App\Http\Controllers\EmployeeController::class, 'getJobs'])->name('getJobs');
 
         Route::resource('leads', App\Http\Controllers\LeadController::class);
+        Route::get('leadsAssign', [App\Http\Controllers\LeadController::class, 'leadsAssign'])->name('leads.leadsAssign');
 
         Route::resource('branches', App\Http\Controllers\BranchController::class);
 

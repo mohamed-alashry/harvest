@@ -10,10 +10,10 @@
                         <div class="pull-right">
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
-                            @can('leads create')
+                            {{-- @can('customers create')
                                 <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i></a>
-                            @endcan
+                            @endcan --}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -48,7 +48,11 @@
                                 </div>
 
                                 <div class="form-group col-sm-4">
-                                    {!! Form::select(null, ['Male' => 'Male', 'Female' => 'Female'], null, ['wire:model' => 'gender', 'class' => 'form-control', 'placeholder' => 'Select Gender...']) !!}
+                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'mobile_1', 'class' => 'form-control', 'placeholder' => 'Search By Mobile']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'name', 'class' => 'form-control', 'placeholder' => 'Search By Name']) !!}
                                 </div>
                             </div>
                         @endif
@@ -82,12 +86,12 @@
                                                     <a href="{{ route('admin.customers.show', [$lead->id]) }}"
                                                         class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
-                                                    @can('leads edit')
+                                                    @can('customers edit')
                                                         <a href="{{ route('admin.customers.edit', [$lead->id]) }}"
                                                             class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
 
-                                                    @can('leads delete')
+                                                    @can('customers delete')
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                                     @endcan
                                                 </div>

@@ -48,18 +48,15 @@ class LeadCase extends Model
     public $fillable = [
         'lead_id',
         'employee_id',
-        'branch_id',
         'label_id',
         'label_type_id',
         'serial',
-        'timeline',
-        'details',
         'feedback',
         'other_feedback',
         'action',
         'other_action',
         'notes',
-        'status',
+        // 'status',
         'date'
     ];
 
@@ -72,18 +69,15 @@ class LeadCase extends Model
         'id' => 'integer',
         'lead_id' => 'integer',
         'employee_id' => 'integer',
-        'branch_id' => 'integer',
         'label_id' => 'integer',
         'label_type_id' => 'integer',
         'serial' => 'string',
-        'timeline' => 'string',
-        'details' => 'string',
         'feedback' => 'string',
         'other_feedback' => 'string',
         'action' => 'string',
         'other_action' => 'string',
         'notes' => 'string',
-        'status' => 'string',
+        // 'status' => 'string',
         'date' => 'string'
     ];
 
@@ -95,17 +89,14 @@ class LeadCase extends Model
     public static $rules = [
         'lead_id' => 'required',
         // 'employee_id' => 'required',
-        'branch_id' => 'required',
         'label_id' => 'required',
         'label_type_id' => 'required',
-        'timeline' => 'required',
-        'details' => 'required',
         'feedback' => 'required',
         'other_feedback' => 'required_if:feedback,other',
         'action' => 'required',
         'other_action' => 'required_if:action,other',
         'notes' => 'required',
-        'status' => 'required',
+        // 'status' => 'required',
         'date' => 'required|date_format:Y-m-d'
     ];
 
@@ -123,14 +114,6 @@ class LeadCase extends Model
     public function employee()
     {
         return $this->belongsTo(\App\Models\Employee::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function branch()
-    {
-        return $this->belongsTo(\App\Models\Branch::class);
     }
 
     /**

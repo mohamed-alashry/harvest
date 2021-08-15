@@ -23,12 +23,6 @@
         <p>{{ $leadCase->employee->name }}</p>
     </div>
 
-    <!-- Branch Id Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('branch_id', 'Branch:') !!}
-        <p>{{ $leadCase->branch->name }}</p>
-    </div>
-
     <!-- Label Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('label_id', 'Label:') !!}
@@ -45,18 +39,6 @@
     <div class="form-group col-sm-6">
         {!! Form::label('serial', 'Serial:') !!}
         <p>{{ $leadCase->serial }}</p>
-    </div>
-
-    <!-- Timeline Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('timeline', 'Timeline:') !!}
-        <p>{{ $leadCase->timeline }}</p>
-    </div>
-
-    <!-- Details Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('details', 'Details:') !!}
-        <p>{{ $leadCase->details }}</p>
     </div>
 
     <!-- Feedback Field -->
@@ -96,10 +78,10 @@
     </div>
 
     <!-- Status Field -->
-    <div class="form-group col-sm-6">
+    {{-- <div class="form-group col-sm-6">
         {!! Form::label('status', 'Status:') !!}
         <p>{{ $leadCase->status }}</p>
-    </div>
+    </div> --}}
 
     <!-- Created At Field -->
     <div class="form-group col-sm-6">
