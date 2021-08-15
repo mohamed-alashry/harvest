@@ -4,7 +4,7 @@
             <tr>
                 <th>Id</th>
                 <th>Serial</th>
-                <th>Employee</th>
+                {{-- <th>Employee</th> --}}
                 {{-- <th>Status</th> --}}
                 <th>Action</th>
                 <th>Action Date</th>
@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{ $leadCase->id }}</td>
                     <td>{{ $leadCase->serial }}</td>
-                    <td>{{ $leadCase->employee->name }}</td>
+                    {{-- <td>{{ $leadCase->employee->name }}</td> --}}
                     {{-- <td>{{ $leadCase->status }}</td> --}}
                     <td>{{ $leadCase->action }}</td>
                     <td>{{ $leadCase->date }}</td>
