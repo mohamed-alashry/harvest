@@ -6,7 +6,7 @@
                 <th>Name</th>
                 <th>Mobile</th>
                 <th>Assigned Employee</th>
-                <th>Cases</th>
+                <th>Follow Up</th>
                 {{-- <th>Payments</th> --}}
                 <th>Action</th>
             </tr>

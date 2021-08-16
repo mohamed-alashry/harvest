@@ -99,7 +99,7 @@
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
                                         <th>Convert to Customer</th>
-                                        <th>Cases</th>
+                                        <th>Follow Up</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>

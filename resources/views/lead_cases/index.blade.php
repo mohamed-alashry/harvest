@@ -5,7 +5,7 @@
         <li class="breadcrumb-item">
             <a href="{!! route('admin.leads.index') !!}">Leads</a>
         </li>
-        <li class="breadcrumb-item">Lead Cases </li>
+        <li class="breadcrumb-item">Lead Follow up </li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -17,7 +17,7 @@
                             <i class="fa fa-align-justify"></i>
 
                             <a href="{{ route('admin.leads.show', $lead->id) }}"
-                                class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Cases
+                                class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Follow up
 
                             @can('leadCases create')
                                 <a class="pull-right" href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i
