@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-sm-8 text-center">
-            Original
+            {{ $leadPayment->print_count == 1 ? 'Original' : 'Copy' }}
         </div>
     </div>
 
@@ -245,7 +245,7 @@
         </div>
 
         <div class="col-sm-8 text-center">
-            Original
+            {{ $leadPayment->print_count == 1 ? 'Original' : 'Copy' }}
         </div>
     </div>
 

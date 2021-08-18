@@ -4,6 +4,7 @@
             <tr>
                 <th>Name</th>
                 <th>Label</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -12,6 +13,7 @@
                 <tr>
                     <td>{{ $labelType->name }}</td>
                     <td>{{ $labelType->label->name }}</td>
+                    <td>{{ $labelType->status ? 'Active' : 'Inactive' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.labelTypes.destroy', $labelType->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

@@ -28,7 +28,8 @@ class LabelType extends Model
 
     public $fillable = [
         'name',
-        'label_id'
+        'label_id',
+        'status'
     ];
 
     /**

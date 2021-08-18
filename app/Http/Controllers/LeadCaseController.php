@@ -49,10 +49,11 @@ class LeadCaseController extends AppBaseController
     public function create()
     {
         $lead = Lead::find(request('lead'));
-        $labels = Label::pluck('name', 'id');
-        $labelTypes = LabelType::pluck('name', 'id');
+        $branches = Branch::pluck('name', 'id');
+        $labels = Label::where('status', 1)->pluck('name', 'id');
+        $labelTypes = LabelType::where('status', 1)->pluck('name', 'id');
 
-        return view('lead_cases.create', compact('lead', 'labels', 'labelTypes'));
+        return view('lead_cases.create', compact('lead', 'branches', 'labels', 'labelTypes'));
     }
 
     /**
@@ -112,10 +113,11 @@ class LeadCaseController extends AppBaseController
             return redirect(route('admin.leadCases.index'));
         }
         $lead = Lead::find(request('lead'));
+        $branches = Branch::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
         $labelTypes = LabelType::pluck('name', 'id');
 
-        return view('lead_cases.edit', compact('leadCase', 'lead', 'labels', 'labelTypes'));
+        return view('lead_cases.edit', compact('leadCase', 'lead', 'branches', 'labels', 'labelTypes'));
     }
 
     /**

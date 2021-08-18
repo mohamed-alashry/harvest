@@ -18,6 +18,7 @@ class CreateLabelTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('label_id')->unsigned();
+            $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('label_id')->references('id')->on('labels')->onDelete('cascade');

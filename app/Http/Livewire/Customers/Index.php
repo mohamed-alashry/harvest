@@ -12,6 +12,7 @@ use Laracasts\Flash\Flash;
 use App\Models\KnowChannel;
 use Livewire\WithPagination;
 use App\Models\TrainingService;
+use Illuminate\Database\Eloquent\Builder;
 
 class Index extends Component
 {
@@ -22,6 +23,10 @@ class Index extends Component
     public $leadSources,
         $mobile_1,
         $name,
+        $registration_from,
+        $registration_to,
+        $per_page = 10,
+        $employeeBranches,
         $knowChannels,
         $services,
         $offers,
@@ -42,8 +47,12 @@ class Index extends Component
         $this->knowChannels = KnowChannel::pluck('name', 'id');
         $this->services = TrainingService::pluck('title', 'id');
         $this->offers = Offer::pluck('title', 'id');
-        $this->branches = Branch::where('id', auth()->user()->branch_id)->pluck('name', 'id');
-        $this->agents = Employee::where('branch_id', auth()->user()->branch_id)->get()->pluck('name', 'id');
+        $employeeBranches = auth()->user()->branches->pluck('name', 'id')->toArray();
+        $this->branches = $employeeBranches;
+        $this->employeeBranches = $employeeBranches;
+        $this->agents = Employee::whereHas('branches', function (Builder $query) use ($employeeBranches) {
+            $query->whereIn('id', array_keys($employeeBranches));
+        })->get()->pluck('name', 'id');
     }
 
     public function toggleFilter()
@@ -51,21 +60,11 @@ class Index extends Component
         $this->show_filter = !$this->show_filter;
     }
 
-    public function toCustomer($id)
-    {
-        $lead = Lead::find($id);
-
-        $lead->update(['type' => 2]);
-
-        Flash::success('Converted To Customer successfully.');
-    }
-
-
     public function render()
     {
-        $leadsQuery = Lead::withCount('cases', 'payments')
+        $leadsQuery = Lead::withCount('payments')
             ->where('type', 2)
-            ->where('branch_id', auth()->user()->branch_id);
+            ->whereIn('branch_id', array_keys($this->employeeBranches));
 
         if ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
@@ -93,6 +92,9 @@ class Index extends Component
         }
         if ($this->agent) {
             $leadsQuery->where('assigned_employee_id', $this->agent);
+        }
+        if ($this->registration_from && $this->registration_to) {
+            $leadsQuery->whereBetween('created_at', [$this->registration_from, $this->registration_to]);
         }
 
         $leads = $leadsQuery->paginate(10);

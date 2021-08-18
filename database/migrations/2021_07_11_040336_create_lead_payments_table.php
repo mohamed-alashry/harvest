@@ -20,6 +20,7 @@ class CreateLeadPaymentsTable extends Migration
             $table->morphs('paymentable');
             $table->integer('amount');
             $table->integer('payment_plan_id')->unsigned();
+            $table->tinyInteger('print_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

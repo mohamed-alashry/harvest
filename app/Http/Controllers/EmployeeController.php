@@ -66,6 +66,7 @@ class EmployeeController extends AppBaseController
 
         $employee = $this->employeeRepository->create($input);
 
+        $employee->branches()->sync(request('branches'));
         $employee->syncRoles(request('roles'));
 
         Flash::success('Employee saved successfully.');
@@ -136,6 +137,7 @@ class EmployeeController extends AppBaseController
 
         $employee = $this->employeeRepository->update($request->all(), $id);
 
+        $employee->branches()->sync(request('branches'));
         $employee->syncRoles(request('roles'));
 
         Flash::success('Employee updated successfully.');

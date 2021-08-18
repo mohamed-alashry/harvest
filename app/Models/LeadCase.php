@@ -47,6 +47,7 @@ class LeadCase extends Model
 
     public $fillable = [
         'lead_id',
+        'branch_id',
         'employee_id',
         'label_id',
         'label_type_id',
@@ -89,6 +90,7 @@ class LeadCase extends Model
     public static $rules = [
         'lead_id' => 'required',
         // 'employee_id' => 'required',
+        'branch_id' => 'required',
         'label_id' => 'required',
         'label_type_id' => 'required',
         'feedback' => 'required',
@@ -106,6 +108,14 @@ class LeadCase extends Model
     public function lead()
     {
         return $this->belongsTo(\App\Models\Lead::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class);
     }
 
     /**

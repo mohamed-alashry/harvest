@@ -3,6 +3,12 @@
         {!! Form::hidden('lead_id', request('lead')) !!}
     @endif
 
+    <!-- Branch Id Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('branch_id', 'Branch:') !!}
+        {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
+
     <!-- Label Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('label_id', 'Label:') !!}
@@ -101,8 +107,8 @@
         {!! Form::textarea('notes', null, ['class' => 'form-control', 'rows' => 2]) !!}
     </div>
 
-    {{-- <!-- Status Field -->
-    <div class="form-group col-sm-6">
+    <!-- Status Field -->
+    {{-- <div class="form-group col-sm-6">
         {!! Form::label('status', 'Status:') !!}
         {!! Form::select('status', config('data.status'), null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div> --}}

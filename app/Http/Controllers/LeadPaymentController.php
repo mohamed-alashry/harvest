@@ -60,6 +60,8 @@ class LeadPaymentController extends AppBaseController
             return redirect(route('admin.leadPayments.index'));
         }
 
+        $leadPayment->increment('print_count');
+
         return view('lead_payments.show')->with('leadPayment', $leadPayment);
     }
 

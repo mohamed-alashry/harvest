@@ -54,6 +54,16 @@
                                 <div class="form-group col-sm-4">
                                     {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'name', 'class' => 'form-control', 'placeholder' => 'Search By Name']) !!}
                                 </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="registration_from" data-date-orientation="bottom"
+                                        placeholder="Registration Date From" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="registration_to" data-date-orientation="bottom"
+                                        placeholder="Registration Date To" />
+                                </div>
                             </div>
                         @endif
 

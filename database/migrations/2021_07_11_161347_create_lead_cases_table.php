@@ -17,6 +17,7 @@ class CreateLeadCasesTable extends Migration
         Schema::create('lead_cases', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lead_id')->unsigned();
+            $table->integer('branch_id')->unsigned();
             $table->integer('employee_id')->unsigned();
             $table->integer('label_id')->unsigned();
             $table->integer('label_type_id')->unsigned();
@@ -31,6 +32,7 @@ class CreateLeadCasesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
+            $table->foreign('branch_id')->references('id')->on('branches');
             $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('label_id')->references('id')->on('labels');
             $table->foreign('label_type_id')->references('id')->on('label_types');

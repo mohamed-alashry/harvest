@@ -25,10 +25,15 @@ class Index extends Component
         $name,
         $case_from,
         $case_to,
+        $registration_from,
+        $registration_to,
         $knowChannels,
         $services,
         $offers,
+        $feedback,
+        $per_page = 10,
         $branches,
+        $employeeBranches,
         $agents,
         $show_filter = false,
         $show_assign = false,
@@ -49,8 +54,12 @@ class Index extends Component
         $this->knowChannels = KnowChannel::pluck('name', 'id');
         $this->services = TrainingService::pluck('title', 'id');
         $this->offers = Offer::pluck('title', 'id');
-        $this->branches = Branch::where('id', auth()->user()->branch_id)->pluck('name', 'id');
-        $this->agents = Employee::where('branch_id', auth()->user()->branch_id)->get()->pluck('name', 'id');
+        $employeeBranches = auth()->user()->branches->pluck('name', 'id')->toArray();
+        $this->branches = $employeeBranches;
+        $this->employeeBranches = $employeeBranches;
+        $this->agents = Employee::whereHas('branches', function (Builder $query) use ($employeeBranches) {
+            $query->whereIn('id', array_keys($employeeBranches));
+        })->get()->pluck('name', 'id');
     }
 
     public function toggleFilter()
@@ -91,12 +100,13 @@ class Index extends Component
         Flash::success('Converted To Customer successfully.');
     }
 
-
     public function render()
     {
-        $leadsQuery = Lead::withCount('cases', 'payments')
+        $leadsQuery = Lead::withCount('cases')->with(['cases' => function ($query) {
+            $query->orderBy('created_at', 'desc')->first();
+        }])
             ->where('type', 1)
-            ->where('branch_id', auth()->user()->branch_id);
+            ->whereIn('branch_id', array_keys($this->employeeBranches));
 
         if ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
@@ -125,13 +135,21 @@ class Index extends Component
         if ($this->agent) {
             $leadsQuery->where('assigned_employee_id', $this->agent);
         }
-        if ($this->case_from && $this->case_to) {
+        if ($this->feedback || ($this->case_from && $this->case_to)) {
             $leadsQuery->whereHas('cases', function (Builder $query) {
-                $query->whereBetween('date', [$this->case_from, $this->case_to]);
+                if ($this->case_from && $this->case_to) {
+                    $query->whereBetween('date', [$this->case_from, $this->case_to]);
+                }
+                if ($this->feedback) {
+                    $query->where('feedback', $this->feedback);
+                }
             });
         }
+        if ($this->registration_from && $this->registration_to) {
+            $leadsQuery->whereBetween('created_at', [$this->registration_from, $this->registration_to]);
+        }
 
-        $leads = $leadsQuery->paginate(10);
+        $leads = $leadsQuery->paginate($this->per_page);
 
         $this->shown_leads = $leads->pluck('id')->toArray();
 

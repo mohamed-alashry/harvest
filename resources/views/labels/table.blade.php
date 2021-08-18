@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -10,6 +11,7 @@
             @foreach ($labels as $label)
                 <tr>
                     <td>{{ $label->name }}</td>
+                    <td>{{ $label->status ? 'Active' : 'Inactive' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.labels.destroy', $label->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

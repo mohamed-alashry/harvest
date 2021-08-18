@@ -19,14 +19,15 @@ class Label extends Model
 
 
     public $table = 'labels';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
 
     public $fillable = [
-        'name'
+        'name',
+        'status'
     ];
 
     /**
@@ -47,6 +48,4 @@ class Label extends Model
     public static $rules = [
         'name' => 'required'
     ];
-
-    
 }

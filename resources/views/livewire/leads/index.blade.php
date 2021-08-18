@@ -21,6 +21,11 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-1">
+                                {!! Form::select(null, [10 => 10, 20 => 20, 50 => 50, 100 => 100], null, ['wire:model' => 'per_page', 'class' => 'form-control']) !!}
+                            </div>
+                        </div>
                         @if ($show_assign)
                             <div class="row">
                                 <div class="form-group col-sm-4">
@@ -77,12 +82,26 @@
 
                                 <div class="form-group col-sm-4">
                                     <x-date-picker wire:model="case_from" data-date-orientation="bottom"
-                                        placeholder="Case Date From" />
+                                        placeholder="Follow Up Date From" />
                                 </div>
 
                                 <div class="form-group col-sm-4">
                                     <x-date-picker wire:model="case_to" data-date-orientation="bottom"
-                                        placeholder="Case Date To" />
+                                        placeholder="Follow Up Date To" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, config('data.feedback'), null, ['wire:model' => 'feedback', 'class' => 'form-control', 'placeholder' => 'Select Feedback...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="registration_from" data-date-orientation="bottom"
+                                        placeholder="Registration Date From" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="registration_to" data-date-orientation="bottom"
+                                        placeholder="Registration Date To" />
                                 </div>
                             </div>
                         @endif
@@ -100,6 +119,8 @@
                                         <th>Assigned Employee</th>
                                         <th>Convert to Customer</th>
                                         <th>Follow Up</th>
+                                        <th>Last Follow Up Date</th>
+                                        <th>Last Follow Up Feedback</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -121,6 +142,8 @@
                                                 <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->cases_count }}</a>
                                             </td>
+                                            <td>{{ $lead->cases[0]->created_at ?? '' }}</td>
+                                            <td>{{ $lead->cases[0]->feedback ?? '' }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['admin.leads.destroy', $lead->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>

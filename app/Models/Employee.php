@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Employee
@@ -52,7 +53,7 @@ class Employee extends Authenticatable
         'mobile',
         'email',
         'password',
-        'branch_id',
+        // 'branch_id',
         'department_id',
         'job_id'
     ];
@@ -78,7 +79,7 @@ class Employee extends Authenticatable
         'last_name' => 'string',
         'mobile' => 'string',
         'email' => 'string',
-        'branch_id' => 'integer',
+        // 'branch_id' => 'integer',
         'department_id' => 'integer',
         'job_id' => 'integer'
     ];
@@ -94,9 +95,9 @@ class Employee extends Authenticatable
         'mobile' => 'required',
         'email' => 'required|email',
         'password' => 'required|confirmed',
-        'branch_id' => 'required',
         'department_id' => 'required',
         'job_id' => 'required',
+        'branches' => 'required|array',
         'roles' => 'required|array'
     ];
 
@@ -124,13 +125,13 @@ class Employee extends Authenticatable
     }
 
     /**
-     * Get the branch that owns the Employee
+     * The branches that belong to the Employee
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function branch(): BelongsTo
+    public function branches(): BelongsToMany
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsToMany(Branch::class, 'branches_employees', 'employee_id', 'branch_id');
     }
 
     /**

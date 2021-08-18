@@ -17,6 +17,12 @@
         <p>{{ $leadCase->lead->mobile_1 }}</p>
     </div>
 
+    <!-- Branch Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('branch_id', 'Branch:') !!}
+        <p>{{ $leadCase->branch->name }}</p>
+    </div>
+
     <!-- Employee Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('employee_id', 'Employee:') !!}

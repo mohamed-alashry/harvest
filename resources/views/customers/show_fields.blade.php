@@ -44,13 +44,13 @@
     <!-- Lead Source Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('lead_source', 'Lead Source:') !!}
-        <p>{{ $lead->lead_source->name }}</p>
+        <p>{{ $lead->lead_source->name ?? '' }}</p>
     </div>
 
     <!-- Know Channel Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('know_from', 'How Did you know about us ?:') !!}
-        <p>{{ $lead->know_channel->name }}</p>
+        <p>{{ $lead->know_channel->name ?? '' }}</p>
     </div>
 
     <!-- Preferred Time Field -->
@@ -62,19 +62,19 @@
     <!-- Preferred Offer Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('preferred_offer', 'Preferred Offer:') !!}
-        <p>{{ $lead->offer->title }}</p>
+        <p>{{ $lead->offer->title ?? '' }}</p>
     </div>
 
     <!-- Preferred Branch Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('preferred_branch', 'Preferred Branch:') !!}
-        <p>{{ $lead->branch->name }}</p>
+        <p>{{ $lead->branch->name ?? '' }}</p>
     </div>
 
     <!-- Preferred Training Service Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('preferred_training_service', 'Preferred Training Service:') !!}
-        <p>{{ $lead->training_service->title }}</p>
+        <p>{{ $lead->training_service->title ?? '' }}</p>
     </div>
 
     <!-- Notes Field -->

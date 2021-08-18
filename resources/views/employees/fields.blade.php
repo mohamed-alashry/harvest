@@ -35,10 +35,10 @@
         {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
     </div>
 
-    <!-- Branch Field -->
+    <!-- Branches Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('branch_id', 'Branch:') !!}
-        {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'Select Branch...']) !!}
+        {!! Form::label('branches', 'Branches:') !!}
+        {!! Form::select('branches[]', $branches, null, ['class' => 'form-control select2', 'multiple' => true]) !!}
     </div>
 
     <!-- Department Field -->
@@ -104,7 +104,6 @@
                     }
                 );
             }
-
         </script>
     @endpush
 </div>
