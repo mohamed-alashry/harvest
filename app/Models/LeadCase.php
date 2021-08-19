@@ -88,7 +88,7 @@ class LeadCase extends Model
      * @var array
      */
     public static $rules = [
-        'lead_id' => 'required',
+        // 'lead_id' => 'required',
         // 'employee_id' => 'required',
         'branch_id' => 'required',
         'label_id' => 'required',
