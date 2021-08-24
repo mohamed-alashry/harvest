@@ -50,16 +50,16 @@ class Index extends Component
 
     public function mount()
     {
-        $this->leadSources = LeadSource::pluck('name', 'id');
-        $this->knowChannels = KnowChannel::pluck('name', 'id');
-        $this->services = TrainingService::pluck('title', 'id');
-        $this->offers = Offer::pluck('title', 'id');
+        $this->leadSources = LeadSource::pluck('name', 'id')->toArray();
+        $this->knowChannels = KnowChannel::pluck('name', 'id')->toArray();
+        $this->services = TrainingService::pluck('title', 'id')->toArray();
+        $this->offers = Offer::pluck('title', 'id')->toArray();
         $employeeBranches = auth()->user()->branches->pluck('name', 'id')->toArray();
         $this->branches = $employeeBranches;
         $this->employeeBranches = $employeeBranches;
         $this->agents = Employee::whereHas('branches', function (Builder $query) use ($employeeBranches) {
             $query->whereIn('id', array_keys($employeeBranches));
-        })->get()->pluck('name', 'id');
+        })->get()->pluck('name', 'id')->toArray();
     }
 
     public function toggleFilter()
