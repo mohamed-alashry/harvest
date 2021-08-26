@@ -17,6 +17,8 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->unsignedInteger('track_id');
+            $table->unsignedInteger('course_id');
             $table->integer('round_id')->unsigned();
             $table->integer('discipline_id')->unsigned();
             $table->integer('branch_id')->unsigned();
@@ -25,6 +27,9 @@ class CreateGroupsTable extends Migration
             $table->integer('interval_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('track_id')->references('id')->on('tracks');
+            $table->foreign('course_id')->references('id')->on('tracks');
             $table->foreign('round_id')->references('id')->on('rounds');
             $table->foreign('discipline_id')->references('id')->on('discipline_categories');
             $table->foreign('branch_id')->references('id')->on('branches');

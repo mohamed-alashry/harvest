@@ -40,6 +40,9 @@ class Group extends Model
 
     public $fillable = [
         'title',
+        'track_id',
+        'course_id',
+        'training_service_id',
         'round_id',
         'discipline_id',
         'branch_id',
@@ -49,35 +52,20 @@ class Group extends Model
     ];
 
     /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'title' => 'string',
-        'round_id' => 'integer',
-        'discipline_id' => 'integer',
-        'branch_id' => 'integer',
-        'room_id' => 'integer',
-        'instructor_id' => 'integer',
-        'interval_id' => 'integer'
-    ];
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function track()
+    {
+        return $this->belongsTo(\App\Models\Track::class);
+    }
 
     /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'title' => 'required',
-        'round_id' => 'required',
-        'discipline_id' => 'required',
-        'branch_id' => 'required',
-        'room_id' => 'required',
-        'instructor_id' => 'required',
-        'interval_id' => 'required'
-    ];
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function course()
+    {
+        return $this->belongsTo(\App\Models\Track::class, 'course_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

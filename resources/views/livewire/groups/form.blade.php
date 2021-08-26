@@ -54,6 +54,18 @@
                                 {!! Form::select(null, $rooms, null, ['wire:model' => 'room_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
+                            <!-- Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('track', 'Track:') !!}
+                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
+                            </div>
+
+                            <!-- Sub Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('course', 'Sub Track:') !!}
+                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
+                            </div>
+
                             <!-- Levels Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('levels', 'Levels:') !!}

@@ -2,19 +2,22 @@
 
 namespace App\Http\Livewire\Groups;
 
-use App\Models\Branch;
-use App\Models\DisciplineCategory;
-use App\Models\Employee;
-use App\Models\Group;
 use App\Models\Room;
+use App\Models\Group;
 use App\Models\Round;
+use App\Models\Track;
+use App\Models\Branch;
 use Livewire\Component;
+use App\Models\Employee;
 use Laracasts\Flash\Flash;
+use App\Models\DisciplineCategory;
 
 class Form extends Component
 {
     public $group,
         $title,
+        $track_id,
+        $course_id,
         $round_id,
         $discipline_id,
         $branch_id,
@@ -22,6 +25,8 @@ class Form extends Component
         $instructor_id,
         $interval_id,
         $levels,
+        $tracks,
+        $courses = [],
         $rounds,
         $disciplines,
         $branches,
@@ -35,6 +40,8 @@ class Form extends Component
         if ($group) {
             $this->fill([
                 'title' => $group->title,
+                'track_id' => $group->track_id,
+                'course_id' => $group->course_id,
                 'round_id' => $group->round_id,
                 'discipline_id' => $group->discipline_id,
                 'branch_id' => $group->branch_id,
@@ -42,6 +49,7 @@ class Form extends Component
                 'instructor_id' => $group->instructor_id,
                 'interval_id' => $group->interval_id,
                 'levels' => $group->levels->pluck('id'),
+                'courses' => Track::where('parent_id', $group->track_id)->pluck('title', 'id'),
             ]);
 
             $this->roundIdUpdated($group->round_id);
@@ -55,6 +63,7 @@ class Form extends Component
         }
         // $this->instructors = [];
 
+        $this->tracks = Track::whereNull('parent_id')->pluck('title', 'id');
         $this->rounds = Round::pluck('title', 'id');
         $this->disciplines = DisciplineCategory::pluck('name', 'id');
         $this->branches = Branch::pluck('name', 'id');
@@ -64,6 +73,8 @@ class Form extends Component
     {
         $rules = [
             'title' => 'required',
+            'track_id' => 'required',
+            'course_id' => 'required',
             'round_id' => 'required',
             'discipline_id' => 'required',
             'branch_id' => 'required',
@@ -81,6 +92,17 @@ class Form extends Component
         $this->validateOnly($name);
     }
 
+    public function updatedTrackId($value)
+    {
+        $this->courses = Track::where('parent_id', $value)->pluck('title', 'id')->toArray();
+        $this->course_id = '';
+    }
+
+    public function updatedCourseId($value)
+    {
+        $this->stageLevels = Track::find($value)->stageLevels->pluck('name', 'id')->toArray();
+    }
+
     public function updatedRoundId($val)
     {
         $this->roundIdUpdated($val);
@@ -93,10 +115,10 @@ class Form extends Component
 
     public function roundIdUpdated($roundId)
     {
-        $round = Round::with('serviceFee.trainingService.course.stageLevels', 'serviceFee.timeframe.intervals')->find($roundId);
+        $round = Round::with('serviceFee.timeframe.intervals')->find($roundId);
 
-        $this->intervals = $round->serviceFee->timeframe->intervals->pluck('name', 'id');
-        $this->stageLevels = $round->serviceFee->trainingService->course->stageLevels->pluck('name', 'id');
+        $this->intervals = $round->serviceFee->timeframe->intervals->pluck('name', 'id')->toArray();
+        // $this->stageLevels = $round->serviceFee->trainingService->course->stageLevels->pluck('name', 'id');
     }
 
     public function updatedBranchId($val)
