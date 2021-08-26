@@ -1,19 +1,19 @@
 <div class="row">
     <!-- Id Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('id', 'Case Id:') !!}
+        {!! Form::label('id', 'Follow Up Id:') !!}
         <p>{{ $leadCase->id }}</p>
     </div>
 
-    <!-- Lead Name Field -->
+    <!-- Name Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('lead_id', 'Lead Name:') !!}
+        {!! Form::label('lead_id', 'Name:') !!}
         <p>{{ $leadCase->lead->name['en'] }}</p>
     </div>
 
-    <!-- Lead Mobile Field -->
+    <!-- Mobile Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('lead_mobile', 'Lead Mobile:') !!}
+        {!! Form::label('lead_mobile', 'Mobile:') !!}
         <p>{{ $leadCase->lead->mobile_1 }}</p>
     </div>
 

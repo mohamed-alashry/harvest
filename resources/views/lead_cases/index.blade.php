@@ -3,9 +3,13 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{!! route('admin.leads.index') !!}">Leads</a>
+            @if ($lead->type == 1)
+                <a href="{!! route('admin.leads.index') !!}">Leads</a>
+            @else
+                <a href="{!! route('admin.customers.index') !!}">Customers</a>
+            @endif
         </li>
-        <li class="breadcrumb-item">Lead Follow up </li>
+        <li class="breadcrumb-item">Follow up </li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -16,8 +20,14 @@
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
 
-                            <a href="{{ route('admin.leads.show', $lead->id) }}"
-                                class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a> Follow up
+                            @if ($lead->type == 1)
+                                <a href="{{ route('admin.leads.show', $lead->id) }}"
+                                    class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a>
+                            @else
+                                <a href="{{ route('admin.customers.show', $lead->id) }}"
+                                    class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a>
+                            @endif
+                            Follow up
 
                             @can('leadCases create')
                                 <a class="pull-right" href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i

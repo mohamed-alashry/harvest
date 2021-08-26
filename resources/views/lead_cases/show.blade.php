@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.leadCases.index', ['lead' => $leadCase->lead_id]) }}">Lead Case</a>
+            <a href="{{ route('admin.leadCases.index', ['lead' => $leadCase->lead_id]) }}">Follow Up</a>
         </li>
         <li class="breadcrumb-item active">Detail</li>
     </ol>

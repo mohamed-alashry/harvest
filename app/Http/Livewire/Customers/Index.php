@@ -62,7 +62,9 @@ class Index extends Component
 
     public function render()
     {
-        $leadsQuery = Lead::withCount('payments')
+        $leadsQuery = Lead::withCount('payments', 'cases')->with(['cases' => function ($query) {
+            $query->orderBy('created_at', 'desc')->first();
+        }])
             ->where('type', 2)
             ->whereIn('branch_id', array_keys($this->employeeBranches));
 

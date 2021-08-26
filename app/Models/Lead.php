@@ -118,7 +118,7 @@ class Lead extends Model
         'name.ar' => 'required',
         'gender' => 'required',
         'mobile_1' => 'required|unique:leads,mobile_1',
-        'email' => 'email|unique:leads,email',
+        'email' => 'nullable|email|unique:leads,email',
         'lead_source_id' => 'required',
         'know_channel_id' => 'required',
         'preferred_time' => 'required',

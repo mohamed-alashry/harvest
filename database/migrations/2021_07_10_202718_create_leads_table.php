@@ -28,7 +28,7 @@ class CreateLeadsTable extends Migration
             $table->integer('offer_id')->unsigned();
             $table->integer('branch_id')->unsigned();
             $table->integer('training_service_id')->unsigned();
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->unsignedInteger('assigned_employee_id')->nullable();
             // $table->string('nationality');
             // $table->string('identification');

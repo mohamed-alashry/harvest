@@ -76,6 +76,9 @@
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
                                         <th>Payments</th>
+                                        <th>Follow Up</th>
+                                        <th>Last Follow Up Date</th>
+                                        <th>Last Follow Up Feedback</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -90,6 +93,12 @@
                                                 <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->payments_count }}</a>
                                             </td>
+                                            <td>
+                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
+                                                    class="btn btn-warning">{{ $lead->cases_count }}</a>
+                                            </td>
+                                            <td>{{ $lead->cases[0]->created_at ?? '' }}</td>
+                                            <td>{{ $lead->cases[0]->feedback ?? '' }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['admin.customers.destroy', $lead->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
