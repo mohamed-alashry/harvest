@@ -5,9 +5,15 @@
 </div>
 
 <!-- Time Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('time', 'Time:') !!}
-    {!! Form::text('time', null, ['class' => 'form-control', 'placeholder' => 'ex. 10:00 AM - 12:00 PM']) !!}
+<div class="form-group col-sm-3">
+    {!! Form::label('time', 'Time From:') !!}
+    {!! Form::time('time_from', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Time Field -->
+<div class="form-group col-sm-3">
+    {!! Form::label('time', 'Time To:') !!}
+    {!! Form::time('time_to', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Pattern Field -->

@@ -31,7 +31,8 @@ class Interval extends Model
 
     public $fillable = [
         'name',
-        'time',
+        'time_from',
+        'time_to',
         'pattern',
         'sort',
         'status'
@@ -45,7 +46,8 @@ class Interval extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'time' => 'string',
+        'time_from' => 'string',
+        'time_to' => 'string',
         'pattern' => 'string',
         'sort' => 'integer',
         'status' => 'integer'
@@ -58,7 +60,8 @@ class Interval extends Model
      */
     public static $rules = [
         'name' => 'required',
-        'time' => 'required',
+        'time_from' => 'required',
+        'time_to' => 'required|after:time_from',
         'pattern' => 'required|in:AM,PM',
         'sort' => 'required|integer',
         'status' => 'required'

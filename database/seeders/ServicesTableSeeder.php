@@ -42,7 +42,8 @@ class ServicesTableSeeder extends Seeder
 
         $interval = Interval::create([
             'name' => '9-11 Fresh Morning',
-            'time' => '09:00 AM - 11:00 AM',
+            'time_from' => '09:00',
+            'time_to' => '11:00',
             'pattern' => 'AM',
             'sort' => 1,
         ]);

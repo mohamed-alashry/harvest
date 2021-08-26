@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $interval->id }}</td>
                     <td>{{ $interval->name }}</td>
-                    <td>{{ $interval->time }}</td>
+                    <td>{{ $interval->time_from . ' - ' . $interval->time_to }}</td>
                     <td>{{ $interval->pattern == 'AM' ? 'Morning (AM)' : 'Evening (PM)' }}</td>
                     <td>{{ $interval->sort }}</td>
                     <td>{{ $interval->status ? 'Active' : 'Inactive' }}</td>

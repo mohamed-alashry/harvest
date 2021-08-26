@@ -17,7 +17,8 @@ class CreateIntervalsTable extends Migration
         Schema::create('intervals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('time');
+            $table->time('time_from');
+            $table->time('time_to');
             $table->string('pattern')->comment('AM, PM');
             $table->integer('sort')->unsigned();
             $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
