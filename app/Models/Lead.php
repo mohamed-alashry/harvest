@@ -51,6 +51,7 @@ class Lead extends Model
     public $fillable = [
         'name',
         'type',
+        'old_customer',
         'gender',
         'mobile_1',
         'mobile_2',

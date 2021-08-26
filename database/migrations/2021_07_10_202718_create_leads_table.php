@@ -18,6 +18,7 @@ class CreateLeadsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->tinyInteger('type')->default(1)->comment('1 => lead, 2 => customer, 3 => client');
+            $table->boolean('old_customer')->default(0);
             $table->string('gender');
             $table->string('mobile_1');
             $table->string('mobile_2')->nullable();

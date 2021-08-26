@@ -10,10 +10,10 @@
                         <div class="pull-right">
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
-                            {{-- @can('customers create')
+                            @can('customers create')
                                 <a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i></a>
-                            @endcan --}}
+                            @endcan
                         </div>
                     </div>
                     <div class="card-body">
@@ -75,6 +75,7 @@
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
+                                        <th>Old Customer</th>
                                         <th>Payments</th>
                                         <th>Follow Up</th>
                                         <th>Last Follow Up Date</th>
@@ -89,6 +90,7 @@
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
+                                            <td>{{ $lead->old_customer ? 'Yes' : 'No' }}</td>
                                             <td>
                                                 <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->payments_count }}</a>

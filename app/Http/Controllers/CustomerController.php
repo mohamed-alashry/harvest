@@ -59,6 +59,7 @@ class CustomerController extends AppBaseController
         $input = $request->all();
 
         $input['type'] = 2;
+        $input['old_customer'] = 1;
         $lead = Lead::create($input);
 
         Flash::success('Customer saved successfully.');
