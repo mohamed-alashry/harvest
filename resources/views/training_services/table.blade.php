@@ -4,7 +4,7 @@
             <tr>
                 <th>Title</th>
                 <th>Track</th>
-                <th>Course</th>
+                <th>Sub Track</th>
                 <th>Time Pattern</th>
                 <th>Action</th>
             </tr>

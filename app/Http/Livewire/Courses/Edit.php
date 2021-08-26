@@ -82,7 +82,7 @@ class Edit extends Component
             }
         }
 
-        Flash::success('Course saved successfully.');
+        Flash::success('Sub Track saved successfully.');
 
         redirect(route('admin.courses.index'));
     }

@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-edit fa-lg"></i>
-                        <strong>Edit Course</strong>
+                        <strong>Edit Sub Track</strong>
                     </div>
                     <div class="card-body">
 
@@ -18,9 +18,9 @@
                                 {!! Form::select(null, $tracks, null, ['class' => 'form-control', 'wire:model' => 'parent_id', 'placeholder' => 'Select Track...']) !!}
                             </div>
 
-                            <!-- Course Title Field -->
+                            <!-- Sub Track Title Field -->
                             <div class="form-group col-sm-6">
-                                {!! Form::label('title', 'Course Title:') !!}
+                                {!! Form::label('title', 'Sub Track Title:') !!}
                                 {!! Form::text(null, null, ['class' => 'form-control', 'wire:model.debounce.500ms' => 'title']) !!}
                             </div>
 

@@ -87,6 +87,14 @@
                     </a>
                 </li>
             @endcan
+            @can('courses view')
+                <li class="nav-item {{ Request::is('admin/courses*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.courses.index') }}">
+                        <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+                        <span>Sub Tracks</span>
+                    </a>
+                </li>
+            @endcan
             @can('customerJobs view')
                 <li class="nav-item {{ Request::is('admin/customerJobs*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.customerJobs.index') }}">
@@ -100,14 +108,6 @@
                     <a class="nav-link" href="{{ route('admin.universities.index') }}">
                         <i class="nav-icon fa fa-circle" style="color: #fff"></i>
                         <span>Universities</span>
-                    </a>
-                </li>
-            @endcan
-            @can('courses view')
-                <li class="nav-item {{ Request::is('admin/courses*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('admin.courses.index') }}">
-                        <i class="nav-icon fa fa-circle" style="color: #fff"></i>
-                        <span>Courses</span>
                     </a>
                 </li>
             @endcan

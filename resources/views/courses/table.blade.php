@@ -2,7 +2,7 @@
     <table class="table table-striped" id="courses-table">
         <thead>
             <tr>
-                <th>Course</th>
+                <th>Sub Track</th>
                 <th>Track</th>
                 <th>Levels</th>
                 <th>Action</th>

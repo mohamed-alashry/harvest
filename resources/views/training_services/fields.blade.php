@@ -1,7 +1,7 @@
 <div class="row">
-    <!-- Course Field -->
+    <!-- Sub Track Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('course', 'Course:') !!}
+        {!! Form::label('course', 'Sub Track:') !!}
         {!! Form::select('course_id', $courses, null, ['class' => 'form-control', 'placeholder' => 'Select course...']) !!}
     </div>
 
