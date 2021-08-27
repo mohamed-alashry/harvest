@@ -16,11 +16,12 @@ class CreateRoundsTable extends Migration
     {
         Schema::create('rounds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('service_fee_id')->unsigned();
+            $table->integer('timeframe_id')->unsigned();
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('service_fee_id')->references('id')->on('service_fees');
+
+            $table->foreign('timeframe_id')->references('id')->on('timeframes');
         });
     }
 

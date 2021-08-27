@@ -6,7 +6,7 @@ use App\Http\Requests\CreateRoundRequest;
 use App\Http\Requests\UpdateRoundRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Round;
-use App\Models\ServiceFee;
+use App\Models\Timeframe;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -23,7 +23,7 @@ class RoundController extends AppBaseController
     public function index(Request $request)
     {
         /** @var Round $rounds */
-        $rounds = Round::with('serviceFee.trainingService', 'serviceFee.timeframe')->withCount('subRounds')->get();
+        $rounds = Round::with('timeframe')->withCount('subRounds')->get();
 
         return view('rounds.index')
             ->with('rounds', $rounds);
@@ -36,9 +36,9 @@ class RoundController extends AppBaseController
      */
     public function create()
     {
-        $serviceFees = ServiceFee::with('trainingService', 'timeframe')->get();
+        $timeframes = Timeframe::get();
 
-        return view('rounds.create', compact('serviceFees'));
+        return view('rounds.create', compact('timeframes'));
     }
 
     /**
@@ -70,7 +70,7 @@ class RoundController extends AppBaseController
     public function show($id)
     {
         /** @var Round $round */
-        $round = Round::with('serviceFee.trainingService', 'serviceFee.timeframe')->find($id);
+        $round = Round::with('timeframe')->find($id);
 
         if (empty($round)) {
             Flash::error('Round not found');
@@ -99,9 +99,9 @@ class RoundController extends AppBaseController
             return redirect(route('admin.rounds.index'));
         }
 
-        $serviceFees = ServiceFee::with('trainingService', 'timeframe')->get();
+        $timeframes = Timeframe::get();
 
-        return view('rounds.edit', compact('round', 'serviceFees'));
+        return view('rounds.edit', compact('round', 'timeframes'));
     }
 
     /**

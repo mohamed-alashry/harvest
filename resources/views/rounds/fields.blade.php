@@ -1,12 +1,12 @@
-<!-- Service Fee Id Field -->
+<!-- TimeFrame Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('service_fee_id', 'Service Fee Id:') !!}
-    <select name="service_fee_id" class="form-control">
-        <option value="">Select Service Fee</option>
-        @foreach ($serviceFees as $serviceFee)
-            <option value="{{ $serviceFee->id }}"
-                {{ isset($round) && $serviceFee->id == $round->service_fee_id ? 'selected' : '' }}>
-                {{ $serviceFee->trainingService->title . ' | ' . $serviceFee->timeframe->title }}
+    {!! Form::label('timeframe_id', 'TimeFrame Id:') !!}
+    <select name="timeframe_id" class="form-control">
+        <option value="">Select TimeFrame</option>
+        @foreach ($timeframes as $timeframe)
+            <option value="{{ $timeframe->id }}"
+                {{ isset($round) && $timeframe->id == $round->timeframe_id ? 'selected' : '' }}>
+                {{ $timeframe->title }}
             </option>
         @endforeach
     </select>

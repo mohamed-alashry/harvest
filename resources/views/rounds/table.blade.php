@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Service Fee</th>
+                <th>TimeFrame</th>
                 <th>Title</th>
                 <th>Sub Rounds</th>
                 <th>Action</th>
@@ -13,7 +13,7 @@
             @foreach ($rounds as $round)
                 <tr>
                     <td>{{ $round->id }}</td>
-                    <td>{{ $round->serviceFee->trainingService->title . ' | ' . $round->serviceFee->timeframe->title }}
+                    <td>{{ $round->timeframe->title }}
                     </td>
                     <td>{{ $round->title }}</td>
                     <td>

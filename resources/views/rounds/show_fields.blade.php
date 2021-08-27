@@ -5,10 +5,10 @@
 </div>
 
 
-<!-- Service Fee Id Field -->
+<!-- TimeFrame Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('service_fee_id', 'Service Fee:') !!}
-    <p>{{ $round->serviceFee->trainingService->title . ' | ' . $round->serviceFee->timeframe->title }}</p>
+    {!! Form::label('timeframe_id', 'TimeFrame:') !!}
+    <p>{{ $round->timeframe->title }}</p>
 </div>
 
 

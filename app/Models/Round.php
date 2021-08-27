@@ -28,7 +28,7 @@ class Round extends Model
 
 
     public $fillable = [
-        'service_fee_id',
+        'timeframe_id',
         'title'
     ];
 
@@ -39,7 +39,7 @@ class Round extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'service_fee_id' => 'integer',
+        'timeframe_id' => 'integer',
         'title' => 'string'
     ];
 
@@ -49,16 +49,16 @@ class Round extends Model
      * @var array
      */
     public static $rules = [
-        'service_fee_id' => 'required',
+        'timeframe_id' => 'required',
         'title' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function serviceFee()
+    public function timeframe()
     {
-        return $this->belongsTo(\App\Models\ServiceFee::class);
+        return $this->belongsTo(\App\Models\Timeframe::class);
     }
 
     /**
