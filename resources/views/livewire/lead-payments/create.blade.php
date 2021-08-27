@@ -94,8 +94,12 @@
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
-                                    class="btn btn-secondary">Cancel</a>
+                                @if ($convertToCustomer)
+                                    <a href="{{ route('admin.leads.index') }}" class="btn btn-secondary">Cancel</a>
+                                @else
+                                    <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
+                                        class="btn btn-secondary">Cancel</a>
+                                @endif
                             </div>
                         </div>
 

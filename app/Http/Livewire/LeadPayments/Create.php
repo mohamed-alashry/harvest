@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\LeadPayments;
 
-use App\Models\ExtraItem;
+use App\Models\Offer;
 use Livewire\Component;
+use App\Models\ExtraItem;
+use App\Models\ServiceFee;
 use Laracasts\Flash\Flash;
 use App\Models\LeadPayment;
-use App\Models\Offer;
+use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
-use App\Models\ServiceFee;
 
 class Create extends Component
 {
@@ -16,12 +17,16 @@ class Create extends Component
         $paymentable_type,
         $paymentable_id,
         $subPayments,
+        $convertToCustomer = false,
         $service,
         $services = [],
         $paymentMethods;
 
-    public function mount($lead)
+    public function mount(Request $request, $lead)
     {
+        if ($request->has('convert')) {
+            $this->convertToCustomer = true;
+        }
         $this->paymentMethods = PaymentMethod::pluck('title', 'id');
     }
 
@@ -170,6 +175,10 @@ class Create extends Component
         $subPayments = $data['subPayments'];
         foreach ($subPayments as $subPayment) {
             $payment->subPayments()->create($subPayment);
+        }
+
+        if ($this->convertToCustomer) {
+            $this->lead->update(['type' => 2]);
         }
 
         Flash::success('Lead Payment saved successfully.');

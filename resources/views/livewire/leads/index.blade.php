@@ -117,7 +117,7 @@
                                         <th>Name</th>
                                         <th>Mobile</th>
                                         <th>Assigned Employee</th>
-                                        <th>Convert to Customer</th>
+                                        <th>Add Payment</th>
                                         <th>Follow Up</th>
                                         <th>Last Follow Up Date</th>
                                         <th>Last Follow Up Feedback</th>
@@ -135,8 +135,12 @@
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
                                             <td>
-                                                <button wire:click="toCustomer({{ $lead->id }})"
-                                                    class="btn btn-success"><i class="fa fa-user"></i></button>
+                                                {{-- <button wire:click="toCustomer({{ $lead->id }})"
+                                                    class="btn btn-success"><i class="fa fa-user"></i></button> --}}
+
+                                                <a class="btn btn-success"
+                                                    href="{{ route('admin.leadPayments.create', ['customer' => $lead->id, 'convert' => 'true']) }}"><i
+                                                        class="fa fa-money fa-lg"></i></a>
                                             </td>
                                             <td>
                                                 <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
