@@ -54,6 +54,12 @@
                                 {!! Form::select(null, $rooms, null, ['wire:model' => 'room_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
+                            <!-- Admin Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('admin_id', 'Admin:') !!}
+                                {!! Form::select(null, $admins, null, ['wire:model' => 'admin_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
                             <!-- Track Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('track', 'Track:') !!}

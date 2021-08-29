@@ -47,10 +47,31 @@
 </div>
 
 
+<!-- Admin Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('admin_id', 'Admin:') !!}
+    <p>{{ $group->admin->name }}</p>
+</div>
+
+
 <!-- Interval Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('interval_id', 'Interval:') !!}
     <p>{{ $group->interval->name }}</p>
+</div>
+
+
+<!-- Track Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('track_id', 'Track:') !!}
+    <p>{{ $group->track->title }}</p>
+</div>
+
+
+<!-- Sub Track Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('course_id', 'Sub Track:') !!}
+    <p>{{ $group->course->title }}</p>
 </div>
 
 

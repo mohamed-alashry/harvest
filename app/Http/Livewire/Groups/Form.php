@@ -11,6 +11,7 @@ use Livewire\Component;
 use App\Models\Employee;
 use Laracasts\Flash\Flash;
 use App\Models\DisciplineCategory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Form extends Component
 {
@@ -24,6 +25,7 @@ class Form extends Component
         $room_id,
         $instructor_id,
         $interval_id,
+        $admin_id,
         $levels,
         $tracks,
         $courses = [],
@@ -32,6 +34,7 @@ class Form extends Component
         $branches,
         $rooms,
         $instructors,
+        $admins,
         $intervals,
         $stageLevels;
 
@@ -47,9 +50,11 @@ class Form extends Component
                 'branch_id' => $group->branch_id,
                 'room_id' => $group->room_id,
                 'instructor_id' => $group->instructor_id,
+                'admin_id' => $group->admin_id,
                 'interval_id' => $group->interval_id,
-                'levels' => $group->levels->pluck('id'),
-                'courses' => Track::where('parent_id', $group->track_id)->pluck('title', 'id'),
+                'levels' => $group->levels->pluck('id')->toArray(),
+                'courses' => Track::where('parent_id', $group->track_id)->pluck('title', 'id')->toArray(),
+                'stageLevels' => Track::find($group->course_id)->stageLevels->pluck('name', 'id')->toArray(),
             ]);
 
             $this->roundIdUpdated($group->round_id);
@@ -63,10 +68,11 @@ class Form extends Component
         }
         // $this->instructors = [];
 
-        $this->tracks = Track::whereNull('parent_id')->pluck('title', 'id');
-        $this->rounds = Round::pluck('title', 'id');
-        $this->disciplines = DisciplineCategory::pluck('name', 'id');
-        $this->branches = Branch::pluck('name', 'id');
+        $this->tracks = Track::whereNull('parent_id')->pluck('title', 'id')->toArray();
+        $this->rounds = Round::pluck('title', 'id')->toArray();
+        $this->disciplines = DisciplineCategory::pluck('name', 'id')->toArray();
+        $this->branches = Branch::pluck('name', 'id')->toArray();
+        $this->admins = Employee::get()->pluck('name', 'id')->toArray();
     }
 
     protected function rules()
@@ -80,6 +86,7 @@ class Form extends Component
             'branch_id' => 'required',
             'room_id' => 'required',
             'instructor_id' => 'required',
+            'admin_id' => 'required',
             'interval_id' => 'required',
             'levels' => 'required|array',
         ];
@@ -115,10 +122,9 @@ class Form extends Component
 
     public function roundIdUpdated($roundId)
     {
-        $round = Round::with('serviceFee.timeframe.intervals')->find($roundId);
+        $round = Round::with('timeframe.intervals')->find($roundId);
 
-        $this->intervals = $round->serviceFee->timeframe->intervals->pluck('name', 'id')->toArray();
-        // $this->stageLevels = $round->serviceFee->trainingService->course->stageLevels->pluck('name', 'id');
+        $this->intervals = $round->timeframe->intervals->pluck('name', 'id')->toArray();
     }
 
     public function updatedBranchId($val)
@@ -145,7 +151,9 @@ class Form extends Component
         $instructorsQuery = Employee::query();
 
         if ($this->branch_id) {
-            $instructorsQuery->where('branch_id', $this->branch_id);
+            $instructorsQuery->whereHas('branches', function (Builder $query) {
+                $query->where('id', $this->branch_id);
+            });
         }
         if ($this->round_id && $this->interval_id && $reset) {
             $roundGroupInstructors = Group::where(['round_id' => $this->round_id, 'interval_id' => $this->interval_id])
@@ -154,7 +162,7 @@ class Form extends Component
             $instructorsQuery->whereNotIn('id', $roundGroupInstructors);
         }
 
-        $this->instructors = $instructorsQuery->get()->pluck('name', 'id');
+        $this->instructors = $instructorsQuery->get()->pluck('name', 'id')->toArray();
 
         if ($reset) {
             $this->instructor_id = '';

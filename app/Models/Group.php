@@ -48,6 +48,7 @@ class Group extends Model
         'branch_id',
         'room_id',
         'instructor_id',
+        'admin_id',
         'interval_id'
     ];
 
@@ -105,6 +106,14 @@ class Group extends Model
     public function instructor()
     {
         return $this->belongsTo(\App\Models\Employee::class, 'instructor_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function admin()
+    {
+        return $this->belongsTo(\App\Models\Employee::class, 'admin_id');
     }
 
     /**

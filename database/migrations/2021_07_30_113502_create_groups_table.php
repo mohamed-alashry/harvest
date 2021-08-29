@@ -25,6 +25,7 @@ class CreateGroupsTable extends Migration
             $table->integer('room_id')->unsigned();
             $table->integer('instructor_id')->unsigned();
             $table->integer('interval_id')->unsigned();
+            $table->integer('admin_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
@@ -36,6 +37,7 @@ class CreateGroupsTable extends Migration
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->foreign('instructor_id')->references('id')->on('employees');
             $table->foreign('interval_id')->references('id')->on('intervals');
+            $table->foreign('admin_id')->references('id')->on('employees');
         });
 
         Schema::create('group_levels', function (Blueprint $table) {
