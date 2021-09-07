@@ -135,9 +135,6 @@
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
                                             <td>
-                                                {{-- <button wire:click="toCustomer({{ $lead->id }})"
-                                                    class="btn btn-success"><i class="fa fa-user"></i></button> --}}
-
                                                 <a class="btn btn-success"
                                                     href="{{ route('admin.leadPayments.create', ['customer' => $lead->id, 'convert' => 'true']) }}"><i
                                                         class="fa fa-money fa-lg"></i></a>

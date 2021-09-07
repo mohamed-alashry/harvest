@@ -8,6 +8,10 @@
                         <i class="fa fa-align-justify"></i>
                         Customers
                         <div class="pull-right">
+                            @can('leads leadsAssign')
+                                <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
+                                        class="fa fa-check"></i></button>
+                            @endcan
                             <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
                                     class="fa fa-filter"></i></button>
                             @can('customers create')
@@ -17,6 +21,27 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-sm-1">
+                                {!! Form::select(null, [10 => 10, 20 => 20, 50 => 50, 100 => 100], null, ['wire:model' => 'per_page', 'class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        @if ($show_assign)
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $agents, null, ['wire:model' => 'assigned_employee', 'class' => 'form-control', 'placeholder' => 'Select Agent...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-1">
+                                    <button wire:click="submitAssign()" class="btn btn-success btn-block"
+                                        title="assign"><i class="fa fa-check"></i></button>
+                                </div>
+                                <div class="form-group col-sm-1">
+                                    <button wire:click="selectShownLeads()" class="btn btn-warning"
+                                        title="assign">Select All</button>
+                                </div>
+                            </div>
+                        @endif
                         @if ($show_filter)
                             <div class="row">
                                 <div class="form-group col-sm-4">
@@ -56,6 +81,20 @@
                                 </div>
 
                                 <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="case_from" data-date-orientation="bottom"
+                                        placeholder="Follow Up Date From" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <x-date-picker wire:model="case_to" data-date-orientation="bottom"
+                                        placeholder="Follow Up Date To" />
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, config('data.feedback'), null, ['wire:model' => 'feedback', 'class' => 'form-control', 'placeholder' => 'Select Feedback...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
                                     <x-date-picker wire:model="registration_from" data-date-orientation="bottom"
                                         placeholder="Registration Date From" />
                                 </div>
@@ -71,6 +110,9 @@
                             <table class="table table-striped" id="leads-table">
                                 <thead>
                                     <tr>
+                                        @if ($show_assign)
+                                            <th>Assign</th>
+                                        @endif
                                         <th>Registration At</th>
                                         <th>Name</th>
                                         <th>Mobile</th>
@@ -86,6 +128,9 @@
                                 <tbody>
                                     @foreach ($leads as $lead)
                                         <tr>
+                                            @if ($show_assign)
+                                                <td>{!! Form::checkbox(null, $lead->id, null, ['wire:model' => 'assign_leads.' . $loop->index]) !!}</td>
+                                            @endif
                                             <td>{{ $lead->created_at }}</td>
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>

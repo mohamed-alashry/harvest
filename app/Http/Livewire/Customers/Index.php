@@ -23,16 +23,23 @@ class Index extends Component
     public $leadSources,
         $mobile_1,
         $name,
+        $case_from,
+        $case_to,
         $registration_from,
         $registration_to,
-        $per_page = 10,
-        $employeeBranches,
         $knowChannels,
         $services,
         $offers,
+        $feedback,
+        $per_page = 10,
         $branches,
+        $employeeBranches,
         $agents,
         $show_filter = false,
+        $show_assign = false,
+        $shown_leads = [],
+        $assign_leads = [],
+        $assigned_employee,
         $lead_source,
         $know_channel,
         $time,
@@ -58,6 +65,30 @@ class Index extends Component
     public function toggleFilter()
     {
         $this->show_filter = !$this->show_filter;
+    }
+
+    public function toggleAssign()
+    {
+        $this->show_assign = !$this->show_assign;
+    }
+
+    public function selectShownLeads()
+    {
+        $this->assign_leads = $this->shown_leads;
+    }
+
+    public function submitAssign()
+    {
+        $assignLeads = array_filter($this->assign_leads);
+        if (!$this->assigned_employee) {
+            Flash::error('Assigned Employee is required.');
+        } elseif (count($assignLeads) > 0) {
+            Lead::whereIn('id', $assignLeads)->update(['assigned_employee_id' => $this->assigned_employee]);
+
+            $this->show_assign = false;
+            $this->assign_leads = [];
+            $this->assigned_employee = null;
+        }
     }
 
     public function render()
@@ -95,11 +126,23 @@ class Index extends Component
         if ($this->agent) {
             $leadsQuery->where('assigned_employee_id', $this->agent);
         }
+        if ($this->feedback || ($this->case_from && $this->case_to)) {
+            $leadsQuery->whereHas('cases', function (Builder $query) {
+                if ($this->case_from && $this->case_to) {
+                    $query->whereBetween('date', [$this->case_from, $this->case_to]);
+                }
+                if ($this->feedback) {
+                    $query->where('feedback', $this->feedback);
+                }
+            });
+        }
         if ($this->registration_from && $this->registration_to) {
             $leadsQuery->whereBetween('created_at', [$this->registration_from, $this->registration_to]);
         }
 
-        $leads = $leadsQuery->paginate(10);
+        $leads = $leadsQuery->paginate($this->per_page);
+
+        $this->shown_leads = $leads->pluck('id')->toArray();
 
         return view('livewire.customers.index', compact('leads'));
     }

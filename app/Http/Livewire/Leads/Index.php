@@ -91,15 +91,6 @@ class Index extends Component
         }
     }
 
-    public function toCustomer($id)
-    {
-        $lead = Lead::find($id);
-
-        $lead->update(['type' => 2]);
-
-        Flash::success('Converted To Customer successfully.');
-    }
-
     public function render()
     {
         $leadsQuery = Lead::withCount('cases')->with(['cases' => function ($query) {
