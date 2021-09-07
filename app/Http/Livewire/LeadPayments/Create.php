@@ -10,6 +10,7 @@ use Laracasts\Flash\Flash;
 use App\Models\LeadPayment;
 use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
+use App\Models\PlacementApplicant;
 
 class Create extends Component
 {
@@ -179,6 +180,7 @@ class Create extends Component
 
         if ($this->convertToCustomer) {
             $this->lead->update(['type' => 2]);
+            PlacementApplicant::where('mobile', $this->lead->mobile_1)->delete();
         }
 
         Flash::success('Lead Payment saved successfully.');
