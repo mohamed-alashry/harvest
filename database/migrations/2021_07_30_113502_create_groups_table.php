@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->unsignedInteger('parent_id')->nullable();
             $table->unsignedInteger('track_id');
             $table->unsignedInteger('course_id');
             $table->integer('round_id')->unsigned();

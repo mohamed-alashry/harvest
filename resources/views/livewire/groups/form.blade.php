@@ -15,13 +15,13 @@
                             <!-- Title Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('title', 'Title:') !!}
-                                {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'title', 'class' => 'form-control']) !!}
+                                {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'title', 'disabled' => !!$parent_id, 'class' => 'form-control']) !!}
                             </div>
 
                             <!-- Discipline Id Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('discipline_id', 'Discipline:') !!}
-                                {!! Form::select(null, $disciplines, null, ['wire:model' => 'discipline_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::select(null, $disciplines, null, ['wire:model' => 'discipline_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Round Id Field -->
@@ -33,13 +33,13 @@
                             <!-- Interval Id Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('interval_id', 'Interval:') !!}
-                                {!! Form::select(null, $intervals, null, ['wire:model' => 'interval_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::select(null, $intervals, null, ['wire:model' => 'interval_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Branch Id Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('branch_id', 'Branch:') !!}
-                                {!! Form::select(null, $branches, null, ['wire:model' => 'branch_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::select(null, $branches, null, ['wire:model' => 'branch_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Instructor Id Field -->
@@ -51,7 +51,7 @@
                             <!-- Room Id Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('room_id', 'Room:') !!}
-                                {!! Form::select(null, $rooms, null, ['wire:model' => 'room_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::select(null, $rooms, null, ['wire:model' => 'room_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Admin Id Field -->
@@ -63,13 +63,13 @@
                             <!-- Track Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('track', 'Track:') !!}
-                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
+                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
                             </div>
 
                             <!-- Sub Track Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('course', 'Sub Track:') !!}
-                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
+                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'disabled' => !!$parent_id, 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
                             </div>
 
                             <!-- Levels Field -->

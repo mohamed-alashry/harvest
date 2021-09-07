@@ -40,6 +40,7 @@ class Group extends Model
 
     public $fillable = [
         'title',
+        'parent_id',
         'track_id',
         'course_id',
         'training_service_id',
@@ -51,6 +52,22 @@ class Group extends Model
         'admin_id',
         'interval_id'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function parent()
+    {
+        return $this->belongsTo(\App\Models\Group::class, 'parent_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function children()
+    {
+        return $this->belongsTo(\App\Models\Group::class, 'parent_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -10,6 +10,7 @@ use App\Models\Branch;
 use Livewire\Component;
 use App\Models\Employee;
 use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
 use App\Models\DisciplineCategory;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -17,6 +18,7 @@ class Form extends Component
 {
     public $group,
         $title,
+        $parent_id,
         $track_id,
         $course_id,
         $round_id,
@@ -38,11 +40,16 @@ class Form extends Component
         $intervals,
         $stageLevels;
 
-    public function mount($group = null)
+    public function mount(Request $request, $group = null)
     {
+        if ($request->filled('parent')) {
+            $this->parent_id = $request->get('parent');
+            $group = Group::find($request->get('parent'));
+        }
         if ($group) {
             $this->fill([
                 'title' => $group->title,
+                'parent_id' => $group->parent_id,
                 'track_id' => $group->track_id,
                 'course_id' => $group->course_id,
                 'round_id' => $group->round_id,
@@ -177,6 +184,9 @@ class Form extends Component
         if ($group) {
             $group->update($data);
         } else {
+            if ($this->parent_id) {
+                $data['parent_id'] = $this->parent_id;
+            }
             $group = Group::create($data);
         }
 
