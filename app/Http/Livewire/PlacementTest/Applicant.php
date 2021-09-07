@@ -2,12 +2,18 @@
 
 namespace App\Http\Livewire\PlacementTest;
 
+use App\Models\Branch;
 use App\Models\PlacementApplicant;
 use Livewire\Component;
 
 class Applicant extends Component
 {
-    public $name, $email, $mobile, $gender, $job, $university;
+    public $name, $email, $mobile, $branch_id, $gender, $job, $university, $branches;
+
+    public function mount()
+    {
+        $this->branches = Branch::pluck('name', 'id')->toArray();
+    }
 
     protected function rules()
     {
@@ -15,6 +21,7 @@ class Applicant extends Component
             'name' => 'required',
             'email' => 'required|email',
             'mobile' => 'required',
+            'branch_id' => 'required',
             'gender' => 'required',
             'job' => 'nullable',
             'university' => 'nullable',

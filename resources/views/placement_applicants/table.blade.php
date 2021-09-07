@@ -6,7 +6,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>Gender</th>
+                <th>Branch</th>
                 <th>Level</th>
                 <th>Status</th>
                 <th>Created At</th>
@@ -20,7 +20,7 @@
                     <td>{{ $placementApplicant->name }}</td>
                     <td>{{ $placementApplicant->email }}</td>
                     <td>{{ $placementApplicant->mobile }}</td>
-                    <td>{{ $placementApplicant->gender }}</td>
+                    <td>{{ $placementApplicant->branch->name ?? '' }}</td>
                     <td>{{ $placementApplicant->level }}</td>
                     <td>{{ $placementApplicant->status }}</td>
                     <td>{{ $placementApplicant->created_at }}</td>

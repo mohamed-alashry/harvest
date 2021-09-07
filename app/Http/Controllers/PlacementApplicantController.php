@@ -24,7 +24,10 @@ class PlacementApplicantController extends AppBaseController
     public function index(Request $request)
     {
         /** @var PlacementApplicant $placementApplicants */
-        $placementApplicants = PlacementApplicant::all();
+
+        $employeeBranches = auth()->user()->branches->pluck('id')->toArray();
+
+        $placementApplicants = PlacementApplicant::whereIn('branch_id', $employeeBranches)->get();
 
         return view('placement_applicants.index')
             ->with('placementApplicants', $placementApplicants);

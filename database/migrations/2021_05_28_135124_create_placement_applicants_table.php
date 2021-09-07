@@ -19,6 +19,7 @@ class CreatePlacementApplicantsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('mobile');
+            $table->unsignedInteger('branch_id');
             $table->string('gender')->comment('male, female');
             $table->string('job')->nullable();
             $table->string('university')->nullable();
@@ -32,6 +33,8 @@ class CreatePlacementApplicantsTable extends Migration
             $table->text('notes')->nullable();
             $table->string('status')->default('new')->comment('new, done');
             $table->timestamps();
+
+            $table->foreign('branch_id')->references('id')->on('branches');
         });
     }
 

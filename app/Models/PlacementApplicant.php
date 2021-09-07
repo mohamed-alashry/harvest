@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 
@@ -40,6 +41,7 @@ class PlacementApplicant extends Model
         'name',
         'email',
         'mobile',
+        'branch_id',
         'gender',
         'job',
         'university',
@@ -92,6 +94,16 @@ class PlacementApplicant extends Model
         'speaking_score' => 'numeric|between:0,99.5',
         'level' => 'integer'
     ];
+
+    /**
+     * Get the branch that owns the PlacementApplicant
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function branch(): BelongsTo
+    {
+        return $this->belongsTo(Branch::class);
+    }
 
     public function answers()
     {

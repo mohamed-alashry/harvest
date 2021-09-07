@@ -26,6 +26,13 @@
 </div>
 
 
+<!-- Branch Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('branch', 'Branch:') !!}
+    <p>{{ $placementApplicant->branch->name ?? '' }}</p>
+</div>
+
+
 <!-- Gender Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('gender', 'Gender:') !!}

@@ -34,6 +34,17 @@
             @enderror
             <br /><br />
 
+            <select wire:model="branch_id" class="arab" style='width:101%; height: 30px;' required>
+                <option value=""> اختر الفرع </option>
+                @foreach ($branches as $key => $value)
+                    <option value="{{ $key }}">{{ $value }}</option>
+                @endforeach
+            </select>
+            @error('branch_id')
+                <span style="color: red; font-size: 20px;">{{ $message }}</span>
+            @enderror
+            <br /><br />
+
             <div>
                 الجنس:
                 <label>

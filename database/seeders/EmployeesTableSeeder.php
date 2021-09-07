@@ -14,7 +14,7 @@ class EmployeesTableSeeder extends Seeder
      */
     public function run()
     {
-        Employee::create([
+        $employee = Employee::create([
             'first_name' => 'user',
             'last_name' => 'users',
             'mobile' => '01236547890',
@@ -23,5 +23,7 @@ class EmployeesTableSeeder extends Seeder
             'department_id' => 1,
             'job_id' => 1,
         ]);
+
+        $employee->branches()->sync([1]);
     }
 }
