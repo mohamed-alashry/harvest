@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\PlacementTest;
 
 use App\Models\Branch;
+use App\Models\Lead;
 use App\Models\PlacementApplicant;
 use Livewire\Component;
 
@@ -45,6 +46,17 @@ class Applicant extends Component
         $data = $this->validate();
 
         $applicant = PlacementApplicant::create($data);
+
+        Lead::firstOrCreate([
+            'mobile_1' => $data['mobile']
+        ], [
+            'name' => ['en' => $data['name'], 'ar' => $data['name']],
+            'gender' => $data['gender'],
+            'mobile_1' => $data['mobile'],
+            'email' => $data['email'],
+            'lead_source_id' => 1,
+            'branch_id' => $data['branch_id'],
+        ]);
 
         $this->emitUp('registered', $applicant->id);
     }

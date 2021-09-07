@@ -23,13 +23,13 @@ class CreateLeadsTable extends Migration
             $table->string('mobile_1');
             $table->string('mobile_2')->nullable();
             $table->string('email')->nullable();
-            $table->string('preferred_time');
+            $table->string('preferred_time')->nullable();
             $table->integer('lead_source_id')->unsigned();
-            $table->integer('know_channel_id')->unsigned();
+            $table->integer('know_channel_id')->unsigned()->nullable();
             $table->integer('offer_id')->unsigned()->nullable();
             $table->integer('branch_id')->unsigned();
-            $table->integer('training_service_id')->unsigned();
-            $table->integer('timeframe_id')->unsigned();
+            $table->integer('training_service_id')->unsigned()->nullable();
+            $table->integer('timeframe_id')->unsigned()->nullable();
             $table->tinyInteger('pt_level')->nullable();
             $table->text('notes')->nullable();
             $table->unsignedInteger('assigned_employee_id')->nullable();
