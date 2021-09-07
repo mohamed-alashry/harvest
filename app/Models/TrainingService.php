@@ -65,4 +65,12 @@ class TrainingService extends Model
     {
         return $this->belongsTo(Track::class, 'course_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function levels()
+    {
+        return $this->belongsToMany(\App\Models\StageLevel::class, 'training_service_levels', 'training_service_id', 'level_id');
+    }
 }

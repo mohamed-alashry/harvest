@@ -11,6 +11,12 @@
         <p>{{ $trainingService->title }}</p>
     </div>
 
+    <!-- Levels Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('levels', 'Levels:') !!}
+        <p>{{ implode(', ', $trainingService->levels->pluck('name')->toArray()) }}</p>
+    </div>
+
     <!-- Created At Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('created_at', 'Created At:') !!}

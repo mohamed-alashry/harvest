@@ -12,19 +12,6 @@
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
 
                         <div class="row">
-                            <!-- Track Field -->
-                            <div class="form-group col-sm-6">
-                                {!! Form::label('track', 'Track:') !!}
-                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
-                            </div>
-
-                            <!-- Sub Track Field -->
-                            <div class="form-group col-sm-6">
-                                {!! Form::label('course', 'Sub Track:') !!}
-                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
-                                levels: {{ $levels }}
-                            </div>
-
                             <!-- Title Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('title', 'Title:') !!}
@@ -35,6 +22,24 @@
                             <div class="form-group col-sm-6">
                                 {!! Form::label('pattern', 'Pattern:') !!}
                                 {!! Form::select(null, ['AM' => 'Morning (AM)', 'PM' => 'Evening (PM)', 'MIX' => 'AM/PM (MIX)'], null, ['wire:model' => 'pattern', 'class' => 'form-control', 'placeholder' => 'Select Pattern...']) !!}
+                            </div>
+
+                            <!-- Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('track', 'Track:') !!}
+                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
+                            </div>
+
+                            <!-- Sub Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('course', 'Sub Track:') !!}
+                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
+                            </div>
+
+                            <!-- Levels Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('levels', 'Levels:') !!}
+                                {!! Form::select(null, $stageLevels, null, ['wire:model' => 'levels', 'class' => 'form-control', 'multiple' => true, 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Submit Field -->

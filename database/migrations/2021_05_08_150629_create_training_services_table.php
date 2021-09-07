@@ -26,6 +26,15 @@ class CreateTrainingServicesTable extends Migration
             $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('tracks')->onDelete('cascade');
         });
+
+        Schema::create('training_service_levels', function (Blueprint $table) {
+            $table->unsignedInteger('training_service_id');
+            $table->unsignedInteger('level_id');
+
+            $table->foreign('training_service_id')->references('id')->on('training_services')->onDelete('cascade');
+
+            $table->primary(['training_service_id', 'level_id']);
+        });
     }
 
     /**

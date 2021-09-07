@@ -67,7 +67,7 @@ class TrainingServiceController extends AppBaseController
     public function show($id)
     {
         /** @var TrainingService $trainingService */
-        $trainingService = TrainingService::find($id);
+        $trainingService = TrainingService::with('levels')->find($id);
 
         if (empty($trainingService)) {
             Flash::error('TrainingService not found');

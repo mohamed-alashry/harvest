@@ -16,7 +16,8 @@ class Form extends Component
         $pattern,
         $levels,
         $tracks,
-        $courses = [];
+        $courses = [],
+        $stageLevels = [];
 
     public function mount($trainingService = null)
     {
@@ -26,8 +27,9 @@ class Form extends Component
                 'course_id' => $trainingService->course_id,
                 'title' => $trainingService->title,
                 'pattern' => $trainingService->pattern,
-                'levels' => $trainingService->course->levels,
+                'levels' => $trainingService->levels->pluck('id')->toArray(),
                 'courses' => Track::where('parent_id', $trainingService->track_id)->pluck('title', 'id'),
+                'stageLevels' => Track::find($trainingService->course_id)->stageLevels->pluck('name', 'id')->toArray(),
             ]);
         }
         $this->tracks = Track::whereNull('parent_id')->pluck('title', 'id');
@@ -40,6 +42,7 @@ class Form extends Component
             'course_id' => 'required',
             'title' => 'required',
             'pattern' => 'required',
+            'levels' => 'required|array',
         ];
 
         return $rules;
@@ -54,12 +57,13 @@ class Form extends Component
     {
         $this->courses = Track::where('parent_id', $value)->pluck('title', 'id');
         $this->course_id = '';
-        $this->levels = '';
+        $this->levels = [];
+        $this->stageLevels = [];
     }
 
     public function updatedCourseId($value)
     {
-        $this->levels = Track::find($value)->levels;
+        $this->stageLevels = Track::find($value)->stageLevels->pluck('name', 'id')->toArray();
     }
 
     public function save()
@@ -70,8 +74,10 @@ class Form extends Component
         if ($trainingService) {
             $trainingService->update($data);
         } else {
-            TrainingService::create($data);
+            $trainingService = TrainingService::create($data);
         }
+
+        $trainingService->levels()->sync($data['levels']);
 
         Flash::success('TrainingService saved successfully.');
 
