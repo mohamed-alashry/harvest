@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreatePlacementApplicantRequest;
 use App\Http\Requests\UpdatePlacementApplicantRequest;
+use App\Models\Lead;
 
 class PlacementApplicantController extends AppBaseController
 {
@@ -125,6 +126,8 @@ class PlacementApplicantController extends AppBaseController
 
         $placementApplicant->fill($request->all());
         $placementApplicant->save();
+
+        Lead::where('mobile_1', $placementApplicant->mobile)->update(['pt_level' => $placementApplicant->level]);
 
         Flash::success('Placement Applicant updated successfully.');
 
