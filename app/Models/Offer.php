@@ -31,8 +31,35 @@ class Offer extends Model
         'fees',
         'start_date',
         'end_date',
+        'track_id',
+        'course_id',
+        'timeframe_id',
         'payment_plan_id',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function track()
+    {
+        return $this->belongsTo(\App\Models\Track::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function course()
+    {
+        return $this->belongsTo(\App\Models\Track::class, 'course_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function timeframe()
+    {
+        return $this->belongsTo(\App\Models\Timeframe::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -20,9 +20,16 @@ class CreateOffersTable extends Migration
             $table->integer('fees');
             $table->date('start_date');
             $table->date('end_date');
+            $table->unsignedInteger('track_id');
+            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('timeframe_id');
             $table->integer('payment_plan_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('tracks')->onDelete('cascade');
+            $table->foreign('timeframe_id')->references('id')->on('timeframes')->onDelete('cascade');
             $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
         });
 

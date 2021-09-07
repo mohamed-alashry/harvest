@@ -44,6 +44,7 @@ class CreateTrainingServicesTable extends Migration
      */
     public function down()
     {
+        Schema::drop('training_service_levels');
         Schema::drop('training_services');
     }
 }

@@ -30,10 +30,28 @@
                                 {!! Form::select(null, $items_data, null, ['wire:model' => 'items', 'multiple' => true, 'class' => 'form-control']) !!}
                             </div>
 
+                            <!-- Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('track', 'Track:') !!}
+                                {!! Form::select(null, $tracks, null, ['wire:model' => 'track_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
+                            </div>
+
+                            <!-- Sub Track Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('course', 'Sub Track:') !!}
+                                {!! Form::select(null, $courses, null, ['wire:model' => 'course_id', 'class' => 'form-control', 'placeholder' => 'Select course...']) !!}
+                            </div>
+
                             <!-- Service Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('services', 'Service:') !!}
                                 {!! Form::select(null, $services_data, null, ['wire:model' => 'services', 'multiple' => true, 'class' => 'form-control']) !!}
+                            </div>
+
+                            <!-- Time Frame Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('timeframe_id', 'Track Frame:') !!}
+                                {!! Form::select(null, $timeframes, null, ['wire:model' => 'timeframe_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
                             </div>
 
                             <!-- Start Date Field -->
