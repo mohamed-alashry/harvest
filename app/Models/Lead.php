@@ -62,6 +62,8 @@ class Lead extends Model
         'offer_id',
         'branch_id',
         'training_service_id',
+        'timeframe_id',
+        'pt_level',
         'notes',
         'assigned_employee_id',
         // 'nationality',
@@ -123,9 +125,11 @@ class Lead extends Model
         'lead_source_id' => 'required',
         'know_channel_id' => 'required',
         'preferred_time' => 'required',
-        'offer_id' => 'required',
+        'offer_id' => 'nullable',
         'branch_id' => 'required',
-        'training_service_id' => 'required'
+        'training_service_id' => 'required',
+        'timeframe_id' => 'required',
+        'pt_level' => 'nullable',
     ];
 
     /**
@@ -176,6 +180,16 @@ class Lead extends Model
     public function training_service(): BelongsTo
     {
         return $this->belongsTo(TrainingService::class);
+    }
+
+    /**
+     * Get the training service that owns the Lead
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function timeframe(): BelongsTo
+    {
+        return $this->belongsTo(Timeframe::class);
     }
 
     /**

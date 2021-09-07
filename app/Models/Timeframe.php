@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -61,6 +62,16 @@ class Timeframe extends Model
      * @var array
      */
     public static $rules = [];
+
+    /**
+     * Get all of the leads for the Timeframe
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function leads(): HasMany
+    {
+        return $this->hasMany(Lead::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

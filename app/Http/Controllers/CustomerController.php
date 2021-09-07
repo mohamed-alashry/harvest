@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
+use App\Models\Lead;
+use App\Models\Offer;
+use App\Models\Branch;
+use App\Models\Employee;
+use App\Models\Timeframe;
+use App\Models\LeadSource;
+use App\Models\KnowChannel;
+use Illuminate\Http\Request;
+use App\Models\TrainingService;
 use App\Http\Requests\CreateLeadRequest;
 use App\Http\Requests\UpdateLeadRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Branch;
-use App\Models\Employee;
-use App\Models\KnowChannel;
-use App\Models\Lead;
-use App\Models\LeadSource;
-use App\Models\Offer;
-use App\Models\TrainingService;
-use Illuminate\Http\Request;
-use Flash;
-use Response;
 
 class CustomerController extends AppBaseController
 {
@@ -43,8 +44,9 @@ class CustomerController extends AppBaseController
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
         $employees = Employee::get()->pluck('name', 'id');
+        $timeframes = Timeframe::pluck('title', 'id');
 
-        return view('customers.create', compact('sources', 'channels', 'offers', 'branches', 'services', 'employees'));
+        return view('customers.create', compact('sources', 'channels', 'offers', 'branches', 'services', 'employees', 'timeframes'));
     }
 
     /**
@@ -109,8 +111,9 @@ class CustomerController extends AppBaseController
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
         $employees = Employee::get()->pluck('name', 'id');
+        $timeframes = Timeframe::pluck('title', 'id');
 
-        return view('customers.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services', 'employees'));
+        return view('customers.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services', 'employees', 'timeframes'));
     }
 
     /**

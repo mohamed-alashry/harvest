@@ -15,7 +15,7 @@ class LeadSourcesTableSeeder extends Seeder
     public function run()
     {
         LeadSource::create([
-            'name' => 'Youtube'
+            'name' => 'PT Leads'
         ]);
     }
 }

@@ -26,9 +26,11 @@ class CreateLeadsTable extends Migration
             $table->string('preferred_time');
             $table->integer('lead_source_id')->unsigned();
             $table->integer('know_channel_id')->unsigned();
-            $table->integer('offer_id')->unsigned();
+            $table->integer('offer_id')->unsigned()->nullable();
             $table->integer('branch_id')->unsigned();
             $table->integer('training_service_id')->unsigned();
+            $table->integer('timeframe_id')->unsigned();
+            $table->tinyInteger('pt_level')->nullable();
             $table->text('notes')->nullable();
             $table->unsignedInteger('assigned_employee_id')->nullable();
             // $table->string('nationality');
@@ -49,6 +51,7 @@ class CreateLeadsTable extends Migration
             $table->foreign('offer_id')->references('id')->on('offers');
             $table->foreign('branch_id')->references('id')->on('branches');
             $table->foreign('training_service_id')->references('id')->on('training_services');
+            $table->foreign('timeframe_id')->references('id')->on('timeframes');
             $table->foreign('assigned_employee_id')->references('id')->on('employees')->onDelete('set null');
         });
     }

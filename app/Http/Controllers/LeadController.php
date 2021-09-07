@@ -11,6 +11,7 @@ use App\Models\KnowChannel;
 use App\Models\Lead;
 use App\Models\LeadSource;
 use App\Models\Offer;
+use App\Models\Timeframe;
 use App\Models\TrainingService;
 use Illuminate\Http\Request;
 use Flash;
@@ -43,8 +44,9 @@ class LeadController extends AppBaseController
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
         $employees = Employee::get()->pluck('name', 'id');
+        $timeframes = Timeframe::pluck('title', 'id');
 
-        return view('leads.create', compact('sources', 'channels', 'offers', 'branches', 'services', 'employees'));
+        return view('leads.create', compact('sources', 'channels', 'offers', 'branches', 'services', 'employees', 'timeframes'));
     }
 
     /**
@@ -107,8 +109,9 @@ class LeadController extends AppBaseController
         $branches = Branch::pluck('name', 'id');
         $services = TrainingService::pluck('title', 'id');
         $employees = Employee::get()->pluck('name', 'id');
+        $timeframes = Timeframe::pluck('title', 'id');
 
-        return view('leads.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services', 'employees'));
+        return view('leads.edit', compact('lead', 'sources', 'channels', 'offers', 'branches', 'services', 'employees', 'timeframes'));
     }
 
     /**

@@ -71,6 +71,18 @@
         {!! Form::select('training_service_id', $services, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
+    <!-- Preferred Time Frame Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('timeframe_id', 'Preferred Time Frame:') !!}
+        {!! Form::select('timeframe_id', $timeframes, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
+
+    <!-- PT Level Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('pt_level', 'PT Level:') !!}
+        {!! Form::text('pt_level', null, ['class' => 'form-control']) !!}
+    </div>
+
     <!-- Notes Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('notes', 'Notes:') !!}
