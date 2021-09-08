@@ -140,7 +140,7 @@ class Index extends Component
             $leadsQuery->whereBetween('created_at', [$this->registration_from, $this->registration_to]);
         }
 
-        $leads = $leadsQuery->paginate($this->per_page);
+        $leads = $leadsQuery->latest()->paginate($this->per_page);
 
         $this->shown_leads = $leads->pluck('id')->toArray();
 

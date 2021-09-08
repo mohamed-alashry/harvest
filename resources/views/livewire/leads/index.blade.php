@@ -116,6 +116,7 @@
                                         <th>Registration At</th>
                                         <th>Name</th>
                                         <th>Mobile</th>
+                                        <th>Lead Source</th>
                                         <th>Assigned Employee</th>
                                         <th>Add Payment</th>
                                         <th>Follow Up</th>
@@ -133,6 +134,7 @@
                                             <td>{{ $lead->created_at }}</td>
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
+                                            <td>{{ $lead->lead_source->name }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
                                             <td>
                                                 <a class="btn btn-success"
