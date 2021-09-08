@@ -50,7 +50,7 @@
 
                             <!-- Time Frame Field -->
                             <div class="form-group col-sm-6">
-                                {!! Form::label('timeframe_id', 'Track Frame:') !!}
+                                {!! Form::label('timeframe_id', 'Time Frame:') !!}
                                 {!! Form::select(null, $timeframes, null, ['wire:model' => 'timeframe_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
                             </div>
 
