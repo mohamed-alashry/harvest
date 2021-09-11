@@ -52,7 +52,7 @@ class Timeframe extends Model
         'total_hours' => 'integer',
         'session_hours' => 'integer',
         'week_session' => 'integer',
-        'days' => 'integer',
+        'days' => 'string',
         'status' => 'integer'
     ];
 
@@ -62,6 +62,28 @@ class Timeframe extends Model
      * @var array
      */
     public static $rules = [];
+
+    /**
+     * Set the days
+     *
+     * @param  array  $value
+     * @return void
+     */
+    public function setDaysAttribute($value)
+    {
+        return $this->attributes['days'] = implode(',', $value);
+    }
+
+    /**
+     * Get the days
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDaysAttribute($value)
+    {
+        return explode(',', $value);
+    }
 
     /**
      * Get all of the leads for the Timeframe

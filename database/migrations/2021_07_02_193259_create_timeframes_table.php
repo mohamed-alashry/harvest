@@ -20,7 +20,7 @@ class CreateTimeframesTable extends Migration
             $table->integer('total_hours');
             $table->integer('session_hours');
             $table->integer('week_session');
-            $table->integer('days');
+            $table->string('days');
             $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
             $table->timestamps();
             $table->softDeletes();

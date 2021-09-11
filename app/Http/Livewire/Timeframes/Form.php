@@ -43,7 +43,7 @@ class Form extends Component
             'total_hours' => 'required|integer',
             'session_hours' => 'required|integer',
             'week_session' => 'required|integer',
-            'days' => 'required|integer',
+            'days' => 'required|array',
             'status' => 'required',
             'intervals' => 'required|array',
         ];

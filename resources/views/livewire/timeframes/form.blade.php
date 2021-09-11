@@ -45,7 +45,7 @@
                             <!-- Days Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('days', 'Days:') !!}
-                                {!! Form::select(null, config('system_variables.timeframes.days'), null, ['wire:model' => 'days', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                                {!! Form::select(null, config('system_variables.timeframes.days'), null, ['wire:model' => 'days', 'multiple' => true, 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
                             <!-- Status Field -->

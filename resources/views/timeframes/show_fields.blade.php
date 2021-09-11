@@ -36,7 +36,9 @@
 <!-- Days Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('days', 'Days:') !!}
-    <p>{{ $timeframe->days }}</p>
+    @foreach ($timeframe->days as $day)
+        <p>{{ config('system_variables.timeframes.days')[$day] }}</p>
+    @endforeach
 </div>
 
 
@@ -59,5 +61,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $timeframe->updated_at }}</p>
 </div>
-
-
