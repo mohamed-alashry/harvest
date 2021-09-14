@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Leads;
 
 use App\Models\Lead;
 use App\Models\Offer;
-use App\Models\Branch;
 use Livewire\Component;
 use App\Models\Employee;
 use App\Models\LeadSource;

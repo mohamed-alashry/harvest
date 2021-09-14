@@ -25,6 +25,11 @@ class CreateSubRoundRequest extends FormRequest
      */
     public function rules()
     {
-        return SubRound::$rules;
+        $rules = [
+            'subRounds' => 'required|array',
+            'subRounds.*.start_date' => 'required|unique:sub_rounds,start_date,NULL,id,round_id,' . $this->round_id,
+        ];
+
+        return $rules;
     }
 }

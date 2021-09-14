@@ -30,6 +30,25 @@
                                 {!! Form::select(null, $rounds, null, ['wire:model' => 'round_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
                             </div>
 
+                            <!-- Days Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('days', 'Days:') !!}
+                                {{-- {!! Form::select(null, $daysData, null, ['wire:model' => 'days', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!} --}}
+                                <select wire:model="days" class="form-control">
+                                    <option value="">Select Option...</option>
+                                    @foreach ($daysData as $day)
+                                        <option value="{{ $day }}">
+                                            {{ config('system_variables.timeframes.days')[$day] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Sub Round Id Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('sub_round_id', 'Sub Round:') !!}
+                                {!! Form::select(null, $subRounds, null, ['wire:model' => 'sub_round_id', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+                            </div>
+
                             <!-- Interval Id Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('interval_id', 'Interval:') !!}

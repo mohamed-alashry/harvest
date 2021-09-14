@@ -27,16 +27,6 @@ class SubRound extends Model
     ];
 
     /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'subRounds' => 'required|array',
-        'subRounds.*.start_date' => 'required|unique:sub_rounds,start_date',
-    ];
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function round()

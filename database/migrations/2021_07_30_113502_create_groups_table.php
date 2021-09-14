@@ -21,6 +21,8 @@ class CreateGroupsTable extends Migration
             $table->unsignedInteger('track_id');
             $table->unsignedInteger('course_id');
             $table->integer('round_id')->unsigned();
+            $table->integer('days')->unsigned();
+            $table->integer('sub_round_id')->unsigned();
             $table->integer('discipline_id')->unsigned();
             $table->integer('branch_id')->unsigned();
             $table->integer('room_id')->unsigned();
@@ -33,6 +35,7 @@ class CreateGroupsTable extends Migration
             $table->foreign('track_id')->references('id')->on('tracks');
             $table->foreign('course_id')->references('id')->on('tracks');
             $table->foreign('round_id')->references('id')->on('rounds');
+            $table->foreign('sub_round_id')->references('id')->on('sub_rounds');
             $table->foreign('discipline_id')->references('id')->on('discipline_categories');
             $table->foreign('branch_id')->references('id')->on('branches');
             $table->foreign('room_id')->references('id')->on('rooms');

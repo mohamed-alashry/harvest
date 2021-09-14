@@ -46,6 +46,8 @@ class Group extends Model
         'course_id',
         'training_service_id',
         'round_id',
+        'sub_round_id',
+        'days',
         'discipline_id',
         'branch_id',
         'room_id',

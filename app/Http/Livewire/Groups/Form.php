@@ -12,6 +12,7 @@ use App\Models\Employee;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Models\DisciplineCategory;
+use App\Models\SubRound;
 use Illuminate\Database\Eloquent\Builder;
 
 class Form extends Component
@@ -22,6 +23,8 @@ class Form extends Component
         $track_id,
         $course_id,
         $round_id,
+        $sub_round_id,
+        $days,
         $discipline_id,
         $branch_id,
         $room_id,
@@ -32,6 +35,8 @@ class Form extends Component
         $tracks,
         $courses = [],
         $rounds,
+        $subRounds = [],
+        $daysData = [],
         $disciplines,
         $branches,
         $rooms,
@@ -53,6 +58,8 @@ class Form extends Component
                 'track_id' => $group->track_id,
                 'course_id' => $group->course_id,
                 'round_id' => $group->round_id,
+                'sub_round_id' => $group->sub_round_id,
+                'days' => $group->days,
                 'discipline_id' => $group->discipline_id,
                 'branch_id' => $group->branch_id,
                 'room_id' => $group->room_id,
@@ -89,6 +96,8 @@ class Form extends Component
             'track_id' => 'required',
             'course_id' => 'required',
             'round_id' => 'required',
+            'sub_round_id' => 'required',
+            'days' => 'required',
             'discipline_id' => 'required',
             'branch_id' => 'required',
             'room_id' => 'required',
@@ -131,7 +140,16 @@ class Form extends Component
     {
         $round = Round::with('timeframe.intervals')->find($roundId);
 
+        $this->daysData = $round->timeframe->days;
         $this->intervals = $round->timeframe->intervals->pluck('name', 'id')->toArray();
+    }
+
+    public function updatedDays($day)
+    {
+        $this->subRounds = SubRound::where('days', $day)->where('round_id', $this->round_id)
+            ->whereDate('start_date', '>=', now())->pluck('start_date', 'id');
+
+        $this->sub_round_id = '';
     }
 
     public function updatedBranchId($val)
