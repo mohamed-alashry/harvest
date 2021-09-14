@@ -22,10 +22,10 @@ class GroupController extends AppBaseController
     public function index(Request $request)
     {
         /** @var Group $groups */
-        $groups = Group::all();
+        // $groups = Group::all();
 
-        return view('groups.index')
-            ->with('groups', $groups);
+        return view('groups.index');
+        // ->with('groups', $groups);
     }
 
     /**

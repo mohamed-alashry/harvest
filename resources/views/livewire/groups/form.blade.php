@@ -33,7 +33,6 @@
                             <!-- Days Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('days', 'Days:') !!}
-                                {{-- {!! Form::select(null, $daysData, null, ['wire:model' => 'days', 'class' => 'form-control', 'placeholder' => 'Select Option...']) !!} --}}
                                 <select wire:model="days" class="form-control">
                                     <option value="">Select Option...</option>
                                     @foreach ($daysData as $day)

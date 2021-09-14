@@ -43,7 +43,7 @@
                             @if (!$group->parent_id)
                                 @can('groups create')
                                     <a href="{{ route('admin.groups.create', ['parent' => $group->id]) }}"
-                                        class="btn btn-ghost-success"><i class="fa  fa-level-up"></i> upgrade</a>
+                                        class="btn btn-ghost-success"><i class="fa fa-level-up"></i> upgrade</a>
                                 @endcan
                             @endif
                         </div>
