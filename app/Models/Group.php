@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -147,5 +148,15 @@ class Group extends Model
     public function levels()
     {
         return $this->belongsToMany(\App\Models\StageLevel::class, 'group_levels', 'group_id', 'level_id');
+    }
+
+    /**
+     * Get all of the sessions for the Group
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(GroupSession::class, 'group_id');
     }
 }

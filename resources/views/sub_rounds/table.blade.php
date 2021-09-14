@@ -3,25 +3,29 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Days</th>
                 <th>Start Date</th>
-                <th>Action</th>
+                <th>End Date</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($subRounds as $subRound)
                 <tr>
                     <td>{{ $subRound->id }}</td>
+                    <td>{{ config('system_variables.timeframes.days')[$subRound->days] }}</td>
                     <td>{{ $subRound->start_date }}</td>
+                    <td>{{ $subRound->end_date }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.subRounds.destroy', $subRound->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
                             <a href="{{ route('admin.subRounds.show', [$subRound->id]) }}"
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
-                            @can('subRounds edit')
+                            {{-- @can('subRounds edit')
                                 <a href="{{ route('admin.subRounds.edit', [$subRound->id]) }}"
                                     class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                            @endcan
+                            @endcan --}}
 
                             @can('subRounds delete')
                                 {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}

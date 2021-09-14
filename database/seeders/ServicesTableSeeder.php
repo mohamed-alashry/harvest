@@ -50,10 +50,10 @@ class ServicesTableSeeder extends Seeder
 
         $timeframe = Timeframe::create([
             'title' => 'Friday Timeframe',
-            'total_hours' => 128,
+            'total_hours' => 12,
             'session_hours' => 4,
             'week_session' => 1,
-            'days' => 1,
+            'days' => [1],
         ]);
 
         $timeframe->intervals()->sync([$interval->id]);
@@ -93,6 +93,9 @@ class ServicesTableSeeder extends Seeder
             'fees' => 1000,
             'start_date' => '2021-12-01',
             'end_date' => '2021-12-31',
+            'track_id' => $track->id,
+            'course_id' => $course->id,
+            'timeframe_id' => $timeframe->id,
             'payment_plan_id' => 2,
         ]);
 

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -17,19 +17,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class SubRound extends Model
 {
-    use SoftDeletes;
-
-
     public $table = 'sub_rounds';
-
-
-    protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'round_id',
-        'start_date'
+        'days',
+        'start_date',
+        'end_date'
     ];
 
     /**
@@ -49,7 +43,7 @@ class SubRound extends Model
      * @var array
      */
     public static $rules = [
-        'start_date' => 'required'
+        'subRounds' => 'required|array'
     ];
 
     /**
@@ -58,5 +52,15 @@ class SubRound extends Model
     public function round()
     {
         return $this->belongsTo(\App\Models\Round::class);
+    }
+
+    /**
+     * Get all of the sessions for the SubRound
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(GroupSession::class, 'sub_round_id');
     }
 }

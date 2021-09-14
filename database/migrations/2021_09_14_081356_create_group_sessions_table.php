@@ -19,7 +19,7 @@ class CreateGroupSessionsTable extends Migration
             $table->integer('group_id')->unsigned()->nullable();
             $table->integer('sub_round_id')->unsigned();
             $table->date('date');
-            $table->integer('level');
+            $table->integer('level')->nullable();
             $table->timestamps();
 
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('set null');

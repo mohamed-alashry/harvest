@@ -17,9 +17,10 @@ class CreateSubRoundsTable extends Migration
         Schema::create('sub_rounds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('round_id')->unsigned();
+            $table->integer('days');
             $table->date('start_date');
+            $table->date('end_date')->nullable();
             $table->timestamps();
-            $table->softDeletes();
             $table->foreign('round_id')->references('id')->on('rounds');
         });
     }
