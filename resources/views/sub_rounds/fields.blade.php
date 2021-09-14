@@ -29,7 +29,12 @@
         );
 
         $daysOfWeekDisabled = implode(',', array_values($disabledDays));
-        // dd($daysName);
+
+        $lastDate = \App\Models\SubRound::where('days', $day)
+            ->latest('id')
+            ->first();
+
+        $minDate = $lastDate ? \Carbon\Carbon::parse($lastDate->end_date)->next($firstDay) : now();
     @endphp
 
     <!-- Days Field -->
@@ -49,8 +54,8 @@
         <script type="text/javascript">
             $('#{{ $dateID }}').datetimepicker({
                 format: 'YYYY-MM-DD',
-                // useCurrent: true,
                 daysOfWeekDisabled: [{{ $daysOfWeekDisabled }}],
+                minDate: "{{ $minDate }}",
                 icons: {
                     up: "icon-arrow-up-circle icons font-2xl",
                     down: "icon-arrow-down-circle icons font-2xl"

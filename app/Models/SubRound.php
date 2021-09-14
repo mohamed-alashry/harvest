@@ -27,23 +27,13 @@ class SubRound extends Model
     ];
 
     /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'round_id' => 'integer',
-        // 'start_date' => 'date'
-    ];
-
-    /**
      * Validation rules
      *
      * @var array
      */
     public static $rules = [
-        'subRounds' => 'required|array'
+        'subRounds' => 'required|array',
+        'subRounds.*.start_date' => 'required|unique:sub_rounds,start_date',
     ];
 
     /**

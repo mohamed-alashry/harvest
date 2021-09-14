@@ -66,9 +66,9 @@ class SubRoundController extends AppBaseController
 
         foreach ($input['subRounds'] as $subRoundData) {
             $n = 1;
-            while ($n <= 10) {
-                $startDate = Carbon::parse($subRoundData['start_date']);
+            $startDate = Carbon::parse($subRoundData['start_date']);
 
+            while ($n <= 2) {
                 $subRound = SubRound::create([
                     'round_id' => $input['round_id'],
                     'days' => $subRoundData['days'],
@@ -97,6 +97,8 @@ class SubRoundController extends AppBaseController
                 }
 
                 $subRound->update(['end_date' => $session->date]);
+
+                $startDate = $date->next($days[0]);
 
                 $n++;
             }
