@@ -29,6 +29,8 @@ class CreateGroupsTable extends Migration
             $table->integer('instructor_id')->unsigned();
             $table->integer('interval_id')->unsigned();
             $table->integer('admin_id')->unsigned();
+            $table->boolean('is_upgraded')->default(0);
+            $table->boolean('is_last')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

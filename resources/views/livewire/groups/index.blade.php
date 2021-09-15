@@ -53,13 +53,7 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{-- <select wire:model="to_sub_round" class="form-control">
-                                        <option value="">Select To...</option>
-                                        @foreach ($subRoundTo as $to)
-                                            <option value="{{ $to->id }}">{{ $to->start_date }}</option>
-                                        @endforeach
-                                    </select> --}}
-                                    <span>To: {{ $subRoundTo->start_date ?? '' }}</span>
+                                    <span>To: {{ $to_sub_round->start_date ?? '' }}</span>
                                 </div>
 
                                 <div class="form-group col-sm-6">

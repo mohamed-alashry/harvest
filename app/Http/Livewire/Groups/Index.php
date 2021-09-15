@@ -23,7 +23,6 @@ class Index extends Component
         $roundsData = [],
         $daysData = [],
         $subRoundFrom = [],
-        $subRoundTo,
         $timeframe_id,
         $round_id,
         $days,
@@ -34,6 +33,11 @@ class Index extends Component
     public function mount()
     {
         $this->timeframesData = Timeframe::pluck('title', 'id')->toArray();
+    }
+
+    public function toggleUpgrade()
+    {
+        $this->show_upgrade = !$this->show_upgrade;
     }
 
     public function updatedTimeframeId($val)
@@ -61,33 +65,28 @@ class Index extends Component
 
     public function updatedFromSubRound($val)
     {
-        $subRoundTo = $this->subRoundTo = SubRound::where('round_id', $this->round_id)->where('days', $this->days)->where('id', '>', $val)->first();
+        $this->to_sub_round = SubRound::where('round_id', $this->round_id)->where('days', $this->days)->where('id', '>', $val)->first();
 
-        $this->to_sub_round = $subRoundTo->id;
-        $this->selectedGroups = Group::where(['sub_round_id' => $val, 'round_id' => $this->round_id])->get();
-    }
-
-    public function toggleUpgrade()
-    {
-        $this->show_upgrade = !$this->show_upgrade;
+        $this->selectedGroups = Group::where([
+            'sub_round_id' => $val, 'is_upgraded' => 0, 'is_last' => 0
+        ])->with('course.stageLevels', 'levels')->get();
     }
 
     public function upgradeGroups()
     {
         if (count($this->selectedGroups) == 0) {
-            Flash::error('No Group Found.');
+            Flash::error('No Groups Found.');
+            return null;
+        }
+
+        if (!$this->to_sub_round) {
+            Flash::error('No Sub Round To Found.');
+            return null;
         }
 
         foreach ($this->selectedGroups as $group) {
-            $group->load('course.stageLevels', 'levels');
             $stageLevels = $group->course->stageLevels->pluck('id')->toArray();
             $levels = $group->levels->pluck('id')->toArray();
-
-            $upgradedGroup = $group->replicate()->fill([
-                'parent_id' => $group->id,
-                'sub_round_id' => $this->to_sub_round,
-            ]);
-            $upgradedGroup->save();
 
             $levelsCount = count($levels);
             $end = end($levels);
@@ -96,11 +95,41 @@ class Index extends Component
 
             $newLevels = [];
             for ($i = 1; $i <= $levelsCount; $i++) {
-                $newLevels[] = $stageLevels[$lastKey + $i];
+                $lastKey += $i;
+                if (isset($stageLevels[$lastKey])) {
+                    $newLevels[] = $stageLevels[$lastKey];
+                }
             }
 
+            $data = [
+                'parent_id' => $group->id,
+                'sub_round_id' => $this->to_sub_round->id,
+            ];
+
+            if (!isset($stageLevels[$lastKey + 1])) {
+                $data['is_last'] = 1;
+            }
+
+            $upgradedGroup = $group->replicate()->fill($data);
+            $upgradedGroup->save();
+
             $upgradedGroup->levels()->sync($newLevels);
+
+            $group->update(['is_upgraded' => 1]);
         }
+
+        $this->reset([
+            'show_upgrade',
+            'roundsData',
+            'daysData',
+            'subRoundFrom',
+            'timeframe_id',
+            'round_id',
+            'days',
+            'from_sub_round',
+            'to_sub_round',
+            'selectedGroups',
+        ]);
 
         Flash::success('Groups Upgraded.');
     }

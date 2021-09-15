@@ -53,7 +53,9 @@ class Group extends Model
         'room_id',
         'instructor_id',
         'admin_id',
-        'interval_id'
+        'interval_id',
+        'is_upgraded',
+        'is_last',
     ];
 
     /**
