@@ -19,10 +19,12 @@ class Index extends Component
 
     public $per_page = 10,
         $show_upgrade = false,
+        $disciplines,
         $timeframesData,
         $roundsData = [],
         $daysData = [],
         $subRoundFrom = [],
+        $discipline_id,
         $timeframe_id,
         $round_id,
         $days,
@@ -33,11 +35,17 @@ class Index extends Component
     public function mount()
     {
         $this->timeframesData = Timeframe::pluck('title', 'id')->toArray();
+        $this->disciplines = DisciplineCategory::pluck('name', 'id')->toArray();
     }
 
     public function toggleUpgrade()
     {
         $this->show_upgrade = !$this->show_upgrade;
+    }
+
+    public function updatedDisciplineId($val)
+    {
+        $this->selectGroups();
     }
 
     public function updatedTimeframeId($val)
@@ -67,9 +75,16 @@ class Index extends Component
     {
         $this->to_sub_round = SubRound::where('round_id', $this->round_id)->where('days', $this->days)->where('id', '>', $val)->first();
 
-        $this->selectedGroups = Group::where([
-            'sub_round_id' => $val, 'is_upgraded' => 0, 'is_last' => 0
-        ])->with('course.stageLevels', 'levels')->get();
+        $this->selectGroups();
+    }
+
+    public function selectGroups()
+    {
+        if ($this->from_sub_round && $this->discipline_id) {
+            $this->selectedGroups = Group::where([
+                'sub_round_id' => $this->from_sub_round, 'discipline_id' => $this->discipline_id, 'is_upgraded' => 0, 'is_last' => 0
+            ])->with('course.stageLevels', 'levels')->get();
+        }
     }
 
     public function upgradeGroups()

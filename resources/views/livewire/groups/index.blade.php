@@ -25,6 +25,10 @@
                         @if ($show_upgrade)
                             <div class="row">
                                 <div class="form-group col-sm-6">
+                                    {!! Form::select(null, $disciplines, null, ['wire:model' => 'discipline_id', 'class' => 'form-control', 'placeholder' => 'Select Discipline...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-6">
                                     {!! Form::select(null, $timeframesData, null, ['wire:model' => 'timeframe_id', 'class' => 'form-control', 'placeholder' => 'Select Time Frame...']) !!}
                                 </div>
 
