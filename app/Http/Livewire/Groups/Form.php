@@ -54,7 +54,7 @@ class Form extends Component
         if ($group) {
             $this->fill([
                 'title' => $group->title,
-                'parent_id' => $group->parent_id,
+                'parent_id' => !!$group->parent_id,
                 'track_id' => $group->track_id,
                 'course_id' => $group->course_id,
                 'round_id' => $group->round_id,
