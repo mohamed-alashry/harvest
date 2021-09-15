@@ -163,17 +163,60 @@ class SubRoundController extends AppBaseController
      */
     public function update($id, UpdateSubRoundRequest $request)
     {
-        /** @var SubRound $subRound */
-        $subRound = SubRound::find($id);
+        /** @var SubRound $oldSubRound */
+        $oldSubRound = SubRound::with('round.timeframe')->find($id);
 
-        if (empty($subRound)) {
+        if (empty($oldSubRound)) {
             Flash::error('Sub Round not found');
 
             return redirect(route('admin.subRounds.index'));
         }
 
-        $subRound->fill($request->all());
+        $oldSubRound->fill($request->all());
+        $oldSubRound->save();
+
+        $subRound = $oldSubRound->replicate();
+
+        SubRound::where(['round_id' => $oldSubRound->id, 'days' => $oldSubRound->days])->where('id', '>', $oldSubRound->id)->delete();
+
         $subRound->save();
+
+        $timeframe = $subRound->round->timeframe;
+        $total_hours = $timeframe->total_hours;
+        $session_hours = $timeframe->session_hours;
+        $session_count = ($total_hours / $session_hours) + 1;
+
+        $n = 1;
+        $startDate = Carbon::parse($subRound->start_date);
+
+        while ($n <= 10) {
+            $days = explode('/', config('system_variables.timeframes.days')[$subRound->days]);
+            $daysObj = new ArrayObject($days);
+            $daysIt = $daysObj->getIterator();
+
+            $date = $startDate;
+            for ($i = 0; $i < $session_count; $i++) {
+                if ($i) {
+                    if (!$daysIt->valid()) {
+                        $daysIt->rewind();
+                    }
+                    $date = $date->next($daysIt->current());
+                }
+
+                $session = GroupSession::create([
+                    'sub_round_id' => $subRound->id,
+                    'date' => $date,
+                ]);
+
+                $daysIt->next();
+            }
+
+            $subRound->update(['end_date' => $session->date]);
+
+            $startDate = $date->next($days[0]);
+
+            $n++;
+        }
 
         Flash::success('Sub Round updated successfully.');
 

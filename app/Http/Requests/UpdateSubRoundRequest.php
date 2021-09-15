@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\SubRound;
 
 class UpdateSubRoundRequest extends FormRequest
 {
@@ -25,8 +24,10 @@ class UpdateSubRoundRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = SubRound::$rules;
-        
+        $rules = [
+            'start_date' => 'required',
+        ];
+
         return $rules;
     }
 }

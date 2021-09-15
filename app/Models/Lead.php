@@ -129,7 +129,7 @@ class Lead extends Model
         'branch_id' => 'required',
         'training_service_id' => 'required',
         'timeframe_id' => 'required',
-        'pt_level' => 'nullable',
+        'pt_level' => 'nullable|numeric',
     ];
 
     /**
