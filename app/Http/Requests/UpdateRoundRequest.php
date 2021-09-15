@@ -26,7 +26,8 @@ class UpdateRoundRequest extends FormRequest
     public function rules()
     {
         $rules = Round::$rules;
-        
+        $rules['timeframe_id'] = '';
+
         return $rules;
     }
 }
