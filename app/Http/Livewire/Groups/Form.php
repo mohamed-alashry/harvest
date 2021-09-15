@@ -67,6 +67,7 @@ class Form extends Component
                 'admin_id' => $group->admin_id,
                 'interval_id' => $group->interval_id,
                 'levels' => $group->levels->pluck('id')->toArray(),
+                'subRounds' => SubRound::where(['round_id' => $group->round_id, 'days' => $group->days])->pluck('start_date', 'id')->toArray(),
                 'courses' => Track::where('parent_id', $group->track_id)->pluck('title', 'id')->toArray(),
                 'stageLevels' => Track::find($group->course_id)->stageLevels->pluck('name', 'id')->toArray(),
             ]);

@@ -44,6 +44,10 @@ class ServicesTableSeeder extends Seeder
             'name' => 'Level 2'
         ]);
 
+        $stage->levels()->create([
+            'name' => 'Level 3'
+        ]);
+
         $interval = Interval::create([
             'name' => '9-11 Fresh Morning',
             'time_from' => '09:00',
