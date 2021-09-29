@@ -12,6 +12,11 @@
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
 
                         <div class="row">
+                            <!-- Lead Level Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('paymentable_type', 'Lead Level:') !!}
+                                <p>{{ $lead->pt_level }}</p>
+                            </div>
                             <!-- Type Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('paymentable_type', 'Type:') !!}
