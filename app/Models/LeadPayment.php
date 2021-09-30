@@ -36,6 +36,7 @@ class LeadPayment extends Model
         'paymentable_type',
         'paymentable_id',
         'amount',
+        'discount',
         'payment_plan_id',
         'print_count',
     ];

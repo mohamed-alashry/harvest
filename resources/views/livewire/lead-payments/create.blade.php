@@ -12,11 +12,24 @@
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
 
                         <div class="row">
+                            <!-- Lead Name Field -->
+                            <div class="form-group col-sm-4">
+                                {!! Form::label('lead_name', 'Lead Name:') !!}
+                                <p>{{ $lead->name['en'] }}</p>
+                            </div>
+
+                            <!-- Lead Mobile Field -->
+                            <div class="form-group col-sm-4">
+                                {!! Form::label('mobile_1', 'Lead Mobile:') !!}
+                                <p>{{ $lead->mobile_1 }}</p>
+                            </div>
+
                             <!-- Lead Level Field -->
-                            <div class="form-group col-sm-6">
-                                {!! Form::label('paymentable_type', 'Lead Level:') !!}
+                            <div class="form-group col-sm-4">
+                                {!! Form::label('pt_level', 'Lead Level:') !!}
                                 <p>{{ $lead->pt_level }}</p>
                             </div>
+
                             <!-- Type Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('paymentable_type', 'Type:') !!}
@@ -35,24 +48,31 @@
                                 </div>
 
                                 <!-- Payment Plan Field -->
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-3">
                                     {!! Form::label('amount', 'Payment Plan:') !!}
-                                    {{ $service->payment_plan_id == 2 ? 'Cash' : 'Installment' }}
+                                    <p>{{ $service->payment_plan_id == 2 ? 'Cash' : 'Installment' }}</p>
                                 </div>
 
                                 <!-- Amount Field -->
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-3">
                                     {!! Form::label('amount', 'Amount:') !!}
-                                    {{ $paymentable_type == 'App\\Models\\ExtraItem' ? $service->price : $service->fees }}
+                                    <p>{{ $amount }}
+                                    </p>
                                 </div>
 
                                 @if ($service->payment_plan_id == 1)
                                     <!-- Deposit Field -->
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-3">
                                         {!! Form::label('amount', 'Deposit:') !!}
-                                        {{ $subPayments[0]['amount'] }}
+                                        <p>{{ $subPayments[0]['amount'] }}</p>
                                     </div>
                                 @endif
+
+                                <!-- Discount Field -->
+                                <div class="form-group col-sm-3">
+                                    {!! Form::label('discount', 'Discount:') !!}
+                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'discount', 'class' => 'form-control']) !!}
+                                </div>
 
                                 <!-- Payment Method Field -->
                                 <div class="form-group col-sm-6">
@@ -95,6 +115,51 @@
                                     @endforeach
                                 </div>
                             @endif
+
+                            <div class="col-sm-12">
+                                @if ($suggested_groups)
+                                    <div class="table-responsive-sm">
+                                        <table class="table table-striped" id="groups-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Branch</th>
+                                                    <th>Interval</th>
+                                                    <th>Levels</th>
+                                                    <th>Days</th>
+                                                    <th>Time Frame</th>
+                                                    <th>Room</th>
+                                                    <th>Start</th>
+                                                    <th>End</th>
+                                                    <th colspan="3">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($suggested_groups as $group)
+                                                    <tr>
+                                                        <td>{{ $group->id }}</td>
+                                                        <td>{{ $group->branch->name }}</td>
+                                                        <td>{{ $group->interval->name }}</td>
+                                                        <td>
+                                                            {{ implode(', ', $group->levels->pluck('name')->toArray()) }}
+                                                        </td>
+                                                        <td>
+                                                            {{ config('system_variables.timeframes.days')[$group->subRound->days] }}
+                                                        </td>
+                                                        <td>{{ $group->round->timeframe->title }}</td>
+                                                        <td>{{ $group->room->name }}</td>
+                                                        <td>{{ $group->subRound->start_date }}</td>
+                                                        <td>{{ $group->subRound->end_date }}</td>
+                                                        <td>
+                                                            {!! Form::radio(null, $group->id, null, ['wire:model' => 'group_id']) !!}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @endif
+                            </div>
 
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">

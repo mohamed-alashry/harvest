@@ -101,6 +101,14 @@ class Group extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function subRound()
+    {
+        return $this->belongsTo(\App\Models\SubRound::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function discipline()
     {
         return $this->belongsTo(\App\Models\DisciplineCategory::class, 'discipline_id');

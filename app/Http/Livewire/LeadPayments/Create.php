@@ -5,6 +5,7 @@ namespace App\Http\Livewire\LeadPayments;
 use App\Models\Offer;
 use Livewire\Component;
 use App\Models\ExtraItem;
+use App\Models\Group;
 use App\Models\ServiceFee;
 use Laracasts\Flash\Flash;
 use App\Models\LeadPayment;
@@ -18,11 +19,15 @@ class Create extends Component
     public $lead,
         $paymentable_type,
         $paymentable_id,
+        $amount,
+        $discount,
         $subPayments,
         $convertToCustomer = false,
         $service,
         $services = [],
-        $paymentMethods;
+        $paymentMethods,
+        $suggested_groups,
+        $group_id;
 
     public function mount(Request $request, $lead)
     {
@@ -34,14 +39,22 @@ class Create extends Component
 
     protected function rules()
     {
+        $payed = ($this->service && $this->service->payment_plan_id == 1) ? $this->subPayments[0]['amount'] : $this->amount;
+
         $rules = [
             'paymentable_type' => 'required',
             'paymentable_id' => 'required',
+            'amount' => 'required',
+            'discount' => 'nullable|integer|max:' . $payed,
             'subPayments' => 'required|array',
             'subPayments.0.amount' => 'required',
             'subPayments.0.payment_method_id' => 'required',
             'subPayments.0.reference_num' => 'required',
         ];
+
+        if ($this->paymentable_type != 'App\\Models\\ExtraItem') {
+            $rules['group_id'] = 'required';
+        }
 
         return $rules;
     }
@@ -94,6 +107,7 @@ class Create extends Component
 
                 $amount = $service->price;
                 $this->service = $service;
+
                 break;
 
             case 'App\\Models\\Offer':
@@ -101,6 +115,16 @@ class Create extends Component
 
                 $amount = $service->fees;
                 $this->service = $service;
+
+                $intervalsId = $service->intervals->pluck('id')->toArray();
+                $timeframesId = $service->timeframes->pluck('id')->toArray();
+
+                $this->suggested_groups = Group::whereHas('levels', function (Builder $query) {
+                    $query->where('id', '<=', $this->lead->pt_level);
+                })->whereHas('round.timeframe', function (Builder $query) use ($timeframesId) {
+                    $query->whereIn('id', $timeframesId);
+                })->whereIn('interval_id', $intervalsId)->get();
+
                 break;
 
             default:
@@ -108,10 +132,16 @@ class Create extends Component
 
                 $amount = $service->fees;
                 $this->service = $service;
+
+                $this->suggested_groups = Group::whereHas('levels', function (Builder $query) {
+                    $query->where('id', '<=', $this->lead->pt_level);
+                })->get();
+
                 break;
         }
 
         $this->subPayments = null;
+        $this->amount = $amount;
         $this->handleSubPayments($service, $amount);
     }
 
@@ -171,13 +201,12 @@ class Create extends Component
     public function save()
     {
         $data = $this->validate();
+        dd($data);
 
         $lead_id = $this->lead->id;
-        $paymentable_type = $this->paymentable_type;
         $service = $this->service;
 
         $data['lead_id'] = $lead_id;
-        $data['amount'] = $paymentable_type == 'App\\Models\\ExtraItem' ? $service->price : $service->fees;
         $data['payment_plan_id'] = $service->payment_plan_id;
         $payment = LeadPayment::create($data);
 
@@ -193,7 +222,7 @@ class Create extends Component
 
         Flash::success('Lead Payment saved successfully.');
 
-        redirect(route('admin.leadPayments.index', ['customer' => $lead_id]));
+        redirect(route('admin.leadPayments.show', $payment->id));
     }
 
     public function render()
