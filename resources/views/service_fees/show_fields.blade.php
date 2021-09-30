@@ -12,13 +12,6 @@
 </div>
 
 
-<!-- Timeframe Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('timeframe_id', 'Timeframe:') !!}
-    <p>{{ $serviceFee->timeframe->title }}</p>
-</div>
-
-
 <!-- Payment Plan Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('payment_plan_id', 'Payment Plan:') !!}

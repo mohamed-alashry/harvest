@@ -66,4 +66,12 @@ class Interval extends Model
         'sort' => 'required|integer',
         'status' => 'required'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function timeframes()
+    {
+        return $this->belongsToMany(\App\Models\Timeframe::class, 'interval_timeframe');
+    }
 }

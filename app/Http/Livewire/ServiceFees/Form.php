@@ -7,18 +7,15 @@ use Laracasts\Flash\Flash;
 use App\Models\ServiceFee;
 use App\Models\Installment;
 use App\Models\PaymentPlan;
-use App\Models\Timeframe;
 use App\Models\TrainingService;
 
 class Form extends Component
 {
     public $serviceFee,
         $services,
-        $timeframes,
         $paymentPlans,
         $training_service_id,
         $payment_plan_id,
-        $timeframe_id,
         $fees,
         $installment;
 
@@ -28,13 +25,11 @@ class Form extends Component
             $this->fill([
                 'training_service_id' => $serviceFee->training_service_id,
                 'payment_plan_id' => $serviceFee->payment_plan_id,
-                'timeframe_id' => $serviceFee->timeframe_id,
                 'fees' => $serviceFee->fees,
                 'installment' => $serviceFee->installment,
             ]);
         }
         $this->services = TrainingService::pluck('title', 'id');
-        $this->timeframes = Timeframe::pluck('title', 'id');
         $this->paymentPlans = PaymentPlan::where('status', 1)->pluck('title', 'id');
     }
 
@@ -43,7 +38,6 @@ class Form extends Component
         $rules = [
             'training_service_id' => 'required',
             'payment_plan_id' => 'required',
-            'timeframe_id' => 'required',
             'fees' => 'required|integer',
         ];
 

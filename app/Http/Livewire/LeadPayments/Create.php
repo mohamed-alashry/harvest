@@ -11,6 +11,7 @@ use App\Models\LeadPayment;
 use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
 use App\Models\PlacementApplicant;
+use Illuminate\Database\Eloquent\Builder;
 
 class Create extends Component
 {
@@ -69,11 +70,18 @@ class Create extends Component
                 break;
 
             case 'App\\Models\\Offer':
-                $this->services = Offer::pluck('title', 'id');
+                $branchesId = auth()->user()->branches->pluck('id')->toArray();
+                $this->services = Offer::whereHas('branches', function (Builder $query) use ($branchesId) {
+                    $query->whereIn('id', $branchesId);
+                })->whereHas('services.trainingService.levels', function (Builder $query) {
+                    $query->where('id', '<=', $this->lead->pt_level);
+                })->pluck('title', 'id');
                 break;
 
             default:
-                $this->services = ServiceFee::with('trainingService')->get()->pluck('trainingService.title', 'id');
+                $this->services = ServiceFee::whereHas('trainingService.levels', function (Builder $query) {
+                    $query->where('id', '<=', $this->lead->pt_level);
+                })->with('trainingService')->get()->pluck('trainingService.title', 'id');
                 break;
         }
     }

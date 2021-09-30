@@ -12,10 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version July 8, 2021, 8:38 pm UTC
  *
  * @property \App\Models\TrainingService $trainingService
- * @property \App\Models\Timeframe $timeframe
  * @property \App\Models\PaymentMethod $paymentMethod
  * @property integer $training_service_id
- * @property integer $timeframe_id
  * @property integer $payment_plan_id
  * @property number $fees
  */
@@ -33,7 +31,6 @@ class ServiceFee extends Model
 
     public $fillable = [
         'training_service_id',
-        'timeframe_id',
         'payment_plan_id',
         'fees'
     ];
@@ -46,7 +43,6 @@ class ServiceFee extends Model
     protected $casts = [
         'id' => 'integer',
         'training_service_id' => 'integer',
-        'timeframe_id' => 'integer',
         'payment_plan_id' => 'integer',
         'fees' => 'integer'
     ];
@@ -58,7 +54,6 @@ class ServiceFee extends Model
      */
     public static $rules = [
         'training_service_id' => 'required',
-        'timeframe_id' => 'required',
         'payment_plan_id' => 'required',
         'fees' => 'required'
     ];
@@ -69,14 +64,6 @@ class ServiceFee extends Model
     public function trainingService()
     {
         return $this->belongsTo(\App\Models\TrainingService::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function timeframe()
-    {
-        return $this->belongsTo(\App\Models\Timeframe::class);
     }
 
     /**

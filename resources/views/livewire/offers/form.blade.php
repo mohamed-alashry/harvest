@@ -48,10 +48,22 @@
                                 {!! Form::select(null, $services_data, null, ['wire:model' => 'services', 'multiple' => true, 'class' => 'form-control']) !!}
                             </div>
 
+                            <!-- Branch Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('branches', 'Branch:') !!}
+                                {!! Form::select(null, $branches_data, null, ['wire:model' => 'branches', 'multiple' => true, 'class' => 'form-control']) !!}
+                            </div>
+
                             <!-- Time Frame Field -->
                             <div class="form-group col-sm-6">
-                                {!! Form::label('timeframe_id', 'Time Frame:') !!}
-                                {!! Form::select(null, $timeframes, null, ['wire:model' => 'timeframe_id', 'class' => 'form-control', 'placeholder' => 'Select Track...']) !!}
+                                {!! Form::label('timeframes', 'Time Frame:') !!}
+                                {!! Form::select(null, $timeframes_data, null, ['wire:model' => 'timeframes', 'multiple' => true, 'class' => 'form-control']) !!}
+                            </div>
+
+                            <!-- Interval Field -->
+                            <div class="form-group col-sm-6">
+                                {!! Form::label('intervals', 'Interval:') !!}
+                                {!! Form::select(null, $intervals_data, null, ['wire:model' => 'intervals', 'multiple' => true, 'class' => 'form-control']) !!}
                             </div>
 
                             <!-- Start Date Field -->

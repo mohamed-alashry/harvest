@@ -12,6 +12,7 @@ use App\Models\ItemCategory;
 use App\Models\TrainingService;
 use Illuminate\Database\Seeder;
 use App\Models\DisciplineCategory;
+use App\Models\OfferTimeframe;
 
 class ServicesTableSeeder extends Seeder
 {
@@ -75,7 +76,6 @@ class ServicesTableSeeder extends Seeder
 
         $serviceFee = ServiceFee::create([
             'training_service_id' => $trainingService->id,
-            'timeframe_id' => $timeframe->id,
             'payment_plan_id' => 2,
             'fees' => 750
         ]);
@@ -103,12 +103,14 @@ class ServicesTableSeeder extends Seeder
             'end_date' => '2021-12-31',
             'track_id' => $track->id,
             'course_id' => $course->id,
-            'timeframe_id' => $timeframe->id,
             'payment_plan_id' => 2,
         ]);
 
         $offer->disciplines()->sync([$disciplineCategory->id]);
         $offer->items()->sync([$item->id]);
         $offer->services()->sync([$serviceFee->id]);
+        $offer->branches()->sync([1]);
+        $offer->timeframes()->sync([$timeframe->id]);
+        $offer->intervals()->sync([$interval->id]);
     }
 }

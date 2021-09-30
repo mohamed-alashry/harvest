@@ -33,7 +33,6 @@ class Offer extends Model
         'end_date',
         'track_id',
         'course_id',
-        'timeframe_id',
         'payment_plan_id',
     ];
 
@@ -56,17 +55,39 @@ class Offer extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function timeframe()
-    {
-        return $this->belongsTo(\App\Models\Timeframe::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
     public function paymentPlan()
     {
         return $this->belongsTo(\App\Models\PaymentPlan::class);
+    }
+
+    /**
+     * The timeframes that belong to the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function timeframes(): BelongsToMany
+    {
+        return $this->belongsToMany(Timeframe::class, 'offer_timeframes', 'offer_id', 'timeframe_id');
+    }
+
+    /**
+     * The intervals that belong to the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function intervals(): BelongsToMany
+    {
+        return $this->belongsToMany(Interval::class, 'offer_intervals', 'offer_id', 'interval_id');
+    }
+
+    /**
+     * The branches that belong to the Offer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function branches(): BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class, 'offer_branches', 'offer_id', 'branch_id');
     }
 
     /**

@@ -4,7 +4,6 @@
             <tr>
                 <th>Id</th>
                 <th>Training Service</th>
-                <th>Timeframe</th>
                 <th>Payment Plan</th>
                 <th>Fees</th>
                 <th>Action</th>
@@ -15,7 +14,6 @@
                 <tr>
                     <td>{{ $serviceFee->id }}</td>
                     <td>{{ $serviceFee->trainingService->title }}</td>
-                    <td>{{ $serviceFee->timeframe->title }}</td>
                     <td>{{ $serviceFee->paymentPlan->title }}</td>
                     <td>{{ $serviceFee->fees }}</td>
                     <td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Offers;
 
+use App\Models\Branch;
 use App\Models\Offer;
 use App\Models\Track;
 use Livewire\Component;
@@ -12,6 +13,7 @@ use Laracasts\Flash\Flash;
 use App\Models\Installment;
 use App\Models\PaymentPlan;
 use App\Models\DisciplineCategory;
+use App\Models\Interval;
 use Illuminate\Database\Eloquent\Builder;
 
 class Form extends Component
@@ -22,16 +24,20 @@ class Form extends Component
         $items_data,
         $tracks,
         $courses = [],
-        $timeframes,
+        $timeframes_data,
+        $intervals_data = [],
         $services_data = [],
+        $branches_data,
         $title,
         $fees,
         $start_date,
         $end_date,
         $track_id,
         $course_id,
-        $timeframe_id,
         $payment_plan_id,
+        $timeframes = [],
+        $intervals = [],
+        $branches,
         $disciplines,
         $items,
         $services,
@@ -48,8 +54,10 @@ class Form extends Component
                 'end_date' => $offer->end_date,
                 'track_id' => $offer->track_id,
                 'course_id' => $offer->course_id,
-                'timeframe_id' => $offer->timeframe_id,
                 'payment_plan_id' => $offer->payment_plan_id,
+                'timeframes' => $offer->timeframes->pluck('id')->toArray(),
+                'intervals' => $offer->intervals->pluck('id')->toArray(),
+                'branches' => $offer->branches->pluck('id'),
                 'disciplines' => $offer->disciplines->pluck('id'),
                 'items' => $offer->items->pluck('id'),
                 'courses' => Track::where('parent_id', $offer->track_id)->pluck('title', 'id'),
@@ -60,9 +68,11 @@ class Form extends Component
                 'installment' => $offer->installment,
                 'total_amount' => $offer->items->sum('price') + $offer->services->sum('fees'),
             ]);
+            $this->timeframesUpdated($this->timeframes);
         }
         $this->tracks = Track::whereNull('parent_id')->where('status', 1)->pluck('title', 'id');
-        $this->timeframes = Timeframe::where('status', 1)->pluck('title', 'id');
+        $this->timeframes_data = Timeframe::where('status', 1)->pluck('title', 'id');
+        $this->branches_data = Branch::pluck('name', 'id');
         $this->paymentPlans = PaymentPlan::where('status', 1)->pluck('title', 'id');
         $this->disciplines_data = DisciplineCategory::pluck('name', 'id');
         $this->items_data = ExtraItem::pluck('name', 'id');
@@ -78,8 +88,10 @@ class Form extends Component
             'end_date' => 'required',
             'track_id' => 'required',
             'course_id' => 'required',
-            'timeframe_id' => 'required',
             'payment_plan_id' => 'required',
+            'timeframes' => 'required|array',
+            'intervals' => 'required|array',
+            'branches' => 'required|array',
             'disciplines' => 'required|array',
             'items' => 'required|array',
             'services' => 'required|array',
@@ -124,6 +136,18 @@ class Form extends Component
         })->with('trainingService')->get()->pluck('trainingService.title', 'id');
     }
 
+    public function updatedTimeframes($val)
+    {
+        $this->timeframesUpdated($val);
+    }
+
+    public function timeframesUpdated($ids)
+    {
+        $this->intervals_data = Interval::whereHas('timeframes', function (Builder $query) use ($ids) {
+            $query->whereIn('id', $ids);
+        })->pluck('name', 'id');
+    }
+
     public function calcAmount()
     {
         $items = $this->items;
@@ -159,6 +183,9 @@ class Form extends Component
             }
         }
 
+        $offer->timeframes()->sync($data['timeframes']);
+        $offer->intervals()->sync($data['intervals']);
+        $offer->branches()->sync($data['branches']);
         $offer->disciplines()->sync($data['disciplines']);
         $offer->items()->sync($data['items']);
         $offer->services()->sync($data['services']);
