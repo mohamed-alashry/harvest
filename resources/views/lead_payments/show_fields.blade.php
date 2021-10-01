@@ -49,63 +49,67 @@
             <div class="col-sm-2">
                 Round ID
             </div>
-            <div class="col-sm-10">
-                <strong>_____</strong>
-            </div>
-
-            <div class="col-sm-2">
-                Training Service
-            </div>
-            <div class="col-sm-10">
-                <strong>{{ $leadPayment->paymentable->trainingService->title }}</strong>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->group->sub_round_id ?? '_____' }}</strong>
             </div>
 
             <div class="col-sm-2">
                 Start Date
             </div>
-            <div class="col-sm-10">
-                <strong>____</strong>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->group->subRound->start_date ?? '_____' }}</strong>
             </div>
 
-            {{-- @php
-                $time = explode(' - ', $leadPayment->paymentable->timeframe->interval->time);
-            @endphp --}}
+            <br>
+            <br>
+
             <div class="col-sm-2">
-                Time
+                Training Service
             </div>
-            <div class="col-sm-2">
-                <strong>__</strong>
-            </div>
-            <div class="col-sm-2">
-                <strong>To</strong>
-            </div>
-            <div class="col-sm-6">
-                <strong>__</strong>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->paymentable->trainingService->title }}</strong>
             </div>
 
             <div class="col-sm-2">
                 Days
             </div>
-            <div class="col-sm-10">
-                <strong>{{ config('system_variables.timeframes.days')[$leadPayment->paymentable->timeframe->days] }}</strong>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->group ? config('system_variables.timeframes.days')[$leadPayment->group->days] : '____' }}</strong>
             </div>
+
+            <br>
+            <br>
+
+            <div class="col-sm-2">
+                Time
+            </div>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->group->interval->name ?? '____' }}</strong>
+            </div>
+            <div class="col-sm-2">
+                Level Start
+            </div>
+            <div class="col-sm-4">
+                <strong>{{ $leadPayment->group->levels[0]->name ?? '____' }}</strong>
+            </div>
+
+            <br>
+            <br>
 
             <div class="col-sm-2">
                 Branch
             </div>
             <div class="col-sm-4">
-                <strong>____</strong>
+                <strong>{{ $leadPayment->group->branch->name ?? '____' }}</strong>
             </div>
             <div class="col-sm-2">
                 Duration (Hours)
             </div>
             <div class="col-sm-4">
-                <strong>{{ $leadPayment->paymentable->timeframe->total_hours }} H</strong>
+                <strong>{{ $leadPayment->group->round->timeframe->total_hours ?? '____' }} H</strong>
             </div>
         </div>
     @endif
-
-
 
     @if ($leadPayment->paymentable_type == 'App\\Models\\ExtraItem')
         <h3 class="text-center border-top border-bottom mt-4">Extra Item</h3>
@@ -168,6 +172,15 @@
         <div class="col-sm-10">
             <strong>{{ $leadPayment->amount }}</strong>
         </div>
+
+        @if ($leadPayment->discount)
+            <div class="col-sm-2">
+                Discount
+            </div>
+            <div class="col-sm-10">
+                <strong>{{ $leadPayment->discount }}</strong>
+            </div>
+        @endif
 
         <div class="col-sm-2">
             Total Paid
@@ -267,55 +280,69 @@
 
     <div class="mt-5" style="direction: rtl; text-align: right;">
         <p class="line">قواعد تغير الحجز والأسترداد ) رجاء قراءة هذا الجزء بعناية(</p>
-        <p class="line">وضعت قواعد الحجز بغرض تنظيم برامج الشركة التدريبية علي النحو الذي يرضي عميلنا المميز حرصا علي
+        <p class="line">وضعت قواعد الحجز بغرض تنظيم برامج الشركة التدريبية علي النحو الذي يرضي عميلنا المميز
+            حرصا علي
             صالح العميل والشركة.</p>
         <p>أقر أنا:
             ...................................................................................................................
             أن التزم بالبنود التالية:</p>
 
         <ul>
-            <li class="line">يلتـزم المتدرب بإجــراء امتحـان تحـديد المستـوى بمجـرد ملء استمــارة الحجــز بحـد أقصـي
+            <li class="line">يلتـزم المتدرب بإجــراء امتحـان تحـديد المستـوى بمجـرد ملء استمــارة الحجــز بحـد
+                أقصـي
                 3أيـام عمـل.
             </li>
-            <li class="line">يلتـزم المتدرب بسداد كافة المصروفات والرســوم المستحقــة في موعـد أقصــاه أسبـوع قبل بدء
+            <li class="line">يلتـزم المتدرب بسداد كافة المصروفات والرســوم المستحقــة في موعـد أقصــاه أسبـوع
+                قبل بدء
                 الدبلومة التدريبية، و في حالة الدفعــات، يســدد
                 المتدرب الأقســاط المستحقة في الميعاد والتاريخ المحدد من قبل الإدارة. و في حالة الإخلال، يحق للإدارة عدم
                 السمـاح للمتدرب بالحضور حتي
                 ســداد واستحقـاق كامل المدفوعات.</li>
-            <li class="line">يتـم تحـديد موعد بـدء التدريب أثنـاء الحجــز أو خلال 15يــوم عمـل بحد أقصي بعد إجراء
+            <li class="line">يتـم تحـديد موعد بـدء التدريب أثنـاء الحجــز أو خلال 15يــوم عمـل بحد أقصي بعد
+                إجراء
                 امتحـان تحديد المستوى وسداد الرســوم.</li>
-            <li class="line">يلتزم المتدرب بحضــور المحاضرات الـتدريبية بكتـاب هارفسـت والسـي دي خلال كل مستـوى. (فقط
+            <li class="line">يلتزم المتدرب بحضــور المحاضرات الـتدريبية بكتـاب هارفسـت والسـي دي خلال كل
+                مستـوى. (فقط
                 ........ جنيهاً مصرياً لكل مستوى).</li>
-            <li class="line">يلتزم المحـاضر المختص بإجراء الحضور والغياب فى اول ثلاثين )٣٠( دقيقة من بداية كل محاضرة
+            <li class="line">يلتزم المحـاضر المختص بإجراء الحضور والغياب فى اول ثلاثين )٣٠( دقيقة من بداية كل
+                محاضرة
                 تدريبية ولا يسمح للمتدرب بالحضور بعد
                 مرور ثلاثين )٣٠( دقيقة. وفى حالة التأخير، يحق للإدارة عدم السماح للمتدرب بالحضور وبالتالى سيعتبر غائباً
                 عن تلك المحـاضرة.
             </li>
-            <li class="line">فيما يتعلق بانتظام الحضور والغياب وفقاً للقواعد واللوائح الداخلية لهارفست، فإذا تغيب
+            <li class="line">فيما يتعلق بانتظام الحضور والغياب وفقاً للقواعد واللوائح الداخلية لهارفست، فإذا
+                تغيب
                 المتدرب مرتين من نفس المستوى، سيعتبر المتدرب
                 مفصولاً من البرنامج التدريبى لهارفست حتى يتم اجراء طلب محاضرة تعويضية وذلك مقابل ١٠٠ جنيه مصري.
             </li>
-            <li class="line">إذا تغيب المتدرب عن اليوم المحدد لإمتحان المستوى، سيتم إلغاء المستوي وبناء عليه، يقوم
+            <li class="line">إذا تغيب المتدرب عن اليوم المحدد لإمتحان المستوى، سيتم إلغاء المستوي وبناء عليه،
+                يقوم
                 المتدرب بسداد ١٠٠ج لإعادة الإمتحان من خلال
                 طلب محاضرة تعويضية. وفي حالة الرســوب، يقوم المتدرب بإعادة المستوى مقابل ٢٩٠ ج للمستوى الواحد في نظام
                 Smart.
             </li>
-            <li class="line">في حالة عدم التزام المتدرب بحضور المستويات ال ُمس َّجل عليها خلال الفترة والمواعيد المحددة
+            <li class="line">في حالة عدم التزام المتدرب بحضور المستويات ال ُمس َّجل عليها خلال الفترة
+                والمواعيد المحددة
                 مسبقاً والتي تم الرد عليها بالموافقة، يتم خصم
                 وإلغاء كل مستوى لم يتم الحضور فيه ولا يسمح بتعويضه مرة اخرى في وق ٍت لاحق.
             </li>
-            <li class="line">يحق لإدارة هـارفسـت تغييـر مواعيـد الحضــور أثنـاء التدريب إذا أصبـح العدد أقل من 10متدربين
+            <li class="line">يحق لإدارة هـارفسـت تغييـر مواعيـد الحضــور أثنـاء التدريب إذا أصبـح العدد أقل من
+                10متدربين
                 في نظام Smart.</li>
-            <li class="line">تنتهي صلاحية الحجز بعد مرور ٦ اشهر من تاريخ التسجيل وذلك في حالة عدم الحضور وعدم اجراء طلب
+            <li class="line">تنتهي صلاحية الحجز بعد مرور ٦ اشهر من تاريخ التسجيل وذلك في حالة عدم الحضور وعدم
+                اجراء طلب
                 تأجيل.</li>
             <li class="line">ختلف شروط واحكام حضور الدورات التدريبية لعميل نظام VIP.</li>
-            <li class="line">يحق للمتدرب إجراء طلب تحويل بغرض تغيير الميعاد أو المحاضر بشرط إنتهاء المستوى وتقديم سبب
+            <li class="line">يحق للمتدرب إجراء طلب تحويل بغرض تغيير الميعاد أو المحاضر بشرط إنتهاء المستوى
+                وتقديم سبب
                 مقبول للحصول على موافقة الإدارة. يتم
                 إجراء هذا الطلب مجاناً للمرة الأولى ويسدد المتدرب مبلغ ٥٠ جنيه مصري للمرة الثانية. )حد أقصي ٤ طلبات(.
             </li>
-            <li class="line">يحق للمتدرب إجراء طلب تحويل من فــرع لفــرع آخـر بشـرط اجتياز امتحان المستوى وموافقـة
+            <li class="line">يحق للمتدرب إجراء طلب تحويل من فــرع لفــرع آخـر بشـرط اجتياز امتحان المستوى
+                وموافقـة
                 الإدارة وذلك مقـابل 100جنيهاً مصرياً.</li>
-            <li class="line">يحق للمتدرب إجراء طلب تجميد الدبلومة بحد أقصــي ٣ شهــور وذلك مقابل مبلغ 100جنيهاً مصرياً
+            <li class="line">يحق للمتدرب إجراء طلب تجميد الدبلومة بحد أقصــي ٣ شهــور وذلك مقابل مبلغ
+                100جنيهاً مصرياً
                 للتجميد عن كل شهر .</li>
         </ul>
         <div class="mt-4 d-flex justify-content-between">

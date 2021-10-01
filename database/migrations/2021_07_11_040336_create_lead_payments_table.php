@@ -21,12 +21,14 @@ class CreateLeadPaymentsTable extends Migration
             $table->integer('amount');
             $table->integer('discount')->nullable();
             $table->integer('payment_plan_id')->unsigned();
+            $table->integer('group_id')->nullable();
             $table->tinyInteger('print_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
             $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
 
         Schema::create('sub_payments', function (Blueprint $table) {

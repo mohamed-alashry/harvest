@@ -52,7 +52,7 @@ class Create extends Component
             'subPayments.0.reference_num' => 'required',
         ];
 
-        if ($this->paymentable_type != 'App\\Models\\ExtraItem') {
+        if ($this->paymentable_type != 'App\\Models\\ExtraItem' && $this->lead->pt_level) {
             $rules['group_id'] = 'required';
         }
 
@@ -201,7 +201,7 @@ class Create extends Component
     public function save()
     {
         $data = $this->validate();
-        dd($data);
+        // dd($data);
 
         $lead_id = $this->lead->id;
         $service = $this->service;

@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 /**
@@ -38,6 +39,7 @@ class LeadPayment extends Model
         'amount',
         'discount',
         'payment_plan_id',
+        'group_id',
         'print_count',
     ];
 
@@ -65,6 +67,16 @@ class LeadPayment extends Model
     public function subPayments(): HasMany
     {
         return $this->hasMany(SubPayment::class);
+    }
+
+    /**
+     * Get the group that owns the LeadPayment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(Group::class);
     }
 
     /**
