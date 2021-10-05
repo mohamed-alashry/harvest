@@ -16,7 +16,7 @@ class CreateLeadsTable extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->text('name');
             $table->tinyInteger('type')->default(1)->comment('1 => lead, 2 => customer, 3 => client');
             $table->boolean('old_customer')->default(0);
             $table->string('gender');

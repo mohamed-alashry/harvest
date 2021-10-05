@@ -87,13 +87,13 @@ class Create extends Component
                 $this->services = Offer::whereHas('branches', function (Builder $query) use ($branchesId) {
                     $query->whereIn('id', $branchesId);
                 })->whereHas('services.trainingService.levels', function (Builder $query) {
-                    $query->where('id', '<=', $this->lead->pt_level);
+                    $query->where('value', '<=', $this->lead->pt_level);
                 })->pluck('title', 'id');
                 break;
 
             default:
                 $this->services = ServiceFee::whereHas('trainingService.levels', function (Builder $query) {
-                    $query->where('id', '<=', $this->lead->pt_level);
+                    $query->where('value', '<=', $this->lead->pt_level);
                 })->with('trainingService')->get()->pluck('trainingService.title', 'id');
                 break;
         }
@@ -120,7 +120,7 @@ class Create extends Component
                 $timeframesId = $service->timeframes->pluck('id')->toArray();
 
                 $this->suggested_groups = Group::whereHas('levels', function (Builder $query) {
-                    $query->where('id', '<=', $this->lead->pt_level);
+                    $query->where('value', '<=', $this->lead->pt_level);
                 })->whereHas('round.timeframe', function (Builder $query) use ($timeframesId) {
                     $query->whereIn('id', $timeframesId);
                 })->whereIn('interval_id', $intervalsId)->get();
@@ -134,7 +134,7 @@ class Create extends Component
                 $this->service = $service;
 
                 $this->suggested_groups = Group::whereHas('levels', function (Builder $query) {
-                    $query->where('id', '<=', $this->lead->pt_level);
+                    $query->where('value', '<=', $this->lead->pt_level);
                 })->get();
 
                 break;

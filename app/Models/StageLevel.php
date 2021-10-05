@@ -22,7 +22,8 @@ class StageLevel extends Model
 
     public $fillable = [
         'stage_id',
-        'name'
+        'name',
+        'value'
     ];
 
     /**
@@ -33,7 +34,8 @@ class StageLevel extends Model
     protected $casts = [
         'id' => 'integer',
         'stage_id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
+        'value' => 'integer',
     ];
 
     /**

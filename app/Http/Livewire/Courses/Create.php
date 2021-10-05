@@ -30,6 +30,7 @@ class Create extends Component
             'stages' => 'required|array',
             'stages.*.name' => 'required',
             'stages.*.levels.*.name' => 'required',
+            'stages.*.levels.*.value' => 'required|integer',
         ];
 
         return $rules;
@@ -42,7 +43,7 @@ class Create extends Component
 
     public function addStage()
     {
-        $this->stages[]['levels'][]['name'] = '';
+        $this->stages[]['levels'][] = ['name' => '', 'value' => ''];
         $this->levels += 1;
     }
 
@@ -57,7 +58,7 @@ class Create extends Component
 
     public function addStageLevel($i)
     {
-        $this->stages[$i]['levels'][]['name'] = '';
+        $this->stages[$i]['levels'][] = ['name' => '', 'value' => ''];
         $this->levels += 1;
     }
 

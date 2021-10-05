@@ -137,7 +137,7 @@
                                             <td>{{ $lead->mobile_1 }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
                                             <td>{{ $lead->old_customer ? 'Yes' : 'No' }}</td>
-                                            <td>{{ $lead->lead_source->name }}</td>
+                                            <td>{{ $lead->lead_source->name ?? '' }}</td>
                                             <td>
                                                 <a href="{{ route('admin.leadPayments.index', ['customer' => $lead->id]) }}"
                                                     class="btn btn-warning">{{ $lead->payments_count }}</a>

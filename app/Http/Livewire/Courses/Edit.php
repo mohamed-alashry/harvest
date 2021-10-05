@@ -35,6 +35,7 @@ class Edit extends Component
             'stages' => 'required|array',
             'stages.*.name' => 'required',
             'stages.*.levels.*.name' => 'required',
+            'stages.*.levels.*.value' => 'required|integer',
         ];
 
         return $rules;
@@ -47,7 +48,7 @@ class Edit extends Component
 
     public function addStage()
     {
-        $this->stages[]['levels'][]['name'] = '';
+        $this->stages[]['levels'][] = ['name' => '', 'value' => ''];
         $this->levels += 1;
     }
 
@@ -62,7 +63,7 @@ class Edit extends Component
 
     public function addStageLevel($idx)
     {
-        $this->stages[$idx]['levels'][]['name'] = '';
+        $this->stages[$idx]['levels'][] = ['name' => '', 'value' => ''];
         $this->levels += 1;
     }
 

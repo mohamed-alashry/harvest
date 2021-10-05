@@ -17,6 +17,7 @@ class CreateStageLevelsTable extends Migration
             $table->id();
             $table->integer('stage_id')->unsigned();
             $table->string('name');
+            $table->integer('value');
             $table->timestamps();
             $table->foreign('stage_id')->references('id')->on('stages')->onDelete('cascade');
         });

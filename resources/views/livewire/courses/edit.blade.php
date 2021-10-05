@@ -37,7 +37,7 @@
                                 </div>
 
                                 <!-- Name Field -->
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-sm-12">
                                     {!! Form::label('name', 'Name:') !!}
                                     {!! Form::text(null, null, ['class' => 'form-control', 'wire:model.debounce.500ms' => "stages.$i.name", 'wire:key' => "stage-$i"]) !!}
                                 </div>
@@ -47,7 +47,13 @@
                                     <!-- Level Name Field -->
                                     <div class="form-group col-sm-6">
                                         {!! Form::label('level', 'Level Name:') !!}
-                                        {!! Form::text(null, null, ['class' => 'form-control', 'wire:model.debounce.500ms' => "stages.$i.levels.$n.name", 'wire:key' => "level-$i-$n"]) !!}
+                                        {!! Form::text(null, null, ['class' => 'form-control', 'wire:model.debounce.500ms' => "stages.$i.levels.$n.name", 'wire:key' => "level-$i-$n-name"]) !!}
+                                    </div>
+
+                                    <!-- Level Value Field -->
+                                    <div class="form-group col-sm-6">
+                                        {!! Form::label('level', 'Level Value:') !!}
+                                        {!! Form::text(null, null, ['class' => 'form-control', 'wire:model.debounce.500ms' => "stages.$i.levels.$n.value", 'wire:key' => "level-$i-$n-value"]) !!}
                                     </div>
 
                                 @endforeach

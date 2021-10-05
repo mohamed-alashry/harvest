@@ -134,7 +134,7 @@
                                             <td>{{ $lead->created_at }}</td>
                                             <td>{{ $lead->name['en'] }}</td>
                                             <td>{{ $lead->mobile_1 }}</td>
-                                            <td>{{ $lead->lead_source->name }}</td>
+                                            <td>{{ $lead->lead_source->name ?? '' }}</td>
                                             <td>{{ $lead->assignedEmployee->name ?? '' }}</td>
                                             <td>
                                                 <a class="btn btn-success"
