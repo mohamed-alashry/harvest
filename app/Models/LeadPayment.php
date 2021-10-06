@@ -38,6 +38,7 @@ class LeadPayment extends Model
         'paymentable_id',
         'amount',
         'discount',
+        'invoice_pdf',
         'payment_plan_id',
         'group_id',
         'print_count',

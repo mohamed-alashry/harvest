@@ -20,6 +20,7 @@ class CreateLeadPaymentsTable extends Migration
             $table->morphs('paymentable');
             $table->integer('amount');
             $table->integer('discount')->nullable();
+            $table->string('invoice_pdf')->nullable();
             $table->integer('payment_plan_id')->unsigned();
             $table->integer('group_id')->nullable();
             $table->tinyInteger('print_count')->default(0);

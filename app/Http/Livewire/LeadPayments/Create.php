@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\LeadPayments;
 
+use App\Models\Group;
 use App\Models\Offer;
 use Livewire\Component;
 use App\Models\ExtraItem;
-use App\Models\Group;
 use App\Models\ServiceFee;
 use Laracasts\Flash\Flash;
 use App\Models\LeadPayment;
@@ -201,7 +201,6 @@ class Create extends Component
     public function save()
     {
         $data = $this->validate();
-        // dd($data);
 
         $lead_id = $this->lead->id;
         $service = $this->service;
