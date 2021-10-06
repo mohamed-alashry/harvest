@@ -78,7 +78,7 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('disciplineCategories', App\Http\Controllers\DisciplineCategoryController::class);
 
         Route::resource('leadPayments', App\Http\Controllers\LeadPaymentController::class)->except(['store', 'update']);
-        Route::get('paymentDiscount', [App\Http\Controllers\LeadPaymentController::class, 'paymentDiscount'])->name('leads.paymentDiscount');
+        Route::get('paymentDiscount', [App\Http\Controllers\LeadPaymentController::class, 'paymentDiscount'])->name('leadPayments.paymentDiscount');
 
         Route::resource('customers', App\Http\Controllers\CustomerController::class);
 
