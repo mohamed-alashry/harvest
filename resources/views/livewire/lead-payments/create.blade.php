@@ -68,11 +68,13 @@
                                     </div>
                                 @endif
 
-                                <!-- Discount Field -->
-                                <div class="form-group col-sm-3">
-                                    {!! Form::label('discount', 'Discount:') !!}
-                                    {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'discount', 'class' => 'form-control']) !!}
-                                </div>
+                                @can('leadPayments paymentDiscount')
+                                    <!-- Discount Field -->
+                                    <div class="form-group col-sm-3">
+                                        {!! Form::label('discount', 'Discount:') !!}
+                                        {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'discount', 'class' => 'form-control']) !!}
+                                    </div>
+                                @endcan
 
                                 <!-- Payment Method Field -->
                                 <div class="form-group col-sm-6">
