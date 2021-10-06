@@ -115,4 +115,9 @@ class LeadPaymentController extends AppBaseController
 
         return redirect(route('admin.leadPayments.index', ['customer' => $lead_id]));
     }
+
+    public function paymentDiscount()
+    {
+        return null;
+    }
 }
