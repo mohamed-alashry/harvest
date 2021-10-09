@@ -79,6 +79,7 @@
                                         <th>Room</th>
                                         <th>Instructor</th>
                                         <th>Interval</th>
+                                        <th>Students</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -94,6 +95,12 @@
                                             <td>{{ $group->room->name }}</td>
                                             <td>{{ $group->instructor->name }}</td>
                                             <td>{{ $group->interval->name }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.groupStudents.show', $group->id) }}"
+                                                    class="btn btn-info">
+                                                    {{ $group->students_count }}
+                                                </a>
+                                            </td>
                                             <td>
                                                 {!! Form::open(['route' => ['admin.groups.destroy', $group->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>

@@ -171,4 +171,14 @@ class Group extends Model
     {
         return $this->hasMany(GroupSession::class, 'group_id');
     }
+
+    /**
+     * Get all of the students for the Group
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(GroupStudent::class, 'group_id');
+    }
 }

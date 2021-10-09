@@ -204,10 +204,10 @@ class Create extends Component
     {
         $data = $this->validate();
 
-        $lead_id = $this->lead->id;
+        $lead = $this->lead;
         $service = $this->service;
 
-        $data['lead_id'] = $lead_id;
+        $data['lead_id'] = $lead->id;
         $data['payment_plan_id'] = $service->payment_plan_id;
         $payment = LeadPayment::create($data);
 
@@ -217,12 +217,16 @@ class Create extends Component
         }
 
         if ($this->convertToCustomer) {
-            $this->lead->update(['type' => 2]);
-            PlacementApplicant::where('mobile', $this->lead->mobile_1)->delete();
+            $lead->update(['type' => 2]);
+            PlacementApplicant::where('mobile', $lead->mobile_1)->delete();
         }
 
-        // if ($this->lead->email) {
-        //     Mail::to($this->lead->email)->send(new PaymentInvoice($payment));
+        if ($this->group_id) {
+            $lead->groups()->attach($this->group_id);
+        }
+
+        // if ($lead->email) {
+        //     Mail::to($lead->email)->send(new PaymentInvoice($payment));
         // }
 
         Flash::success('Lead Payment saved successfully.');
