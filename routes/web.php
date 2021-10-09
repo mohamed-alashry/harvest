@@ -88,8 +88,6 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('groups', App\Http\Controllers\GroupController::class);
 
-        Route::resource('groupSessions', App\Http\Controllers\GroupSessionController::class);
-
         Route::resource('groupStudents', App\Http\Controllers\GroupStudentController::class)->only(['show']);
     });
 });

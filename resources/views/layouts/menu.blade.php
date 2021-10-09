@@ -298,20 +298,3 @@
         </ul>
     </div>
 </li>
-
-{{-- @can('groupSessions view')
-    <li class="nav-item {{ Request::is('admin/groupSessions*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.groupSessions.index') }}">
-            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
-            <span>Group Sessions</span>
-        </a>
-    </li>
-@endcan --}}
-{{-- @can('groupStudents view')
-    <li class="nav-item {{ Request::is('admin/groupStudents*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.groupStudents.index') }}">
-            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
-            <span>Group Students</span>
-        </a>
-    </li>
-@endcan --}}
