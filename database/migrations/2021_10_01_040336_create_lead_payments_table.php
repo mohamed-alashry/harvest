@@ -22,7 +22,7 @@ class CreateLeadPaymentsTable extends Migration
             $table->integer('discount')->nullable();
             $table->string('invoice_pdf')->nullable();
             $table->integer('payment_plan_id')->unsigned();
-            $table->integer('group_id')->nullable();
+            $table->integer('group_id')->unsigned()->nullable();
             $table->tinyInteger('print_count')->default(0);
             $table->timestamps();
             $table->softDeletes();

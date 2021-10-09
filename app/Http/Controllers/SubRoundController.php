@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateSubRoundRequest;
 use App\Http\Requests\UpdateSubRoundRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\GroupSession;
+use App\Models\SubRoundSession;
 use App\Models\Round;
 use App\Models\SubRound;
-use App\Models\Timeframe;
 use ArrayObject;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +87,7 @@ class SubRoundController extends AppBaseController
                         $date = $date->next($daysIt->current());
                     }
 
-                    $session = GroupSession::create([
+                    $session = SubRoundSession::create([
                         'sub_round_id' => $subRound->id,
                         'date' => $date,
                     ]);
@@ -203,7 +202,7 @@ class SubRoundController extends AppBaseController
                     $date = $date->next($daysIt->current());
                 }
 
-                $session = GroupSession::create([
+                $session = SubRoundSession::create([
                     'sub_round_id' => $subRound->id,
                     'date' => $date,
                 ]);

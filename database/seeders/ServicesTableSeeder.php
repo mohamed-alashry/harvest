@@ -38,15 +38,18 @@ class ServicesTableSeeder extends Seeder
         ]);
 
         $stage->levels()->create([
-            'name' => 'Level 1'
+            'name' => 'Level 1',
+            'value' => 1
         ]);
 
         $stage->levels()->create([
-            'name' => 'Level 2'
+            'name' => 'Level 2',
+            'value' => 2
         ]);
 
         $stage->levels()->create([
-            'name' => 'Level 3'
+            'name' => 'Level 3',
+            'value' => 3
         ]);
 
         $interval = Interval::create([
