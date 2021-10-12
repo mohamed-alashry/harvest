@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class GroupSession
@@ -82,5 +83,15 @@ class GroupSession extends Model
     public function level()
     {
         return $this->belongsTo(\App\Models\StageLevel::class, 'level_id');
+    }
+
+    /**
+     * Get all of the attendances for the GroupSession
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(GroupSessionAttendance::class);
     }
 }

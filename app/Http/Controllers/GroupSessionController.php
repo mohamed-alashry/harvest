@@ -22,7 +22,7 @@ class GroupSessionController extends AppBaseController
         $groupId = request('group');
 
         /** @var GroupSession $groupSessions */
-        $groupSessions = GroupSession::where('group_id', $groupId)->paginate(10);
+        $groupSessions = GroupSession::where('group_id', $groupId)->withCount('attendances')->get();
 
         return view('group_sessions.index')
             ->with('groupSessions', $groupSessions);

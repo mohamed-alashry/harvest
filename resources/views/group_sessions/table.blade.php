@@ -9,6 +9,7 @@
                 <th>Instructor</th>
                 <th>Interval</th>
                 <th>Status</th>
+                <th>Attandance</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -22,6 +23,12 @@
                     <td>{{ $groupSession->instructor->name }}</td>
                     <td>{{ $groupSession->interval->name }}</td>
                     <td>{{ $groupSession->status ? 'Active' : 'Cancelled' }}</td>
+                    <td>
+                        <a href="{{ route('admin.groupSessionAttendances.index', ['session' => $groupSession->id]) }}"
+                            class="btn btn-info">
+                            {{ $groupSession->attendances_count }}
+                        </a>
+                    </td>
                     <td>
                         <div class='btn-group'>
                             <a href="{{ route('admin.groupSessions.show', [$groupSession->id]) }}"

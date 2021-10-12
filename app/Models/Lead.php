@@ -232,4 +232,14 @@ class Lead extends Model
     {
         return $this->belongsToMany(Group::class, 'group_students', 'lead_id', 'group_id');
     }
+
+    /**
+     * Get all of the attendances for the GroupSession
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attendances(): HasMany
+    {
+        return $this->hasMany(GroupSessionAttendance::class);
+    }
 }

@@ -307,3 +307,11 @@
         </a>
     </li>
 @endcan --}}
+{{-- @can('groupSessionAttendances view')
+    <li class="nav-item {{ Request::is('admin/groupSessionAttendances*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.groupSessionAttendances.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Group Session Attendances</span>
+        </a>
+    </li>
+@endcan --}}

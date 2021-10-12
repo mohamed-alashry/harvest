@@ -10,6 +10,8 @@ use App\Models\ServiceFee;
 use Laracasts\Flash\Flash;
 use App\Models\LeadPayment;
 use App\Mail\PaymentInvoice;
+use App\Models\GroupSession;
+use App\Models\GroupSessionAttendance;
 use Illuminate\Http\Request;
 use App\Models\PaymentMethod;
 use App\Models\PlacementApplicant;
@@ -236,6 +238,15 @@ class Create extends Component
 
         if ($this->group_id) {
             $lead->groups()->attach($this->group_id);
+
+            $sessions = GroupSession::where('group_id', $this->group_id)->get();
+            foreach ($sessions as $session) {
+                $session->attendances()->create([
+                    'lead_id' => $lead->id,
+                    'group_id' => $session->group_id,
+                    'level_id' => $session->level_id,
+                ]);
+            }
         }
 
         // if ($lead->email) {
