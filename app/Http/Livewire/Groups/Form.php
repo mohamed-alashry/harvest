@@ -12,7 +12,9 @@ use App\Models\Employee;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Models\DisciplineCategory;
+use App\Models\GroupSession;
 use App\Models\SubRound;
+use App\Models\SubRoundSession;
 use Illuminate\Database\Eloquent\Builder;
 
 class Form extends Component
@@ -207,6 +209,36 @@ class Form extends Component
                 $data['parent_id'] = $this->parent_id;
             }
             $group = Group::create($data);
+
+            $dates = SubRoundSession::where('sub_round_id', $group->sub_round_id)->pluck('date')->toArray();
+
+            $levels = $data['levels'];
+            $levelsCount = count($levels);
+            $perSession = (count($dates) - 1) / $levelsCount;
+            $end = end($dates);
+
+            $key = 0;
+            $i = 1;
+            foreach ($dates as $date) {
+                $sessionData = [
+                    'group_id' => $group->id,
+                    'date' => $date,
+                    'room_id' => $group->room_id,
+                    'instructor_id' => $group->instructor_id,
+                    'interval_id' => $group->interval_id,
+                ];
+
+                if ($date != $end) {
+                    $sessionData['level_id'] = $levels[$key];
+                }
+
+                GroupSession::create($sessionData);
+
+                if (($i % $perSession) == 0) {
+                    $key++;
+                }
+                $i++;
+            }
         }
 
         $group->levels()->sync($data['levels']);

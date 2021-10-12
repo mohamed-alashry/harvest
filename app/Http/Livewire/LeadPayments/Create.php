@@ -86,17 +86,30 @@ class Create extends Component
 
             case 'App\\Models\\Offer':
                 $branchesId = auth()->user()->branches->pluck('id')->toArray();
-                $this->services = Offer::whereHas('branches', function (Builder $query) use ($branchesId) {
+
+                $serviceQuery = Offer::whereHas('branches', function (Builder $query) use ($branchesId) {
                     $query->whereIn('id', $branchesId);
-                })->whereHas('services.trainingService.levels', function (Builder $query) {
-                    $query->where('value', $this->lead->pt_level);
-                })->pluck('title', 'id');
+                });
+
+                if ($this->lead->pt_level) {
+                    $serviceQuery->whereHas('services.trainingService.levels', function (Builder $query) {
+                        $query->where('value', $this->lead->pt_level);
+                    });
+                }
+
+                $this->services = $serviceQuery->pluck('title', 'id');
                 break;
 
             default:
-                $this->services = ServiceFee::whereHas('trainingService.levels', function (Builder $query) {
-                    $query->where('value', $this->lead->pt_level);
-                })->with('trainingService')->get()->pluck('trainingService.title', 'id');
+                $serviceQuery = ServiceFee::with('trainingService');
+
+                if ($this->lead->pt_level) {
+                    $serviceQuery->whereHas('trainingService.levels', function (Builder $query) {
+                        $query->where('value', $this->lead->pt_level);
+                    });
+                }
+
+                $this->services = $serviceQuery->get()->pluck('trainingService.title', 'id');
                 break;
         }
     }

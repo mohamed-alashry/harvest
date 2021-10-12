@@ -80,6 +80,7 @@
                                         <th>Instructor</th>
                                         <th>Interval</th>
                                         <th>Students</th>
+                                        <th>Sessions</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -99,6 +100,12 @@
                                                 <a href="{{ route('admin.groupStudents.show', $group->id) }}"
                                                     class="btn btn-info">
                                                     {{ $group->students_count }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.groupSessions.index', ['group' => $group->id]) }}"
+                                                    class="btn btn-info">
+                                                    {{ $group->sessions_count }}
                                                 </a>
                                             </td>
                                             <td>

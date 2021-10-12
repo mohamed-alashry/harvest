@@ -27,8 +27,8 @@ class UpdateLeadRequest extends FormRequest
     {
         $rules = Lead::$rules;
 
-        $rules['mobile_1'] = 'required|unique:leads,mobile_1,' . $this->route('lead');
-        $rules['email'] = 'email|unique:leads,mobile_1,' . $this->route('lead');
+        $rules['mobile_1'] = 'required|unique:leads,mobile_1,' . $this->segment(2);
+        $rules['email'] = 'email|unique:leads,mobile_1,' . $this->segment(2);
 
         return $rules;
     }

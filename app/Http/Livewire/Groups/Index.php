@@ -152,7 +152,7 @@ class Index extends Component
     public function render()
     {
         $groups = Group::with('parent', 'round', 'discipline', 'branch', 'room', 'instructor', 'interval')
-            ->withCount('students')->latest()->paginate($this->per_page);
+            ->withCount('students', 'sessions')->latest()->paginate($this->per_page);
 
         return view('livewire.groups.index', compact('groups'));
     }
