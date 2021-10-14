@@ -53,12 +53,12 @@ class Create extends Component
             'subPayments' => 'required|array',
             'subPayments.0.amount' => 'required',
             'subPayments.0.payment_method_id' => 'required',
-            'subPayments.0.reference_num' => 'required',
+            'subPayments.0.reference_num' => 'nullable',
         ];
 
-        if ($this->paymentable_type != 'App\\Models\\ExtraItem' && $this->lead->pt_level) {
-            $rules['group_id'] = 'required';
-        }
+        // if ($this->paymentable_type != 'App\\Models\\ExtraItem' && $this->lead->pt_level) {
+        //     $rules['group_id'] = 'required';
+        // }
 
         return $rules;
     }
@@ -249,9 +249,11 @@ class Create extends Component
             }
         }
 
-        // if ($lead->email) {
-        //     Mail::to($lead->email)->send(new PaymentInvoice($payment));
-        // }
+        if ($lead->email) {
+            $payment->load('lead', 'paymentPlan', 'subPayments', 'paymentable');
+
+            Mail::to($lead->email)->send(new PaymentInvoice($payment));
+        }
 
         Flash::success('Lead Payment saved successfully.');
 

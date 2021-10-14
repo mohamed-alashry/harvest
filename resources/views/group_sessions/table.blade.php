@@ -10,6 +10,9 @@
                 <th>Interval</th>
                 <th>Status</th>
                 <th>Attandance</th>
+                @can('makeupSessions create')
+                    <th>MakeUp Session</th>
+                @endcan
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -29,6 +32,21 @@
                             {{ $groupSession->attendances_count }}
                         </a>
                     </td>
+                    @can('makeupSessions create')
+                        <td>
+                            @if ($groupSession->makeup)
+                                <a href="{{ route('admin.makeupSessions.show', $groupSession->makeup->id) }}"
+                                    class="btn btn-success btn-block">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('admin.makeupSessions.create', ['session' => $groupSession->id]) }}"
+                                    class="btn btn-success btn-block">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            @endif
+                        </td>
+                    @endcan
                     <td>
                         <div class='btn-group'>
                             <a href="{{ route('admin.groupSessions.show', [$groupSession->id]) }}"

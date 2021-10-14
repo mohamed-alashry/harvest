@@ -11,14 +11,16 @@ class PaymentInvoice extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $leadPayment;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($payment)
     {
-        //
+        $this->leadPayment = $payment;
     }
 
     /**

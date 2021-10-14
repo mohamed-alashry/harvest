@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -93,5 +94,15 @@ class GroupSession extends Model
     public function attendances(): HasMany
     {
         return $this->hasMany(GroupSessionAttendance::class);
+    }
+
+    /**
+     * Get the makeup associated with the GroupSession
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function makeup(): HasOne
+    {
+        return $this->hasOne(MakeupSession::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\GroupSessionAttendances;
 
+use App\Models\GroupSession;
 use Livewire\Component;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
@@ -21,6 +22,19 @@ class Index extends Component
     public function toggleEdit()
     {
         $this->editable = true;
+    }
+
+    public function addToMakeup($id)
+    {
+        $groupSession = GroupSession::with('makeup')->find($this->session_id);
+
+        if (!$groupSession->makeup) {
+            redirect(route('admin.makeupSessions.create', ['session' => $groupSession->id]));
+        } else {
+            $groupSession->makeup->attendances()->attach($id);
+
+            Flash::success('Added to makeup session successfully.');
+        }
     }
 
     public function save()
@@ -48,7 +62,8 @@ class Index extends Component
 
     public function render()
     {
-        $attendances = GroupSessionAttendance::where('group_session_id', $this->session_id)->get();
+        $attendances = GroupSessionAttendance::with('makeup')->where('group_session_id', $this->session_id)->get();
+        // dd($attendances);
 
         return view('livewire.group-session-attendances.index', compact('attendances'));
     }

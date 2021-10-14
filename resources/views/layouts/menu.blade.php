@@ -315,3 +315,11 @@
         </a>
     </li>
 @endcan --}}
+@can('makeupSessions view')
+    <li class="nav-item {{ Request::is('admin/makeupSessions*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.makeupSessions.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Makeup Sessions</span>
+        </a>
+    </li>
+@endcan

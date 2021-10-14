@@ -29,7 +29,7 @@
                                         @endif
                                         <th>Lead</th>
                                         <th>Attendance</th>
-                                        <th colspan="2">Need Makeup</th>
+                                        <th colspan="2">Makeup Session</th>
                                         {{-- <th colspan="2">Action</th> --}}
                                     </tr>
                                 </thead>
@@ -49,7 +49,17 @@
                                                     __
                                                 @endif
                                             </td>
-                                            <td>{{ $attendance->need_makeup ? 'Yes' : 'No' }}</td>
+                                            <td>
+                                                @if ($attendance->need_makeup)
+                                                    @if ($attendance->makeup->count())
+                                                        <i class="fa fa-check-square fa-lg"></i>
+                                                    @else
+                                                        <button wire:click="addToMakeup({{ $attendance->id }})"
+                                                            type="button" class="btn btn-success"><i
+                                                                class="fa fa-plus"></i></button>
+                                                    @endif
+                                                @endif
+                                            </td>
                                             {{-- <td>
                                                 <div class='btn-group'>
                                                     <a href="{{ route('admin.groupSessionAttendances.show', [$groupSessionAttendance->id]) }}"

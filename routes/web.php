@@ -93,6 +93,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('groupSessions', App\Http\Controllers\GroupSessionController::class)->except(['create', 'store', 'destroy']);
 
         Route::resource('groupSessionAttendances', App\Http\Controllers\GroupSessionAttendanceController::class)->except(['create', 'store', 'destroy']);
+
+        Route::resource('makeupSessions', App\Http\Controllers\MakeupSessionController::class);
     });
 });
 
@@ -104,6 +106,7 @@ Route::group(['as' => 'admin.'], function () {
 */
 
 Route::get('/placement-test', App\Http\Livewire\PlacementTest\Index::class);
+Route::get('/invoice/{id}', [App\Http\Controllers\HomeController::class, 'invoice'])->name('invoice');
 
 
 /*

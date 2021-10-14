@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 
@@ -78,5 +79,15 @@ class GroupSessionAttendance extends Model
     public function level()
     {
         return $this->belongsTo(\App\Models\StageLevel::class, 'level_id');
+    }
+
+    /**
+     * The makeup that belong to the MakeupSession
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function makeup()
+    {
+        return $this->belongsToMany(MakeupSession::class, 'makeup_session_attendances', 'attendance_id', 'makeup_session_id');
     }
 }
