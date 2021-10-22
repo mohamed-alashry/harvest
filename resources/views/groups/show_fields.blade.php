@@ -94,3 +94,54 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $group->updated_at }}</p>
 </div>
+
+<hr>
+
+@if ($parents->isNotEmpty())
+    <table class="table table-striped" id="groups-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Parent Group ID</th>
+                <th>Round</th>
+                <th>Discipline</th>
+                <th>Branch</th>
+                <th>Room</th>
+                <th>Instructor</th>
+                <th>Interval</th>
+                <th>Students</th>
+                <th>Sessions</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($parents as $group)
+                <tr>
+                    <td>{{ $group->id }}</td>
+                    <td>{{ $group->title }}</td>
+                    <td>{{ $group->parent->id ?? 'Parent' }}</td>
+                    <td>{{ $group->round->title }}</td>
+                    <td>{{ $group->discipline->name }}</td>
+                    <td>{{ $group->branch->name }}</td>
+                    <td>{{ $group->room->name }}</td>
+                    <td>{{ $group->instructor->name }}</td>
+                    <td>{{ $group->interval->name }}</td>
+                    <td>
+                        <a href="{{ route('admin.groupStudents.show', $group->id) }}" class="btn btn-info">
+                            {{ $group->students_count }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('admin.groupSessions.index', ['group' => $group->id]) }}"
+                            class="btn btn-info">
+                            {{ $group->sessions_count }}
+                        </a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif

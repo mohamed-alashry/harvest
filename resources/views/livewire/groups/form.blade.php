@@ -12,11 +12,11 @@
                         {!! Form::open(['wire:submit.prevent' => 'save']) !!}
 
                         <div class="row">
-                            <!-- Title Field -->
+                            {{-- <!-- Title Field -->
                             <div class="form-group col-sm-6">
                                 {!! Form::label('title', 'Title:') !!}
                                 {!! Form::text(null, null, ['wire:model.debounce.500ms' => 'title', 'disabled' => $parent_id, 'class' => 'form-control']) !!}
-                            </div>
+                            </div> --}}
 
                             <!-- Discipline Id Field -->
                             <div class="form-group col-sm-6">

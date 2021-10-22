@@ -64,6 +64,15 @@ class GroupController extends AppBaseController
     {
         /** @var Group $group */
         $group = Group::find($id);
+        $current = $group;
+
+        $parentIds = [];
+        while ($current->parent_id) {
+            $parentIds[] = $current->parent_id;
+            $current = $current->parent;
+        }
+        $parents = Group::whereIn('id', $parentIds)->withCount('students', 'sessions')->latest()->get();
+        // dd($parents);
 
         if (empty($group)) {
             Flash::error('Group not found');
@@ -71,7 +80,7 @@ class GroupController extends AppBaseController
             return redirect(route('admin.groups.index'));
         }
 
-        return view('groups.show')->with('group', $group);
+        return view('groups.show', compact('group', 'parents'));
     }
 
     /**

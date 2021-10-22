@@ -151,7 +151,13 @@ class Index extends Component
 
     public function render()
     {
-        $groups = Group::with('parent', 'round', 'discipline', 'branch', 'room', 'instructor', 'interval')
+        $groups = Group::where(function ($query) {
+            $query->whereNotNull('parent_id')
+                ->where('is_upgraded', 0);
+        })->orWhere(function ($query) {
+            $query->whereNull('parent_id')
+                ->where('is_upgraded', 0);
+        })->with('parent', 'round', 'discipline', 'branch', 'room', 'instructor', 'interval')
             ->withCount('students', 'sessions')->latest()->paginate($this->per_page);
 
         return view('livewire.groups.index', compact('groups'));

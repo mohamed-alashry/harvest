@@ -13,6 +13,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Models\DisciplineCategory;
 use App\Models\GroupSession;
+use App\Models\Interval;
 use App\Models\SubRound;
 use App\Models\SubRoundSession;
 use Illuminate\Database\Eloquent\Builder;
@@ -95,7 +96,7 @@ class Form extends Component
     protected function rules()
     {
         $rules = [
-            'title' => 'required',
+            // 'title' => 'required',
             'track_id' => 'required',
             'course_id' => 'required',
             'round_id' => 'required',
@@ -183,8 +184,8 @@ class Form extends Component
                 $query->where('id', $this->branch_id);
             });
         }
-        if ($this->round_id && $this->interval_id && $reset) {
-            $roundGroupInstructors = Group::where(['round_id' => $this->round_id, 'interval_id' => $this->interval_id])
+        if ($this->sub_round_id && $this->interval_id && $reset) {
+            $roundGroupInstructors = Group::where(['sub_round_id' => $this->sub_round_id, 'interval_id' => $this->interval_id])
                 ->pluck('instructor_id')->toArray();
 
             $instructorsQuery->whereNotIn('id', $roundGroupInstructors);
@@ -202,6 +203,11 @@ class Form extends Component
         $data = $this->validate();
 
         $group = $this->group;
+
+        $subRound = SubRound::with('round.timeframe')->find($data['sub_round_id']);
+        $interval = Interval::find($data['interval_id']);
+        $data['title'] = "group " . $subRound->round->timeframe->title . " | " . $interval->name;
+
         if ($group) {
             $group->update($data);
         } else {
