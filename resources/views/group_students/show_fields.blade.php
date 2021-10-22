@@ -75,6 +75,13 @@
 </div>
 
 
+<!-- Students Field -->
+<div class="form-group col-sm-4">
+    {!! Form::label('sessions', 'Sessions:') !!}
+    <p>{{ $pastSessions . '/' . $group->sessions_count }}</p>
+</div>
+
+
 <div class="form-group col-sm-12">
     <div class="table-responsive-sm">
         <table class="table table-striped" id="groupStudents-table">

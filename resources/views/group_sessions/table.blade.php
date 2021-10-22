@@ -25,12 +25,27 @@
                     <td>{{ $groupSession->room->name }}</td>
                     <td>{{ $groupSession->instructor->name }}</td>
                     <td>{{ $groupSession->interval->name }}</td>
-                    <td>{{ $groupSession->status ? 'Active' : 'Cancelled' }}</td>
                     <td>
-                        <a href="{{ route('admin.groupSessionAttendances.index', ['session' => $groupSession->id]) }}"
-                            class="btn btn-info">
+                        @switch($groupSession->status)
+                            @case(0)
+                                Cancelled
+                            @break
+                            @case(2)
+                                Done
+                            @break
+                            @default
+                                Active
+                        @endswitch
+                    </td>
+                    <td>
+                        @if ($groupSession->status)
+                            <a href="{{ route('admin.groupSessionAttendances.index', ['session' => $groupSession->id]) }}"
+                                class="btn btn-info">
+                                {{ $groupSession->attendances_count }}
+                            </a>
+                        @else
                             {{ $groupSession->attendances_count }}
-                        </a>
+                        @endif
                     </td>
                     @can('makeupSessions create')
                         <td>

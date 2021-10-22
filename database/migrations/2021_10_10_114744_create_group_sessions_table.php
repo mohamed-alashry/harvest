@@ -22,7 +22,7 @@ class CreateGroupSessionsTable extends Migration
             $table->integer('instructor_id')->unsigned();
             $table->integer('interval_id')->unsigned();
             $table->bigInteger('level_id')->unsigned()->nullable();
-            $table->tinyInteger('status')->default(1)->comment('1 => active, 0 => cancelled');
+            $table->tinyInteger('status')->default(1)->comment('0 => cancelled, 1 => active, 2 => Done');
 
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('room_id')->references('id')->on('rooms');

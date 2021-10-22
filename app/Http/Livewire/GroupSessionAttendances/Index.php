@@ -55,6 +55,9 @@ class Index extends Component
             }
         }
 
+        $groupSession = GroupSession::with('makeup')->find($this->session_id);
+        $groupSession->update(['status' => 2]);
+
         Flash::success('Attendance saved successfully.');
 
         $this->editable = false;
