@@ -118,7 +118,7 @@ class Lead extends Model
      * @var array
      */
     public static $rules = [
-        'name.en' => 'required',
+        'name.en' => 'required|regex:/(^([a-zA-Z]+)(\d+)?$)/u',
         'name.ar' => 'required',
         'gender' => 'required',
         'mobile_1' => 'required|unique:leads,mobile_1',

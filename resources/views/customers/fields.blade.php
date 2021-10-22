@@ -1,25 +1,25 @@
 <div class="row">
     <!-- Name En Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('name', 'Name En:') !!}
+        {!! Form::label('name', 'Name En:') !!} <span class="text-danger">*</span>
         {!! Form::text('name[en]', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Name Ar Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('name', 'Name Ar:') !!}
+        {!! Form::label('name', 'Name Ar:') !!} <span class="text-danger">*</span>
         {!! Form::text('name[ar]', null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Gender Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('gender', 'Gender:') !!}
+        {!! Form::label('gender', 'Gender:') !!} <span class="text-danger">*</span>
         {!! Form::select('gender', ['Male' => 'Male', 'Female' => 'Female'], null, ['class' => 'form-control', 'placeholder' => 'Select Gender...']) !!}
     </div>
 
     <!-- Mobile 1 Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('mobile_1', 'Mobile 1:') !!}
+        {!! Form::label('mobile_1', 'Mobile 1:') !!} <span class="text-danger">*</span>
         {!! Form::text('mobile_1', null, ['class' => 'form-control']) !!}
     </div>
 
@@ -37,19 +37,19 @@
 
     <!-- Lead Source Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('lead_source_id', 'Lead Source:') !!}
+        {!! Form::label('lead_source_id', 'Lead Source:') !!} <span class="text-danger">*</span>
         {!! Form::select('lead_source_id', $sources, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
     <!-- Know Channel Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('know_channel_id', 'How Did you know about us ?:') !!}
+        {!! Form::label('know_channel_id', 'How Did you know about us ?:') !!} <span class="text-danger">*</span>
         {!! Form::select('know_channel_id', $channels, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
     <!-- Preferred Time Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('preferred_time', 'Preferred Time:') !!}
+        {!! Form::label('preferred_time', 'Preferred Time:') !!} <span class="text-danger">*</span>
         {!! Form::select('preferred_time', ['AM' => 'Morning (AM)', 'PM' => 'Evening (PM)', 'MIX' => 'Mix (AM/PM)'], null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
@@ -61,19 +61,19 @@
 
     <!-- Preferred Branch Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('branch_id', 'Preferred Branch:') !!}
+        {!! Form::label('branch_id', 'Preferred Branch:') !!} <span class="text-danger">*</span>
         {!! Form::select('branch_id', $branches, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
     <!-- Preferred Training Service Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('training_service_id', 'Preferred Training Service:') !!}
+        {!! Form::label('training_service_id', 'Preferred Training Service:') !!} <span class="text-danger">*</span>
         {!! Form::select('training_service_id', $services, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 
     <!-- Preferred Time Frame Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('timeframe_id', 'Preferred Time Frame:') !!}
+        {!! Form::label('timeframe_id', 'Preferred Time Frame:') !!} <span class="text-danger">*</span>
         {!! Form::select('timeframe_id', $timeframes, null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
     </div>
 

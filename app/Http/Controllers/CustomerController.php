@@ -62,6 +62,7 @@ class CustomerController extends AppBaseController
 
         $input['type'] = 2;
         $input['old_customer'] = 1;
+        $input['assigned_employee_id'] = auth()->id();
         $lead = Lead::create($input);
 
         Flash::success('Customer saved successfully.');

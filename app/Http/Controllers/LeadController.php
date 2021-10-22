@@ -60,6 +60,7 @@ class LeadController extends AppBaseController
     {
         $input = $request->all();
 
+        $input['assigned_employee_id'] = auth()->id();
         $lead = Lead::create($input);
 
         Flash::success('Lead saved successfully.');
