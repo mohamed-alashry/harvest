@@ -106,11 +106,17 @@
                         <td>{{ $student->lead->name['en'] }}</td>
                         <td>{{ $student->lead->id }}</td>
                         <td>{{ $student->lead->mobile_1 }}</td>
-                        <td>{{ $student->payment }}</td>
+                        <td>
+                            @if ($student->payment)
+                                <i class="fa fa-check"></i>
+                            @else
+                                <i class="fa fa-money"></i>
+                            @endif
+                        </td>
                         <td>{{ $student->books }}</td>
                         <td>{{ $student->activation }}</td>
                         <td>{{ $student->certification }}</td>
-                        <td>{{ $student->abcence_per }}</td>
+                        <td>{{ $student->abcence_per ?? 0 }}</td>
                         <td>{{ $student->exam_per }}</td>
                     </tr>
                 @endforeach

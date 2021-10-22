@@ -22,8 +22,8 @@ class CreateGroupStudentsTable extends Migration
             $table->tinyInteger('books')->nullable();
             $table->tinyInteger('activation')->nullable();
             $table->tinyInteger('certification')->nullable();
-            $table->tinyInteger('abcence_per')->nullable();
-            $table->tinyInteger('exam_per')->nullable();
+            $table->string('abcence_per')->nullable();
+            $table->string('exam_per')->nullable();
             $table->timestamps();
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('lead_id')->references('id')->on('leads');

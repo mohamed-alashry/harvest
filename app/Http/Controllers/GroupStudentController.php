@@ -21,7 +21,8 @@ class GroupStudentController extends AppBaseController
     public function show($id)
     {
         /** @var Group $group */
-        $group = Group::with('students.lead')->withCount('students', 'sessions')->find($id);
+        $group = Group::with('students.lead.attendances')->withCount('students', 'sessions')->find($id);
+
         $pastSessions = GroupSession::where('group_id', $group->id)->where('status', '!=', 1)->count();
 
         if (empty($group)) {

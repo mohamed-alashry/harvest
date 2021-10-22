@@ -237,7 +237,7 @@ class Create extends Component
         }
 
         if ($this->group_id) {
-            $lead->groups()->attach($this->group_id);
+            $lead->groups()->attach($this->group_id, ['payment' => $payment->payment_plan_id == 1 ? 0 : 1]);
 
             $sessions = GroupSession::where('group_id', $this->group_id)->get();
             foreach ($sessions as $session) {

@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\GroupSessionAttendances;
 
+use App\Models\Group;
 use App\Models\GroupSession;
 use Livewire\Component;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Models\GroupSessionAttendance;
+use App\Models\GroupStudent;
 
 class Index extends Component
 {
@@ -39,6 +41,9 @@ class Index extends Component
 
     public function save()
     {
+        $groupSession = GroupSession::with('makeup')->find($this->session_id);
+        $group = Group::withCount('sessions')->find($groupSession->group_id);
+
         $attendances = GroupSessionAttendance::where('group_session_id', $this->session_id)->get();
         foreach ($attendances as $attendance) {
             $attendance->update(['attendance' => in_array($attendance->id, $this->present) ? 1 : 0]);
@@ -50,12 +55,18 @@ class Index extends Component
                 'attendance' => 0,
             ])->count();
 
+            $student = GroupStudent::where([
+                'lead_id' => $attendance->lead_id,
+                'group_id' => $attendance->group_id,
+            ])->first();
+
             if ($absentCount > 1) {
+                $student->abcence_per = ($absentCount / $group->session_count) * 100;
+
                 $attendance->update(['need_makeup' => 1]);
             }
         }
 
-        $groupSession = GroupSession::with('makeup')->find($this->session_id);
         $groupSession->update(['status' => 2]);
 
         Flash::success('Attendance saved successfully.');
