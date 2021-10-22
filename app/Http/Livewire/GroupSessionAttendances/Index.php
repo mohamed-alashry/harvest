@@ -28,12 +28,16 @@ class Index extends Component
 
     public function addToMakeup($id)
     {
+        // dd($id);
         $groupSession = GroupSession::with('makeup')->find($this->session_id);
 
         if (!$groupSession->makeup) {
             redirect(route('admin.makeupSessions.create', ['session' => $groupSession->id]));
         } else {
             $groupSession->makeup->attendances()->attach($id);
+
+            $attendance = GroupSessionAttendance::find($id);
+            $attendance->update(['attendance' => 1]);
 
             Flash::success('Added to makeup session successfully.');
         }
