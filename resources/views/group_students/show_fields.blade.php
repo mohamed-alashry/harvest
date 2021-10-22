@@ -116,7 +116,12 @@
                         <td>{{ $student->books }}</td>
                         <td>{{ $student->activation }}</td>
                         <td>{{ $student->certification }}</td>
-                        <td>{{ $student->abcence_per ?? 0 }}</td>
+                        <td>
+                            {{ $student->abcence_per ?? 0 }} %
+
+                            <a href="{{ route('admin.leadCases.index', ['lead' => $student->lead->id, 'student' => $student->id]) }}"
+                                class="btn btn-warning"><i class="fa fa-phone"></i></a>
+                        </td>
                         <td>{{ $student->exam_per }}</td>
                     </tr>
                 @endforeach

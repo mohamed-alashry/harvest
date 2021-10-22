@@ -36,7 +36,15 @@ class LeadCaseController extends AppBaseController
     {
         $lead = Lead::find(request('lead'));
 
-        $leadCases = LeadCase::where('lead_id', $lead->id)->get();
+        $leadCasesQuery = LeadCase::where('lead_id', $lead->id);
+
+        if (request()->filled('student')) {
+            $leadCasesQuery->where('student_id', request('student'));
+        } else {
+            $leadCasesQuery->whereNull('student_id');
+        }
+
+        $leadCases = $leadCasesQuery->get();
 
         return view('lead_cases.index', compact('leadCases', 'lead'));
     }
@@ -73,7 +81,13 @@ class LeadCaseController extends AppBaseController
 
         Flash::success('Lead Case saved successfully.');
 
-        return redirect(route('admin.leadCases.index', ['lead' => request('lead_id')]));
+        $query = ['lead' => request('lead_id')];
+
+        if ($leadCase->student_id) {
+            $query['student'] = $leadCase->student_id;
+        }
+
+        return redirect(route('admin.leadCases.index', $query));
     }
 
     /**
@@ -142,7 +156,13 @@ class LeadCaseController extends AppBaseController
 
         Flash::success('Lead Case updated successfully.');
 
-        return redirect(route('admin.leadCases.index', ['lead' => $leadCase->lead_id]));
+        $query = ['lead' => $leadCase->lead_id];
+
+        if ($leadCase->student_id) {
+            $query['student'] = $leadCase->student_id;
+        }
+
+        return redirect(route('admin.leadCases.index', $query));
     }
 
     /**

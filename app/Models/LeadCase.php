@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property \App\Models\Label $label
  * @property \App\Models\LabelType $labelType
  * @property integer $lead_id
+ * @property integer $student_id
  * @property integer $employee_id
  * @property integer $branch_id
  * @property integer $label_id
@@ -47,6 +48,7 @@ class LeadCase extends Model
 
     public $fillable = [
         'lead_id',
+        'student_id',
         'branch_id',
         'employee_id',
         'label_id',
@@ -59,27 +61,6 @@ class LeadCase extends Model
         'notes',
         // 'status',
         'date'
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'id' => 'integer',
-        'lead_id' => 'integer',
-        'employee_id' => 'integer',
-        'label_id' => 'integer',
-        'label_type_id' => 'integer',
-        'serial' => 'string',
-        'feedback' => 'string',
-        'other_feedback' => 'string',
-        'action' => 'string',
-        'other_action' => 'string',
-        'notes' => 'string',
-        // 'status' => 'string',
-        'date' => 'string'
     ];
 
     /**
@@ -140,5 +121,13 @@ class LeadCase extends Model
     public function labelType()
     {
         return $this->belongsTo(\App\Models\LabelType::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function student()
+    {
+        return $this->belongsTo(\App\Models\GroupStudent::class, 'student_id');
     }
 }

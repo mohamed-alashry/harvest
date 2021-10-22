@@ -30,8 +30,15 @@
                             Follow up
 
                             @can('leadCases create')
-                                <a class="pull-right" href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i
-                                        class="fa fa-plus-square fa-lg"></i></a>
+                                @if (request()->filled('student'))
+                                    <a class="pull-right"
+                                        href="{{ route('admin.leadCases.create', ['lead' => $lead->id, 'student' => request('student')]) }}"><i
+                                            class="fa fa-plus-square fa-lg"></i></a>
+                                @else
+                                    <a class="pull-right"
+                                        href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i
+                                            class="fa fa-plus-square fa-lg"></i></a>
+                                @endif
                             @endcan
                         </div>
                         <div class="card-body">

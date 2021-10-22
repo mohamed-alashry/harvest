@@ -1,6 +1,9 @@
 <div class="row">
     @if (!isset($leadCase))
         {!! Form::hidden('lead_id', request('lead')) !!}
+        @if (request()->filled('student'))
+            {!! Form::hidden('student_id', request('student')) !!}
+        @endif
     @endif
 
     <!-- Branch Id Field -->

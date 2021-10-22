@@ -15,8 +15,13 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>Details</strong>
-                            <a href="{{ route('admin.leadCases.index', ['lead' => $leadCase->lead_id]) }}"
-                                class="btn btn-light">Back</a>
+                            @if ($leadCase->student_id)
+                                <a href="{{ route('admin.leadCases.index', ['lead' => $leadCase->lead_id, 'student' => $leadCase->student_id]) }}"
+                                    class="btn btn-light">Back</a>
+                            @else
+                                <a href="{{ route('admin.leadCases.index', ['lead' => $leadCase->lead_id]) }}"
+                                    class="btn btn-light">Back</a>
+                            @endif
                         </div>
                         <div class="card-body">
                             @include('lead_cases.show_fields')
