@@ -3,13 +3,15 @@
 namespace App\Http\Livewire\Groups;
 
 use App\Models\Group;
+use App\Models\Round;
 use Livewire\Component;
 use App\Models\SubRound;
 use App\Models\Timeframe;
 use Laracasts\Flash\Flash;
+use App\Models\GroupSession;
 use Livewire\WithPagination;
+use App\Models\SubRoundSession;
 use App\Models\DisciplineCategory;
-use App\Models\Round;
 
 class Index extends Component
 {
@@ -131,6 +133,37 @@ class Index extends Component
             $upgradedGroup->levels()->sync($newLevels);
 
             $group->update(['is_upgraded' => 1]);
+
+
+
+            $dates = SubRoundSession::where('sub_round_id', $upgradedGroup->sub_round_id)->pluck('date')->toArray();
+
+            $newLevelsCount = count($newLevels);
+            $perSession = (count($dates) - 1) / $newLevelsCount;
+            $end = end($dates);
+
+            $key = 0;
+            $i = 1;
+            foreach ($dates as $date) {
+                $sessionData = [
+                    'group_id' => $upgradedGroup->id,
+                    'date' => $date,
+                    'room_id' => $upgradedGroup->room_id,
+                    'instructor_id' => $upgradedGroup->instructor_id,
+                    'interval_id' => $upgradedGroup->interval_id,
+                ];
+
+                if ($date != $end) {
+                    $sessionData['level_id'] = $newLevels[$key];
+                }
+
+                GroupSession::create($sessionData);
+
+                if (($i % $perSession) == 0) {
+                    $key++;
+                }
+                $i++;
+            }
         }
 
         $this->reset([
