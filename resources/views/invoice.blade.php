@@ -238,7 +238,12 @@
                                         Total Paid
                                     </div>
                                     <div class="col-sm-10">
-                                        <strong>{{ $leadPayment->subPayments->where('paid', 1)->sum('amount') }}</strong>
+                                        @php
+                                            $sum = $leadPayment->subPayments->where('paid', 1)->sum('amount');
+                                            $discount = $leadPayment->discount ?? 0;
+                                            $totalPaid = $sum - $discount;
+                                        @endphp
+                                        <strong>{{ $totalPaid }}</strong>
                                     </div>
                                 </div>
 
