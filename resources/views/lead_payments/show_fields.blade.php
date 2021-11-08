@@ -143,15 +143,21 @@
             </div>
 
             <div class="col-sm-2">
-                No of Levels
+                No of Levels ({{ $leadPayment->paymentable->services->count() ?? 0 }})
             </div>
             <div class="col-sm-9 border mb-3" style="height: 50px;">
+                @foreach ($leadPayment->paymentable->services as $service)
+                    <p>{{ $service->trainingService->title }}</p>
+                @endforeach
             </div>
 
             <div class="col-sm-2">
                 Items
             </div>
             <div class="col-sm-9 border mb-3" style="height: 50px;">
+                @foreach ($leadPayment->paymentable->items as $item)
+                    <p>{{ $item->name }}</p>
+                @endforeach
             </div>
         </div>
     @endif

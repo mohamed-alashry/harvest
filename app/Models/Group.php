@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -57,6 +58,45 @@ class Group extends Model
         'is_upgraded',
         'is_last',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['status'];
+
+    /**
+     * Get the status
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getStatusAttribute()
+    {
+        $subRound = $this->subRound;
+        $startDate = Carbon::parse($subRound->start_date);
+        $endDate = Carbon::parse($subRound->end_date);
+
+        $today = today();
+        $status = '';
+
+        switch (true) {
+            case ($today->gt($endDate)):
+                $status = 'past';
+                break;
+
+            case ($today->lt($startDate)):
+                $status = 'upcoming';
+                break;
+
+            default:
+                $status = 'current';
+                break;
+        }
+
+        return $status;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

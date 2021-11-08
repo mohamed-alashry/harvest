@@ -95,17 +95,20 @@ class Index extends Component
         $leadsQuery = Lead::withCount('cases')->with(['cases' => function ($query) {
             $query->orderBy('created_at', 'desc')->first();
         }])
-            ->where('type', 1)
-            ->whereIn('branch_id', array_keys($this->employeeBranches));
+            ->where('type', 1);
 
         if ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
         }
-        if ($this->mobile_1) {
-            $leadsQuery->where('mobile_1', 'like', '%' . $this->mobile_1 . '%');
-        }
-        if ($this->name) {
-            $leadsQuery->where('name', 'like', '%' . $this->name . '%');
+        if ($this->mobile_1 || $this->name) {
+            if ($this->mobile_1) {
+                $leadsQuery->where('mobile_1', 'like', '%' . $this->mobile_1 . '%');
+            }
+            if ($this->name) {
+                $leadsQuery->where('name', 'like', '%' . $this->name . '%');
+            }
+        } else {
+            $leadsQuery->whereIn('branch_id', array_keys($this->employeeBranches));
         }
         if ($this->know_channel) {
             $leadsQuery->where('know_channel_id', $this->know_channel);

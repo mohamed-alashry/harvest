@@ -10,6 +10,8 @@
                         <div class="pull-right">
                             <button wire:click="toggleUpgrade()" class="btn btn-success btn-sm"><i
                                     class="fa fa-level-up"></i></button>
+                            <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
+                                    class="fa fa-filter"></i></button>
                             @can('groups create')
                                 <a href="{{ route('admin.groups.create') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i></a>
@@ -65,6 +67,45 @@
                                 </div>
                             </div>
                         @endif
+                        @if ($show_filter)
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $timeframesData, null, ['wire:model' => 'timeframe_id', 'class' => 'form-control', 'placeholder' => 'Select TimeFrame...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $roundsData, null, ['wire:model' => 'round_id', 'class' => 'form-control', 'placeholder' => 'Select Round...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $subRoundData, null, ['wire:model' => 'sub_round_id', 'class' => 'form-control', 'placeholder' => 'Select Sub Round...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $intervalsData, null, ['wire:model' => 'interval_id', 'class' => 'form-control', 'placeholder' => 'Select Interval...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $roomsData, null, ['wire:model' => 'room_id', 'class' => 'form-control', 'placeholder' => 'Select Room...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $instructorsData, null, ['wire:model' => 'instructor_id', 'class' => 'form-control', 'placeholder' => 'Select Instructor...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $adminsData, null, ['wire:model' => 'admin_id', 'class' => 'form-control', 'placeholder' => 'Select Admin...']) !!}
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    {!! Form::select(null, $levelsData, null, ['wire:model' => 'level_id', 'class' => 'form-control', 'placeholder' => 'Select Level...']) !!}
+                                </div>
+
+                                {{-- <div class="form-group col-sm-4">
+                                    {!! Form::select(null, ['past' => 'past', 'upcoming' => 'upcoming', 'current' => 'current'], null, ['wire:model' => 'status', 'class' => 'form-control', 'placeholder' => 'Select Status...']) !!}
+                                </div> --}}
+                            </div>
+                        @endif
 
                         <div class="table-responsive-sm">
                             <table class="table table-striped" id="groups-table">
@@ -81,7 +122,8 @@
                                         <th>Interval</th>
                                         <th>Students</th>
                                         <th>Sessions</th>
-                                        <th colspan="3">Action</th>
+                                        <th>Status</th>
+                                        <th colspan="2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -108,6 +150,7 @@
                                                     {{ $group->sessions_count }}
                                                 </a>
                                             </td>
+                                            <td>{{ $group->status }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['admin.groups.destroy', $group->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
@@ -119,9 +162,9 @@
                                                             class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
 
-                                                    @can('groups delete')
+                                                    {{-- @can('groups delete')
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                                                    @endcan
+                                                    @endcan --}}
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

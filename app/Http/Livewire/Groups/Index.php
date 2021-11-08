@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire\Groups;
 
+use App\Models\Room;
 use App\Models\Group;
 use App\Models\Round;
 use Livewire\Component;
+use App\Models\Employee;
 use App\Models\SubRound;
 use App\Models\Timeframe;
+use App\Models\StageLevel;
 use Laracasts\Flash\Flash;
 use App\Models\GroupSession;
 use Livewire\WithPagination;
 use App\Models\SubRoundSession;
 use App\Models\DisciplineCategory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Index extends Component
 {
@@ -21,23 +25,60 @@ class Index extends Component
 
     public $per_page = 10,
         $show_upgrade = false,
+        $show_filter = false,
         $disciplines,
         $timeframesData,
         $roundsData = [],
+        $subRoundData = [],
         $daysData = [],
+        $intervalsData = [],
         $subRoundFrom = [],
+        $roomsData = [],
+        $instructorsData = [],
+        $adminsData = [],
+        $levelsData = [],
         $discipline_id,
         $timeframe_id,
         $round_id,
+        $sub_round_id,
         $days,
         $from_sub_round,
         $to_sub_round,
+        $interval_id,
+        $room_id,
+        $instructor_id,
+        $admin_id,
+        $level_id,
+        $status,
         $selectedGroups = [];
 
     public function mount()
     {
         $this->timeframesData = Timeframe::pluck('title', 'id')->toArray();
         $this->disciplines = DisciplineCategory::pluck('name', 'id')->toArray();
+        $this->rounds = Round::pluck('title', 'id')->toArray();
+        $this->roomsData = Room::pluck('name', 'id')->toArray();
+        $this->instructorsData = Employee::get()->pluck('name', 'id')->toArray();
+        $this->adminsData = Employee::get()->pluck('name', 'id')->toArray();
+        $this->levelsData = StageLevel::pluck('name', 'id')->toArray();
+    }
+
+    public function toggleFilter()
+    {
+        $this->show_filter = !$this->show_filter;
+        $this->reset([
+            'timeframe_id',
+            'round_id',
+            'sub_round_id',
+            'days',
+            'from_sub_round',
+            'to_sub_round',
+            'interval_id',
+            'room_id',
+            'instructor_id',
+            'admin_id',
+            'level_id',
+        ]);
     }
 
     public function toggleUpgrade()
@@ -52,13 +93,16 @@ class Index extends Component
 
     public function updatedTimeframeId($val)
     {
-        $this->daysData = Timeframe::find($val)->days;
-        $this->roundsData = Round::where('timeframe_id', $val)->pluck('title', 'id');
+        $timeframe = Timeframe::find($val);
+        $this->daysData = $timeframe->days;
+        $this->roundsData = $timeframe->rounds->pluck('title', 'id');
+        $this->intervalsData = $timeframe->intervals->pluck('name', 'id')->toArray();
     }
 
     public function updatedRoundId($val)
     {
         $this->setRoundFrom();
+        $this->subRoundData = SubRound::where('round_id', $this->round_id)->pluck('start_date', 'id');
     }
 
     public function updatedDays($val)
@@ -87,6 +131,22 @@ class Index extends Component
                 'sub_round_id' => $this->from_sub_round, 'discipline_id' => $this->discipline_id, 'is_upgraded' => 0, 'is_last' => 0
             ])->with('course.stageLevels', 'levels')->get();
         }
+    }
+
+    public function resetData()
+    {
+        $this->reset([
+            'show_upgrade',
+            'roundsData',
+            'daysData',
+            'subRoundFrom',
+            'timeframe_id',
+            'round_id',
+            'days',
+            'from_sub_round',
+            'to_sub_round',
+            'selectedGroups',
+        ]);
     }
 
     public function upgradeGroups()
@@ -166,32 +226,55 @@ class Index extends Component
             }
         }
 
-        $this->reset([
-            'show_upgrade',
-            'roundsData',
-            'daysData',
-            'subRoundFrom',
-            'timeframe_id',
-            'round_id',
-            'days',
-            'from_sub_round',
-            'to_sub_round',
-            'selectedGroups',
-        ]);
+        $this->resetData();
 
         Flash::success('Groups Upgraded.');
     }
 
     public function render()
     {
-        $groups = Group::where(function ($query) {
-            $query->whereNotNull('parent_id')
-                ->where('is_upgraded', 0);
-        })->orWhere(function ($query) {
-            $query->whereNull('parent_id')
-                ->where('is_upgraded', 0);
-        })->with('parent', 'round', 'discipline', 'branch', 'room', 'instructor', 'interval')
-            ->withCount('students', 'sessions')->latest()->paginate($this->per_page);
+        $groupsQuery = Group::withCount('students', 'sessions')
+            ->with('parent', 'round', 'discipline', 'branch', 'room', 'instructor', 'interval')->latest();
+
+        if (!$this->show_filter) {
+            $groupsQuery->where(function ($query) {
+                $query->whereNotNull('parent_id')
+                    ->where('is_upgraded', 0);
+            })->orWhere(function ($query) {
+                $query->whereNull('parent_id')
+                    ->where('is_upgraded', 0);
+            });
+        }
+        if ($this->round_id) {
+            $groupsQuery->where('round_id', $this->round_id);
+        }
+        if ($this->sub_round_id) {
+            $groupsQuery->where('sub_round_id', $this->sub_round_id);
+        }
+        if ($this->interval_id) {
+            $groupsQuery->where('interval_id', $this->interval_id);
+        }
+        if ($this->room_id) {
+            $groupsQuery->where('room_id', $this->room_id);
+        }
+        if ($this->instructor_id) {
+            $groupsQuery->where('instructor_id', $this->instructor_id);
+        }
+        if ($this->admin_id) {
+            $groupsQuery->where('admin_id', $this->admin_id);
+        }
+        if ($this->level_id) {
+            $groupsQuery->whereHas('levels', function (Builder $query) {
+                $query->where('id', $this->level_id);
+            });
+        }
+
+        $groups = $groupsQuery->paginate($this->per_page);
+
+        // if ($this->status) {
+        //     $groups->where('status', $this->status)->all();
+        //     dd($groups);
+        // }
 
         return view('livewire.groups.index', compact('groups'));
     }

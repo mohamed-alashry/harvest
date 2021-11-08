@@ -8,6 +8,7 @@ use App\Models\Lead;
 use App\Models\LeadPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class LeadPaymentController extends AppBaseController
 {
@@ -52,7 +53,12 @@ class LeadPaymentController extends AppBaseController
     public function show($id)
     {
         /** @var LeadPayment $leadPayment */
-        $leadPayment = LeadPayment::with('lead', 'paymentPlan', 'subPayments', 'paymentable')->find($id);
+        $leadPayment = LeadPayment::with(['lead', 'paymentPlan', 'subPayments', 'paymentable' => function (MorphTo $morphTo) {
+            $morphTo->morphWith([
+                'App\\Models\\Offer' => ['services.trainingService'],
+                'App\\Models\\ExtraItem' => ['items'],
+            ]);
+        }])->find($id);
 
         if (empty($leadPayment)) {
             Flash::error('Lead Payment not found');

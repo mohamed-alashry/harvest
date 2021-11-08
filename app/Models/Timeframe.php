@@ -102,4 +102,14 @@ class Timeframe extends Model
     {
         return $this->belongsToMany(\App\Models\Interval::class, 'interval_timeframe');
     }
+
+    /**
+     * Get all of the rounds for the Timeframe
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rounds(): HasMany
+    {
+        return $this->hasMany(Round::class);
+    }
 }
