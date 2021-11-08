@@ -34,6 +34,7 @@ class LeadPayment extends Model
 
     public $fillable = [
         'lead_id',
+        'employee_id',
         'paymentable_type',
         'paymentable_id',
         'amount',
@@ -50,6 +51,14 @@ class LeadPayment extends Model
     public function lead()
     {
         return $this->belongsTo(\App\Models\Lead::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function employee()
+    {
+        return $this->belongsTo(\App\Models\Employee::class);
     }
 
     /**

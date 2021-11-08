@@ -17,6 +17,7 @@ class CreateLeadPaymentsTable extends Migration
         Schema::create('lead_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('lead_id');
+            $table->unsignedInteger('employee_id');
             $table->morphs('paymentable');
             $table->integer('amount');
             $table->integer('discount')->nullable();
@@ -28,6 +29,7 @@ class CreateLeadPaymentsTable extends Migration
             $table->softDeletes();
 
             $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
+            $table->foreign('employee_id')->references('id')->on('employees');
             $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
             $table->foreign('group_id')->references('id')->on('groups');
         });

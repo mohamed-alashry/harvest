@@ -240,7 +240,7 @@
 
     <div class="row mt-5">
         <div class="col-sm-4 text-center">
-            <div>Agent {{ auth()->user()->name }}</div>
+            <div>Agent {{ $leadPayment->employee->name }}</div>
             <div>Print Date: {{ now() }}</div>
         </div>
 
@@ -408,7 +408,7 @@
 
     <div class="row mt-5">
         <div class="col-sm-4 text-center">
-            <div>Agent {{ auth()->user()->name }}</div>
+            <div>Agent {{ $leadPayment->employee->name }}</div>
             <div>Print Date: {{ now() }}</div>
         </div>
 

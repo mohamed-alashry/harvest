@@ -55,8 +55,8 @@ class LeadPaymentController extends AppBaseController
         /** @var LeadPayment $leadPayment */
         $leadPayment = LeadPayment::with(['lead', 'paymentPlan', 'subPayments', 'paymentable' => function (MorphTo $morphTo) {
             $morphTo->morphWith([
-                'App\\Models\\Offer' => ['services.trainingService'],
-                'App\\Models\\ExtraItem' => ['items'],
+                'App\\Models\\Offer' => ['services.trainingService', 'items'],
+                'App\\Models\\ExtraItem' => ['itemCategory'],
             ]);
         }])->find($id);
 

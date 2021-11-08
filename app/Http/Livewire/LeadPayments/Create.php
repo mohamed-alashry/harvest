@@ -223,6 +223,7 @@ class Create extends Component
         $service = $this->service;
 
         $data['lead_id'] = $lead->id;
+        $data['employee_id'] = auth()->id();
         $data['payment_plan_id'] = $service->payment_plan_id;
         $payment = LeadPayment::create($data);
 
