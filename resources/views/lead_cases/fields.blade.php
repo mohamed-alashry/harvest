@@ -1,10 +1,17 @@
 <div class="row">
     @if (!isset($leadCase))
         {!! Form::hidden('lead_id', request('lead')) !!}
+        {!! Form::hidden('type', request('type')) !!}
         @if (request()->filled('student'))
             {!! Form::hidden('student_id', request('student')) !!}
         @endif
     @endif
+
+    <!-- Call Type Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('call_type', 'Call Type:') !!}
+        {!! Form::select('call_type', [1 => 'Inbound', 2 => 'Outbound'], null, ['class' => 'form-control', 'placeholder' => 'Select Option...']) !!}
+    </div>
 
     <!-- Branch Id Field -->
     <div class="form-group col-sm-6">
@@ -34,6 +41,12 @@
     <div class="form-group col-sm-6" id="other_feedback-container">
         {!! Form::label('other_feedback', 'Other Feedback:') !!}
         {!! Form::text('other_feedback', null, ['class' => 'form-control']) !!}
+    </div>
+
+    <!-- FeedBack Date Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('feedback_date', 'FeedBack Date:') !!}
+        {!! Form::text('feedback_date', null, ['class' => 'form-control', 'id' => 'feedback_date']) !!}
     </div>
 
     @push('scripts')
@@ -119,6 +132,16 @@
     @push('scripts')
         <script type="text/javascript">
             $('#date').datetimepicker({
+                format: 'YYYY-MM-DD',
+                useCurrent: true,
+                icons: {
+                    up: "icon-arrow-up-circle icons font-2xl",
+                    down: "icon-arrow-down-circle icons font-2xl"
+                },
+                sideBySide: true
+            });
+
+            $('#feedback_date').datetimepicker({
                 format: 'YYYY-MM-DD',
                 useCurrent: true,
                 icons: {

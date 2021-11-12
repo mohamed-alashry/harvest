@@ -65,7 +65,7 @@ class LeadController extends AppBaseController
 
         Flash::success('Lead saved successfully.');
 
-        return redirect(route('admin.leads.index'));
+        return redirect(route('admin.leadCases.create', ['lead' => $lead->id]));
     }
 
     /**

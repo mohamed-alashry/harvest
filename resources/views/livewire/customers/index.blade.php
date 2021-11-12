@@ -143,7 +143,7 @@
                                                     class="btn btn-warning">{{ $lead->payments_count }}</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
+                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id, 'type' => 2]) }}"
                                                     class="btn btn-warning">{{ $lead->cases_count }}</a>
                                             </td>
                                             <td>{{ $lead->cases[0]->created_at ?? '' }}</td>

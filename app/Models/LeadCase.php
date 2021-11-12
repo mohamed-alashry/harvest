@@ -53,9 +53,12 @@ class LeadCase extends Model
         'employee_id',
         'label_id',
         'label_type_id',
+        'type',
         'serial',
+        'call_type',
         'feedback',
         'other_feedback',
+        'feedback_date',
         'action',
         'other_action',
         'notes',
@@ -74,13 +77,15 @@ class LeadCase extends Model
         'branch_id' => 'required',
         'label_id' => 'required',
         'label_type_id' => 'required',
+        'call_type' => 'required',
         'feedback' => 'required',
         'other_feedback' => 'required_if:feedback,other',
         'action' => 'required',
         'other_action' => 'required_if:action,other',
         'notes' => 'required',
         // 'status' => 'required',
-        'date' => 'required|date_format:Y-m-d'
+        'date' => 'required|date_format:Y-m-d',
+        'feedback_date' => 'required|date_format:Y-m-d',
     ];
 
     /**

@@ -21,24 +21,29 @@
                             <i class="fa fa-align-justify"></i>
 
                             @if ($lead->type == 1)
-                                <a href="{{ route('admin.leads.show', $lead->id) }}"
+                                <a href="{{ route('admin.leads.edit', $lead->id) }}"
                                     class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a>
                             @else
-                                <a href="{{ route('admin.customers.show', $lead->id) }}"
+                                <a href="{{ route('admin.customers.edit', $lead->id) }}"
                                     class="btn btn-ghost-primary">{{ $lead->name['en'] }}</a>
                             @endif
                             Follow up
 
+                            @php
+                                $query = ['lead' => request('lead')];
+
+                                if (request()->filled('student')) {
+                                    $query['student'] = request('student');
+                                }
+                                if (request()->filled('type')) {
+                                    $query['type'] = request('type');
+                                } else {
+                                    $query['type'] = 3;
+                                }
+                            @endphp
                             @can('leadCases create')
-                                @if (request()->filled('student'))
-                                    <a class="pull-right"
-                                        href="{{ route('admin.leadCases.create', ['lead' => $lead->id, 'student' => request('student')]) }}"><i
-                                            class="fa fa-plus-square fa-lg"></i></a>
-                                @else
-                                    <a class="pull-right"
-                                        href="{{ route('admin.leadCases.create', ['lead' => $lead->id]) }}"><i
-                                            class="fa fa-plus-square fa-lg"></i></a>
-                                @endif
+                                <a class="pull-right" href="{{ route('admin.leadCases.create', $query) }}"><i
+                                        class="fa fa-plus-square fa-lg"></i></a>
                             @endcan
                         </div>
                         <div class="card-body">

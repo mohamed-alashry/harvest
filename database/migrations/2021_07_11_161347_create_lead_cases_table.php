@@ -22,9 +22,12 @@ class CreateLeadCasesTable extends Migration
             $table->integer('employee_id')->unsigned();
             $table->integer('label_id')->unsigned();
             $table->integer('label_type_id')->unsigned();
+            $table->tinyInteger('type')->default(1)->comment('1 => Lead, 2 => Customer, 3 => Group');
             $table->string('serial');
+            $table->tinyInteger('call_type')->default(1)->comment('1 => inbound, 2 => outbound');
             $table->string('feedback')->nullable();
             $table->string('other_feedback')->nullable();
+            $table->date('feedback_date')->nullable();
             $table->string('action')->nullable();
             $table->string('other_action')->nullable();
             $table->text('notes');

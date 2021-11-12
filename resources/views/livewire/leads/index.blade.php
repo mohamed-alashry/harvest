@@ -144,7 +144,7 @@
                                                         class="fa fa-money fa-lg"></i></a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id]) }}"
+                                                <a href="{{ route('admin.leadCases.index', ['lead' => $lead->id, 'type' => 1]) }}"
                                                     class="btn btn-warning">{{ $lead->cases_count }}</a>
                                             </td>
                                             <td>{{ $lead->cases[0]->created_at ?? '' }}</td>

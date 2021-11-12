@@ -8,13 +8,30 @@
     <!-- Name Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('lead_id', 'Name:') !!}
-        <p>{{ $leadCase->lead->name['en'] }}</p>
+        <p><a href="{{ route('admin.leads.show', $leadCase->lead_id) }}">{{ $leadCase->lead->name['en'] }}</a></p>
     </div>
 
     <!-- Mobile Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('lead_mobile', 'Mobile:') !!}
         <p>{{ $leadCase->lead->mobile_1 }}</p>
+    </div>
+
+    <!-- Type Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('type', 'Type:') !!}
+        <p>
+            @switch($leadCase->type)
+                @case(1)
+                    Lead
+                @break
+                @case(2)
+                    Customer
+                @break
+                @default
+                    Group
+            @endswitch
+        </p>
     </div>
 
     <!-- Branch Field -->
@@ -39,6 +56,12 @@
     <div class="form-group col-sm-6">
         {!! Form::label('label_type_id', 'Label Type:') !!}
         <p>{{ $leadCase->labelType->name }}</p>
+    </div>
+
+    <!-- Call Type Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('call_type', 'Call Type:') !!}
+        <p>{{ $leadCase->call_type == 1 ? 'Inbound' : 'Outbound' }}</p>
     </div>
 
     <!-- Serial Field -->
