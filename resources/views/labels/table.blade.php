@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Category</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -11,6 +12,18 @@
             @foreach ($labels as $label)
                 <tr>
                     <td>{{ $label->name }}</td>
+                    <td>
+                        @switch($label->category)
+                            @case(1)
+                                Lead
+                            @break
+                            @case(2)
+                                Customer
+                            @break
+                            @default
+                                Group
+                        @endswitch
+                    </td>
                     <td>{{ $label->status ? 'Active' : 'Inactive' }}</td>
                     <td>
                         {!! Form::open(['route' => ['admin.labels.destroy', $label->id], 'method' => 'delete']) !!}

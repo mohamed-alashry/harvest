@@ -1,4 +1,10 @@
 <div class="row">
+    <!-- Category Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('category', 'Category:') !!}
+        {!! Form::select('category', [1 => 'Lead', 2 => 'Customer', 3 => 'Group'], null, ['class' => 'form-control']) !!}
+    </div>
+
     <!-- Name Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('name', 'Name:') !!}

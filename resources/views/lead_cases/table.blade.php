@@ -36,7 +36,7 @@
                     {{-- <td>{{ $leadCase->employee->name }}</td> --}}
                     {{-- <td>{{ $leadCase->status }}</td> --}}
                     <td>{{ $leadCase->action }}</td>
-                    <td>{{ $leadCase->date }}</td>
+                    <td>{{ $leadCase->date->format('Y-m-d') }}</td>
                     <td>{{ $leadCase->feedback }}</td>
                     <td>{{ $leadCase->feedback_date }}</td>
                     <td>

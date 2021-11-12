@@ -8,7 +8,18 @@
     <!-- Name Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('name', 'Name:') !!}
-        <p>{{ $label->name }}</p>
+        <p>
+            @switch($label->category)
+                @case(1)
+                    Lead
+                @break
+                @case(2)
+                    Customer
+                @break
+                @default
+                    Group
+            @endswitch
+        </p>
     </div>
 
     <!-- Status Field -->

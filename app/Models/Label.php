@@ -27,6 +27,7 @@ class Label extends Model
 
     public $fillable = [
         'name',
+        'category',
         'status'
     ];
 
@@ -46,6 +47,7 @@ class Label extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'category' => 'required',
     ];
 }

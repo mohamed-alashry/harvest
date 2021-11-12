@@ -17,6 +17,7 @@ class CreateLabelsTable extends Migration
         Schema::create('labels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('category')->default(1)->comment('1 => Lead, 2 => Customer, 3 => Group');
             $table->tinyInteger('status')->default(1)->comment('0 => Inactive, 1 => active');
             $table->timestamps();
             $table->softDeletes();
