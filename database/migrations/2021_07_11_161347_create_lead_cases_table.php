@@ -31,7 +31,7 @@ class CreateLeadCasesTable extends Migration
             $table->string('action')->nullable();
             $table->string('other_action')->nullable();
             $table->text('notes');
-            // $table->string('status');
+            $table->tinyInteger('status')->default('0')->comment('0 => not done, 1 => done');
             $table->date('date');
             $table->timestamps();
             $table->softDeletes();

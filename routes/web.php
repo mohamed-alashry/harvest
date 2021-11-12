@@ -45,6 +45,7 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('leadCases', App\Http\Controllers\LeadCaseController::class);
         Route::post('getLabelTypes', [App\Http\Controllers\LeadCaseController::class, 'getLabelTypes'])->name('getLabelTypes');
+        Route::get('followup', [App\Http\Controllers\LeadCaseController::class, 'followup'])->name('leadCases.followup');
 
         Route::resource('rooms', App\Http\Controllers\RoomController::class);
 

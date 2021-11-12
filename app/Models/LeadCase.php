@@ -42,7 +42,7 @@ class LeadCase extends Model
     public $table = 'lead_cases';
 
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'date'];
 
 
 
@@ -62,7 +62,7 @@ class LeadCase extends Model
         'action',
         'other_action',
         'notes',
-        // 'status',
+        'status',
         'date'
     ];
 
@@ -83,7 +83,6 @@ class LeadCase extends Model
         'action' => 'required',
         'other_action' => 'required_if:action,other',
         'notes' => 'required',
-        // 'status' => 'required',
         'date' => 'required|date_format:Y-m-d',
         'feedback_date' => 'required|date_format:Y-m-d',
     ];

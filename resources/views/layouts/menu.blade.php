@@ -323,3 +323,12 @@
         </a>
     </li>
 @endcan
+
+@can('leadCases followup')
+    <li class="nav-item {{ Request::is('admin/leadCases/followup') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.leadCases.followup') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Follow Up</span>
+        </a>
+    </li>
+@endcan

@@ -206,4 +206,14 @@ class LeadCaseController extends AppBaseController
             return $types;
         }
     }
+
+    /**
+     * Show the follow up page.
+     *
+     * @return Response
+     */
+    public function followup()
+    {
+        return view('lead_cases.followup');
+    }
 }
