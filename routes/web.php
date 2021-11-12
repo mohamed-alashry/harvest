@@ -96,6 +96,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('groupSessionAttendances', App\Http\Controllers\GroupSessionAttendanceController::class)->except(['create', 'store', 'destroy']);
 
         Route::resource('makeupSessions', App\Http\Controllers\MakeupSessionController::class);
+
+        Route::resource('questions', App\Http\Controllers\QuestionController::class);
     });
 });
 

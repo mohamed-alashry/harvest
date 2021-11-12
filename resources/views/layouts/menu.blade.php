@@ -332,3 +332,12 @@
         </a>
     </li>
 @endcan
+@can('questions view')
+    <li class="nav-item {{ Request::is('admin/questions*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.questions.index') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Questions</span>
+        </a>
+    </li>
+@endcan
+
