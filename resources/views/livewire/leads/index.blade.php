@@ -1,5 +1,6 @@
 <div class="container-fluid">
     <div class="animated fadeIn">
+        @include('coreui-templates::common.errors')
         @include('flash::message')
         <div class="row">
             <div class="col-lg-12">
@@ -8,16 +9,28 @@
                         <i class="fa fa-align-justify"></i>
                         Leads
                         <div class="pull-right">
-                            @can('leads leadsAssign')
-                                <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
-                                        class="fa fa-check"></i></button>
-                            @endcan
-                            <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
-                                    class="fa fa-filter"></i></button>
-                            @can('leads create')
-                                <a href="{{ route('admin.leads.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus"></i></a>
-                            @endcan
+                            @if ($online)
+                                @can('leads onlineLeads')
+                                    <button onclick="document.getElementById('excelInput').click();"
+                                        class="btn btn-success btn-sm">
+                                        <i class="fa fa-file-excel-o"></i></button>
+                                    {!! Form::file(null, ['wire:model' => 'excel', 'style' => 'display:none;', 'id' => 'excelInput']) !!}
+
+                                    <a href="{{ asset('leads.xlsx') }}" class="btn btn-secondary btn-sm" download><i
+                                            class="fa fa-download"></i></a>
+                                @endcan
+                            @else
+                                @can('leads leadsAssign')
+                                    <button wire:click="toggleAssign()" class="btn btn-success btn-sm" title="assign"><i
+                                            class="fa fa-check"></i></button>
+                                @endcan
+                                <button wire:click="toggleFilter()" class="btn btn-warning btn-sm"><i
+                                        class="fa fa-filter"></i></button>
+                                @can('leads create')
+                                    <a href="{{ route('admin.leads.create') }}" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-plus"></i></a>
+                                @endcan
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">

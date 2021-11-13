@@ -5,5 +5,9 @@
         <li class="breadcrumb-item">Leads</li>
     </ol>
 
-    <livewire:leads.index />
+    @if (isset($online))
+        <livewire:leads.index :online="$online" />
+    @else
+        <livewire:leads.index />
+    @endif
 @endsection

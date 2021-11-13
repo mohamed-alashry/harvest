@@ -21,6 +21,7 @@ Route::group(['as' => 'admin.'], function () {
 
         Route::resource('leads', App\Http\Controllers\LeadController::class);
         Route::get('leadsAssign', [App\Http\Controllers\LeadController::class, 'leadsAssign'])->name('leads.leadsAssign');
+        Route::get('onlineLeads', [App\Http\Controllers\LeadController::class, 'onlineLeads'])->name('leads.onlineLeads');
 
         Route::resource('branches', App\Http\Controllers\BranchController::class);
 

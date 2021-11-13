@@ -170,4 +170,9 @@ class LeadController extends AppBaseController
     {
         return null;
     }
+
+    public function onlineLeads(Request $request)
+    {
+        return view('leads.index', ['online' => true]);
+    }
 }

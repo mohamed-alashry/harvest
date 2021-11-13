@@ -9,17 +9,21 @@ use App\Models\Employee;
 use App\Models\LeadSource;
 use Laracasts\Flash\Flash;
 use App\Models\KnowChannel;
+use App\Imports\LeadsImport;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 use App\Models\TrainingService;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     protected $paginationTheme = 'bootstrap';
 
-    public $leadSources,
+    public $online,
+        $leadSources,
         $mobile_1,
         $name,
         $case_from,
@@ -45,9 +49,10 @@ class Index extends Component
         $service,
         $offer,
         $branch,
-        $agent;
+        $agent,
+        $excel;
 
-    public function mount()
+    public function mount($online = null)
     {
         $this->leadSources = LeadSource::pluck('name', 'id')->toArray();
         $this->knowChannels = KnowChannel::pluck('name', 'id')->toArray();
@@ -90,6 +95,16 @@ class Index extends Component
         }
     }
 
+    public function updatedExcel()
+    {
+        $this->validate(['excel' => 'required|mimes:csv,xlsx']);
+
+        $file = $this->excel->store('/');
+        Excel::import(new LeadsImport, storage_path('app/' . $file));
+
+        Flash::success('Imported Successfully.');
+    }
+
     public function render()
     {
         $leadsQuery = Lead::withCount('cases')->with(['cases' => function ($query) {
@@ -97,7 +112,9 @@ class Index extends Component
         }])
             ->where('type', 1);
 
-        if ($this->lead_source) {
+        if ($this->online) {
+            $leadsQuery->where('lead_source_id', 6);
+        } elseif ($this->lead_source) {
             $leadsQuery->where('lead_source_id', $this->lead_source);
         }
         if ($this->mobile_1 || $this->name) {

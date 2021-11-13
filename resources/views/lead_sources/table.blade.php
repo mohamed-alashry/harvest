@@ -20,7 +20,7 @@
                             <a href="{{ route('admin.leadSources.show', [$leadSource->id]) }}"
                                 class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
 
-                            @unless($leadSource->id == 1)
+                            @unless(in_array($leadSource->id, [1, 6]))
                                 @can('leadSources edit')
                                     <a href="{{ route('admin.leadSources.edit', [$leadSource->id]) }}"
                                         class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>

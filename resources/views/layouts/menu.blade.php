@@ -6,6 +6,14 @@
         </a>
     </li>
 @endcan
+@can('leads onlineLeads')
+    <li class="nav-item {{ Request::is('admin/onlineLeads*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.leads.onlineLeads') }}">
+            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+            <span>Online Leads</span>
+        </a>
+    </li>
+@endcan
 <li class="nav-item">
     <a class="nav-link collapsed text-truncate" href="#submenu1" data-toggle="collapse" data-target="#submenu1">
         <i class="fa fa-table"></i> <span class="d-none d-sm-inline">Administartion</span>
