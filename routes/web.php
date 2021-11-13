@@ -98,6 +98,8 @@ Route::group(['as' => 'admin.'], function () {
         Route::resource('makeupSessions', App\Http\Controllers\MakeupSessionController::class);
 
         Route::resource('questions', App\Http\Controllers\QuestionController::class);
+
+        Route::resource('exams', App\Http\Controllers\ExamController::class);
     });
 });
 

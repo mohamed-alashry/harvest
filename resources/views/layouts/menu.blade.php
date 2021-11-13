@@ -298,6 +298,34 @@
         </ul>
     </div>
 </li>
+<li class="nav-item">
+    <a class="nav-link collapsed text-truncate" href="#submenu6" data-toggle="collapse" data-target="#submenu6">
+        <i class="fa fa-table"></i> <span class="d-none d-sm-inline">Exam Manager</span>
+    </a>
+    @php
+        $technical_open = in_array(Request::path(), ['questions', 'exams']);
+    @endphp
+    <div class="collapse {{ $technical_open ? 'show' : '' }}" id="submenu6" aria-expanded="false">
+        <ul class="flex-column pl-2 nav">
+            @can('exams view')
+                <li class="nav-item {{ Request::is('admin/exams*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.exams.index') }}">
+                        <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+                        <span>Exams</span>
+                    </a>
+                </li>
+            @endcan
+            @can('questions view')
+                <li class="nav-item {{ Request::is('admin/questions*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.questions.index') }}">
+                        <i class="nav-icon fa fa-circle" style="color: #fff"></i>
+                        <span>Questions</span>
+                    </a>
+                </li>
+            @endcan
+        </ul>
+    </div>
+</li>
 
 {{-- @can('groupSessions view')
     <li class="nav-item {{ Request::is('admin/groupSessions*') ? 'active' : '' }}">
@@ -332,12 +360,3 @@
         </a>
     </li>
 @endcan
-@can('questions view')
-    <li class="nav-item {{ Request::is('admin/questions*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('admin.questions.index') }}">
-            <i class="nav-icon fa fa-circle" style="color: #fff"></i>
-            <span>Questions</span>
-        </a>
-    </li>
-@endcan
-
