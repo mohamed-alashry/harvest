@@ -6,7 +6,21 @@ label {
     content: " ▾";
     font-size: 20px;
 }
+
 .nav-link[data-toggle]:not(.collapsed):after {
     content: " ▴";
     font-size: 20px;
+}
+
+.dashboard > .statistics .card {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.dashboard > .statistics i {
+    font-size: 50px;
+}
+
+.dashboard > .statistics p {
+    font-size: 20px;
+    font-weight: bold;
 }

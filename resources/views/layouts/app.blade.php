@@ -45,7 +45,7 @@
         <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('admin.home') }}">
             <img class="navbar-brand-full" src="{{ asset('dashboard logo.png') }}" style="height: 80%;"
                 alt="Harvest Logo">
             <img class="navbar-brand-minimized" src="{{ asset('dashboard logo.png') }}" style="width: 90%;"
